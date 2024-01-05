@@ -1,0 +1,42 @@
+// Copyright 2022 The Shipyard Authors. All rights reserved.
+// SPDX-License-Identifier: MIT
+
+package repository
+
+import (
+	"testing"
+
+	"github.com/khulnasoft/shipyard/models/db"
+	repo_model "github.com/khulnasoft/shipyard/models/repo"
+	"github.com/khulnasoft/shipyard/models/unit"
+	"github.com/khulnasoft/shipyard/models/unittest"
+
+	"github.com/stretchr/testify/assert"
+)
+
+func TestLinkedRepository(t *testing.T) {
+	assert.NoError(t, unittest.PrepareTestDatabase())
+	testCases := []struct {
+		name             string
+		attachID         int64
+		expectedRepo     *repo_model.Repository
+		expectedUnitType unit.Type
+	}{
+		{"LinkedIssue", 1, &repo_model.Repository{ID: 1}, unit.TypeIssues},
+		{"LinkedComment", 3, &repo_model.Repository{ID: 1}, unit.TypePullRequests},
+		{"LinkedRelease", 9, &repo_model.Repository{ID: 1}, unit.TypeReleases},
+		{"Notlinked", 10, nil, -1},
+	}
+	for _, tc := range testCases {
+		t.Run(tc.name, func(t *testing.T) {
+			attach, err := repo_model.GetAttachmentByID(db.DefaultContext, tc.attachID)
+			assert.NoError(t, err)
+			repo, unitType, err := LinkedRepository(db.DefaultContext, attach)
+			assert.NoError(t, err)
+			if tc.expectedRepo != nil {
+				assert.Equal(t, tc.expectedRepo.ID, repo.ID)
+			}
+			assert.Equal(t, tc.expectedUnitType, unitType)
+		})
+	}
+}

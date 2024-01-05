@@ -1,0 +1,22 @@
+name: cron-lock
+
+on:
+  schedule:
+    - cron: "0 0 * * *" # every day at 00:00 UTC
+  workflow_dispatch:
+
+permissions:
+  issues: write
+  pull-requests: write
+
+concurrency:
+  group: lock
+
+jobs:
+  action:
+    runs-on: ubuntu-latest
+    if: github.repository == 'go-shipyard/shipyard'
+    steps:
+      - uses: dessant/lock-threads@v5
+        with:
+          issue-inactive-days: 45

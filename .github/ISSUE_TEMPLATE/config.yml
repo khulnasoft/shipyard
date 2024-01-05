@@ -1,0 +1,17 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Security Concern
+    url: https://tinyurl.com/security-shipyard
+    about: For security concerns, please send a mail to security@shipyard.io instead of opening a public issue.
+  - name: Discord Server
+    url: https://discord.gg/Shipyard
+    about: Please ask questions and discuss configuration or deployment problems here.
+  - name: Discourse Forum
+    url: https://discourse.shipyard.io
+    about: Questions and configuration or deployment problems can also be discussed on our forum.
+  - name: Frequently Asked Questions
+    url: https://docs.shipyard.khulnasoft.com/help/faq
+    about: Please check if your question isn't mentioned here.
+  - name: Crowdin Translations
+    url: https://crowdin.com/project/shipyard
+    about: Translations are managed here.

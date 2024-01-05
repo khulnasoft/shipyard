@@ -1,0 +1,48 @@
+#!/bin/sh
+#
+# $FreeBSD$
+#
+# PROVIDE: shipyard
+# REQUIRE: NETWORKING SYSLOG
+# KEYWORD: shutdown
+#
+# Add the following lines to /etc/rc.conf to enable shipyard:
+#
+#shipyard_enable="YES"
+
+. /etc/rc.subr
+
+name="shipyard"
+rcvar="shipyard_enable"
+
+load_rc_config $name
+
+: ${shipyard_user:="git"}
+: ${shipyard_enable:="NO"}
+: ${shipyard_directory:="/var/lib/shipyard"}
+
+command="/usr/local/bin/shipyard web -c /etc/shipyard/app.ini"
+procname="$(echo $command |cut -d' ' -f1)"
+
+pidfile="${shipyard_directory}/${name}.pid"
+
+start_cmd="${name}_start"
+stop_cmd="${name}_stop"
+
+shipyard_start() {
+	cd ${shipyard_directory}
+	export USER=${shipyard_user}
+	export HOME=/usr/home/${shipyard_user}
+	export SHIPYARD_WORK_DIR=${shipyard_directory}
+	/usr/sbin/daemon -f -u ${shipyard_user} -p ${pidfile} $command
+}
+
+shipyard_stop() {
+	if [ ! -f $pidfile ]; then
+		echo "SHIPYARD PID File not found. Maybe SHIPYARD is not running?"
+	else
+		kill $(cat $pidfile)
+	fi
+}
+
+run_rc_command "$1"

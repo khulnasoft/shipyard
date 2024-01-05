@@ -1,0 +1,2 @@
+#!/usr/bin/env bash
+"$SHIPYARD_ROOT/shipyard" hook --config="$SHIPYARD_ROOT/$SHIPYARD_CONF" post-receive

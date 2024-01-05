@@ -1,0 +1,15 @@
+#!/bin/bash
+
+###############################################################
+# This script sets defaults for shipyard to run in the container #
+###############################################################
+
+# It assumes that you place this script as shipyard in /usr/local/bin
+#
+# And place the original in /usr/lib/shipyard with working files in /data/shipyard
+SHIPYARD="/app/shipyard/shipyard"
+WORK_DIR="/data/shipyard"
+CUSTOM_PATH="/data/shipyard"
+
+# Provide docker defaults
+SHIPYARD_WORK_DIR="${SHIPYARD_WORK_DIR:-$WORK_DIR}" SHIPYARD_CUSTOM="${SHIPYARD_CUSTOM:-$CUSTOM_PATH}" exec -a "$0" "$SHIPYARD" $CONF_ARG "$@"

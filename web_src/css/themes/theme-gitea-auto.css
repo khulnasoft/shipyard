@@ -1,0 +1,2 @@
+@import "./theme-shipyard-light.css" (prefers-color-scheme: light);
+@import "./theme-shipyard-dark.css" (prefers-color-scheme: dark);

@@ -1,0 +1,40 @@
+#!/bin/bash
+
+#############################################################################
+# This script sets some defaults for shipyard to run in a FHS compliant manner #
+#############################################################################
+
+# It assumes that you place this script as shipyard in /usr/bin
+#
+# And place the original in /usr/lib/shipyard with working files in /var/lib/shipyard
+# and main configuration in /etc/shipyard/app.ini
+SHIPYARD="/usr/lib/shipyard/shipyard"
+WORK_DIR="/var/lib/shipyard"
+APP_INI="/etc/shipyard/app.ini"
+
+APP_INI_SET=""
+for i in "$@"; do
+	case "$i" in
+	"-c")
+		APP_INI_SET=1
+		;;
+	"-c="*)
+		APP_INI_SET=1
+		;;
+	"--config")
+		APP_INI_SET=1
+		;;
+	"--config="*)
+		APP_INI_SET=1
+		;;
+	*)
+	;;
+	esac
+done
+
+if [ -z "$APP_INI_SET" ]; then
+	CONF_ARG=("-c" "${SHIPYARD_APP_INI:-$APP_INI}")
+fi
+
+# Provide FHS compliant defaults
+SHIPYARD_WORK_DIR="${SHIPYARD_WORK_DIR:-$WORK_DIR}" exec -a "$0" "$SHIPYARD" "${CONF_ARG[@]}"  "$@"

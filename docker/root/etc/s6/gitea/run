@@ -1,0 +1,6 @@
+#!/bin/bash
+[[ -f ./setup ]] && source ./setup
+
+pushd /app/shipyard >/dev/null
+exec su-exec $USER /usr/local/bin/shipyard web
+popd
