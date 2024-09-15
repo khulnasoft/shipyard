@@ -26,5 +26,5 @@ jobs:
 #         access_token: ${{ secrets.GITHUB_TOKEN }}
 #         wiki_folder: ./docs
 #         commit_username: 'khulnasoft-bot'
-#         commit_email: 'khulnasoft-bot@d0h.co'
+#         commit_email: 'khulnasoft-bot@khulnasoft.com'
 #         commit_message: '📕 Chore: Sync Wiki'

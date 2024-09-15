@@ -49,7 +49,7 @@ jobs:
       - name: Commit changes 🚀
         run: |
           cd website-docs
-          git config --local user.email "khulnasoft-bot@d0h.co"
+          git config --local user.email "khulnasoft-bot@khulnasoft.com"
           git config --local user.name "KhulnaSoft-Bot"
           git add docs
           git commit -m "Update documentation" || echo "No changes to commit"
