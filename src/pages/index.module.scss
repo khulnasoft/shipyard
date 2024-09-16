@@ -1,0 +1,14 @@
+/* stylelint-disable docusaurus/copyright-header */
+
+html {
+  &[data-theme='dark'] {
+    --heading-shadow: -5px 4px 0px #000000;
+    --sub-heading-shadow: -3px 3px 1px #000000;
+  }
+  &[data-theme='light'] {
+    --heading-shadow: -2px 3px 2px #a2a1a1;
+    --sub-heading-shadow: -1px 1px 1px #a2a1a1;
+  }
+}
+
+

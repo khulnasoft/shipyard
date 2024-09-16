@@ -27,7 +27,7 @@ appConfig:
 
 ### Available Languages
 
-At the time of writing the following languages are supported: `en`, `zh-CN`, `nl`, `fr`, `de`, `es`, `sl`, `it`, `pt`, `ru`, `ar`, `hi`, `ja`, but an up-to-date list of all implemented translations can be found in [`./src/utils/languages.js`](https://github.com/khulnaSoft/shipyard/blob/master/src/utils/languages.js).  Languages are specified by their 2-digit [ISO-639 code](https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes), or sometimes a 4-digit code if it's a regional dialect.
+At the time of writing the following languages are supported: `en`, `zh-CN`, `nl`, `fr`, `de`, `es`, `sl`, `it`, `pt`, `ru`, `ar`, `hi`, `ja`, but an up-to-date list of all implemented translations can be found in [`./src/utils/languages.js`](https://github.com/khulnasoft/shipyard/blob/master/src/utils/languages.js).  Languages are specified by their 2-digit [ISO-639 code](https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes), or sometimes a 4-digit code if it's a regional dialect.
 
 ---
 
@@ -46,7 +46,7 @@ If your language is a specific dialect or regional translation, then use the Pos
 
 ### 2. Translate
 
-Using [`en.json`](https://github.com/khulnaSoft/shipyard/tree/master/src/assets/locales/en.json) as an example, translate the JSON values to your language, while leaving the keys as they are. It's fine to leave out certain items, as if they're missing they will fall-back to English. If you see any attribute which include curly braces (`{xxx}`), then leave the inner value of these braces as is, as this is for variables.
+Using [`en.json`](https://github.com/khulnasoft/shipyard/tree/master/src/assets/locales/en.json) as an example, translate the JSON values to your language, while leaving the keys as they are. It's fine to leave out certain items, as if they're missing they will fall-back to English. If you see any attribute which include curly braces (`{xxx}`), then leave the inner value of these braces as is, as this is for variables.
 
 ```json
 {
@@ -64,7 +64,7 @@ Using [`en.json`](https://github.com/khulnaSoft/shipyard/tree/master/src/assets/
 
 ### 3. Add your file to the app
 
-In [`./src/utils/languages.js`](https://github.com/khulnaSoft/shipyard/tree/master/src/utils/languages.js), you need to do 2 small things:
+In [`./src/utils/languages.js`](https://github.com/khulnasoft/shipyard/tree/master/src/utils/languages.js), you need to do 2 small things:
 
 First import your new translation file, do this at the top of the page.
 E.g. `import de from '@/assets/locales/de.json';`
@@ -88,7 +88,7 @@ export const languages = [
 ];
 ```
 
-You can also add your new language to the readme, under the [Language Switching](https://github.com/khulnaSoft/shipyard#language-switching-) section and optionally include your name/ username if you'd like to be credited for your work. Done!
+You can also add your new language to the readme, under the [Language Switching](https://github.com/khulnasoft/shipyard#language-switching-) section and optionally include your name/ username if you'd like to be credited for your work. Done!
 
 If you are not comfortable with making pull requests, or do not want to modify the code, then feel free to instead send the translated file to me, and I can add it into the application. I will be sure to credit you appropriately.
 
@@ -100,7 +100,7 @@ If you're working on a new component, then any text that is displayed to the use
 
 ### 1. Add Translated Text
 
-Firstly, go to [`./src/assets/locales/en.json`](https://github.com/khulnaSoft/shipyard/blob/master/src/assets/locales/en.json), and either find the appropriate section, or create a new section. Lets say you're new component is called `my-widget`, you could add `"my-widget": {}` to store all your text as key-value-pairs. E.g.
+Firstly, go to [`./src/assets/locales/en.json`](https://github.com/khulnasoft/shipyard/blob/master/src/assets/locales/en.json), and either find the appropriate section, or create a new section. Lets say you're new component is called `my-widget`, you could add `"my-widget": {}` to store all your text as key-value-pairs. E.g.
 
 ```json
 "my-widget": {
@@ -152,7 +152,7 @@ There are many other advanced features, including  Pluralization,  Datetime & Nu
 
 Using the search bar as an example, this would look something like:
 
-In [`./src/components/Settings/SearchBar.vue`](https://github.com/khulnaSoft/shipyard/blob/master/src/components/Settings/SearchBar.vue):
+In [`./src/components/Settings/SearchBar.vue`](https://github.com/khulnasoft/shipyard/blob/master/src/components/Settings/SearchBar.vue):
 
 ```vue
 <template>
@@ -166,7 +166,7 @@ In [`./src/components/Settings/SearchBar.vue`](https://github.com/khulnaSoft/shi
 </template>
 ```
 
-Then in [`./src/assets/locales/en.json`](https://github.com/khulnaSoft/shipyard/blob/master/src/assets/locales/en.json):
+Then in [`./src/assets/locales/en.json`](https://github.com/khulnasoft/shipyard/blob/master/src/assets/locales/en.json):
 
 ```json
 {

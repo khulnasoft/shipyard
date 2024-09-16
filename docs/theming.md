@@ -19,7 +19,7 @@ appConfig:
   cssThemes: ['tiger', 'another-theme']
 ```
 
-You can now create a block to target you're theme with `html[data-theme='my-theme']{}` and set some styles. The easiest method is by setting CSS variables, but you can also directly override elements by their selector. As an example, see the [built-in CSS themes](https://github.com/khulnaSoft/shipyard/blob/master/src/styles/color-themes.scss).
+You can now create a block to target you're theme with `html[data-theme='my-theme']{}` and set some styles. The easiest method is by setting CSS variables, but you can also directly override elements by their selector. As an example, see the [built-in CSS themes](https://github.com/khulnasoft/shipyard/blob/master/src/styles/color-themes.scss).
 
 ```css
 html[data-theme='tiger'] {
@@ -38,7 +38,7 @@ Themes can be modified either through the UI, using the color picker menu (to th
 
 <p align="center">
   <a href="https://i.ibb.co/cLDXj1R/shipyard-theme-configurator.gif">
-    <img alt="Example Themes" src="https://raw.githubusercontent.com/khulnaSoft/shipyard/master/docs/assets/theme-config-demo.gif" width="400" />
+    <img alt="Example Themes" src="https://raw.githubusercontent.com/khulnasoft/shipyard/master/docs/assets/theme-config-demo.gif" width="400" />
   </a>
 </p>
 
@@ -81,7 +81,7 @@ For example, if the pages name was "CFT Toolbox", and you wanted to target `.ite
 ## Loading External Stylesheets
 
 The URI of a stylesheet, either local or hosted on a remote CDN can be passed into the config file. The attribute `appConfig.externalStyleSheet` accepts either a string, or an array of strings. You can also pass custom font stylesheets here, they must be in a CSS format (for example, `https://fonts.googleapis.com/css2?family=Cutive+Mono`).
-This is handled in [`ThemeHelper.js`](https://github.com/khulnaSoft/shipyard/blob/master/src/utils/ThemeHelper.js).
+This is handled in [`ThemeHelper.js`](https://github.com/khulnasoft/shipyard/blob/master/src/utils/ThemeHelper.js).
 
 For example:
 
@@ -113,7 +113,7 @@ Full credit to the typographers behind each of the included fonts. Specifically:
 
 ## CSS Variables
 
-All colors as well as other variable values (such as borders, border-radius, shadows) are specified as CSS variables. This makes theming the application easy, as you only need to change a given color or value in one place. You can find all variables in [`color-palette.scss`](https://github.com/khulnaSoft/shipyard/blob/master/src/styles/color-palette.scss) and the themes which make use of these color variables are specified in [`color-themes.scss`](https://github.com/khulnaSoft/shipyard/blob/master/src/styles/color-themes.scss)
+All colors as well as other variable values (such as borders, border-radius, shadows) are specified as CSS variables. This makes theming the application easy, as you only need to change a given color or value in one place. You can find all variables in [`color-palette.scss`](https://github.com/khulnasoft/shipyard/blob/master/src/styles/color-palette.scss) and the themes which make use of these color variables are specified in [`color-themes.scss`](https://github.com/khulnasoft/shipyard/blob/master/src/styles/color-themes.scss)
 
 CSS variables are simple to use. You define them like: `--background: #fff;` and use them like: `body { background-color: var(--background); }`. For more information, see this guide on using [CSS Variables](https://developer.mozilla.org/en-US/docs/Web/CSS/Using_CSS_custom_properties).
 

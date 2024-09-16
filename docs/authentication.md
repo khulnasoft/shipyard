@@ -49,7 +49,7 @@ For example:
 appConfig:
   auth:
     users:
-    - user: khulnasoft
+    - user: alicia
       hash: 4D1E58C90B3B94BCAD9848ECCACD6D2A8C9FBC5CA913304BBA5CDEAB36FEEFA3
       type: admin
     - user: bob
@@ -89,7 +89,7 @@ pages:
     path: intranet.yml
     displayData:
       hideForGuests: true
-      hideForUsers: [khulnasoft, bob]
+      hideForUsers: [alicia, bob]
 ```    
 
 ```yaml
@@ -97,7 +97,7 @@ pages:
   icon: fas fa-code
   displayData:
     cols: 2
-    hideForUsers: [khulnasoft, bob]
+    hideForUsers: [alicia, bob]
   items:
     ...
 ```
@@ -110,14 +110,14 @@ pages:
   items:
     - title: Hide Me
       displayData:
-        hideForUsers: [khulnasoft, bob]
+        hideForUsers: [alicia, bob]
 ```
 
 ### Permissions
 
 Any user who is not an admin (with `type: admin`) will not be able to write changes to disk.
 
-You can also prevent any user from writing changes to disk, using `preventWriteToDisk`. Or prevent any changes from being saved locally in browser storage, using `preventLocalSave`. Both properties can be found under [`appConfig`](./docs/configuring.md#appconfig-optional).
+You can also prevent any user from writing changes to disk, using `preventWriteToDisk`. Or prevent any changes from being saved locally in browser storage, using `preventLocalSave`. Both properties can be found under [`appConfig`](/docs/configuring#appconfig-optional).
 
 To disable all UI config features, including View Config, set `disableConfiguration`. Alternatively you can disable UI config features for all non admin users by setting `disableConfigurationForNonAdmin` to true.
 
@@ -146,7 +146,7 @@ If you'd also like to prevent direct visit access to your configuration file, yo
 
 With basic auth, all logic is happening on the client-side, which could mean a skilled user could manipulate the code to view parts of your configuration, including the hash. If the SHA-256 hash is of a common password, it may be possible to determine it, using a lookup table, in order to find the original password. Which can be used to manually generate the auth token, that can then be inserted into session storage, to become a valid logged in user. Therefore, you should always use a long, strong and unique password, and if you instance contains security-critical info and/ or is exposed directly to the internet, and alternative authentication method may be better. The purpose of the login page is merely to prevent immediate unauthorized access to your homepage.
 
-**[⬆️ Back to Top](#authentication)**
+**[⬆️ Back to Top](#top)**
 
 ---
 
@@ -156,7 +156,7 @@ If you'd like to protect all your config files from direct access, you can set t
 
 Then, if you'd like your frontend to automatically log you in, without prompting you for credentials (insecure, so only use on a trusted environment), then also specify `VUE_APP_BASIC_AUTH_USERNAME` and `VUE_APP_BASIC_AUTH_PASSWORD`. This is useful for when you're hosting Shipyard on a private server, and just want to use auth for user management and to prevent direct access to your config files, while still allowing the frontend to access them. Note that a rebuild is required for these changes to take effect.
 
-**[⬆️ Back to Top](#authentication)**
+**[⬆️ Back to Top](#top)**
 
 ---
 
@@ -218,7 +218,7 @@ appConfig:
     enableKeycloak: true
     keycloak:
       serverUrl: 'http://localhost:8081'
-      realm: 'khulnasoft-homelab'
+      realm: 'alicia-homelab'
       clientId: 'shipyard'
 ```
 
@@ -248,7 +248,7 @@ sections:
             groups: ['DevelopmentTeam']
 ```
 
-Depending on how you're hosting Shipyard and Keycloak, you may also need to set some HTTP headers, to prevent a CORS error. This would typically be the `Access-Control-Allow-Origin [URL-of Shipyard]` on your Keycloak instance. See the [Setting Headers](https://github.com/khulnaSoft/shipyard/blob/master/docs/management.md#setting-headers) guide in the management docs for more info.
+Depending on how you're hosting Shipyard and Keycloak, you may also need to set some HTTP headers, to prevent a CORS error. This would typically be the `Access-Control-Allow-Origin [URL-of Shipyard]` on your Keycloak instance. See the [Setting Headers](https://github.com/khulnasoft/shipyard/blob/master/docs/management.md#setting-headers) guide in the management docs for more info.
 
 Your app is now secured :) When you load Shipyard, it will redirect to your Keycloak login page, and any user without valid credentials will be prevented from accessing your dashboard.
 
@@ -584,7 +584,7 @@ require valid-user
 Then create a `.htpasswd` file in the same directory. List users and their hashed passwords here, with one user on each line, and a colon between username and password (e.g. `[username]:[hashed-password]`). You will need to generate an MD5 hash of your desired password, this can be done with an [online tool](https://www.web2generators.com/apache-tools/htpasswd-generator).  Your file will look something like:
 
 ```text
-khulnasoft:$apr1$jv0spemw$RzOX5/GgY69JMkgV6u16l0
+alicia:$apr1$jv0spemw$RzOX5/GgY69JMkgV6u16l0
 ```
 
 #### NGINX
@@ -604,7 +604,7 @@ Caddy has a [basic-auth](https://caddyserver.com/docs/caddyfile/directives/basic
 
 ```text
 basicauth /secret/* {
-	khulnasoft JDJhJDEwJEVCNmdaNEg2Ti5iejRMYkF3MFZhZ3VtV3E1SzBWZEZ5Q3VWc0tzOEJwZE9TaFlZdEVkZDhX
+	alicia JDJhJDEwJEVCNmdaNEg2Ti5iejRMYkF3MFZhZ3VtV3E1SzBWZEZ5Q3VWc0tzOEJwZE9TaFlZdEVkZDhX
 }
 ```
 
@@ -630,7 +630,7 @@ $HTTP["host"] == "shipyard.my-domain.net" {
     "/docs/" => (
       "method" => "basic",
       "realm" => "Password protected area",
-      "require" => "user=khulnasoft"
+      "require" => "user=alicia"
     )
   )
 }
@@ -640,10 +640,10 @@ Restart your web server for changes to take effect.
 
 ### OAuth Services
 
-There are also authentication services, such as [Ory.sh](https://www.ory.sh/), [Okta](https://developer.okta.com/), [Auth0](https://auth0.com/), [Firebase](https://firebase.google.com/docs/auth/). Implementing one of these solutions would involve some changes to the [`Auth.js`](https://github.com/khulnaSoft/shipyard/blob/master/src/utils/Auth.js) file, but should be fairly straightforward.
+There are also authentication services, such as [Ory.sh](https://www.ory.sh/), [Okta](https://developer.okta.com/), [Auth0](https://auth0.com/), [Firebase](https://firebase.google.com/docs/auth/). Implementing one of these solutions would involve some changes to the [`Auth.js`](https://github.com/khulnasoft/shipyard/blob/master/src/utils/Auth.js) file, but should be fairly straightforward.
 
 ### Static Site Hosting Providers
 
 If you are hosting Shipyard on a cloud platform, you will probably find that it has built-in support for password protected access to web apps. For more info, see the relevant docs for your provider, for example: [Netlify Password Protection](https://docs.netlify.com/visitor-access/password-protection/), [Cloudflare Access](https://www.cloudflare.com/teams/access/), [AWS Cognito](https://aws.amazon.com/cognito/), [Azure Authentication](https://docs.microsoft.com/en-us/azure/app-service/scenario-secure-app-authentication-app-service) and [Vercel Password Protection](https://vercel.com/docs/platform/projects#password-protection).
 
-**[⬆️ Back to Top](#authentication)**
+**[⬆️ Back to Top](#top)**

@@ -1,2 +1,2 @@
 
-See: [Showcase](/docs/showcase.md).
+See: [Showcase](/docs/showcase).
