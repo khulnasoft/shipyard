@@ -1,11 +1,11 @@
 # Privacy & Security
 
 Shipyard was built with privacy in mind.
-Self-hosting your own apps and services is a great way to protect yourself from the mass data collection employed by big tech companies, and Shipyard was designed to make self-hosting easier, by keeping your local services organized and accessible from a single place. The [management docs](https://github.com/khulnaSoft/shipyard/blob/master/docs/management.md) contains a though guide on the steps you can take to secure your homelab.
+Self-hosting your own apps and services is a great way to protect yourself from the mass data collection employed by big tech companies, and Shipyard was designed to make self-hosting easier, by keeping your local services organized and accessible from a single place. The [management docs](https://github.com/khulnasoft/shipyard/blob/master/docs/management.md) contains a though guide on the steps you can take to secure your homelab.
 
 Shipyard operates on the premise, that no external data requests should ever be made, unless explicitly enabled by the user. In the interest of transparency, the code is 100% open source and clearly documented throughout.
 
-| 🔐 For privacy and security tips, check out another project of mine: **[Personal Security Checklist](https://github.com/KhulnaSoft-bot/personal-security-checklist)** |
+| 🔐 For privacy and security tips, check out another project of mine: **[Personal Security Checklist](https://github.com/khulnasoft/personal-security-checklist)** |
 |-|
 
 ## Contents
@@ -80,15 +80,15 @@ When the application loads, it checks for updates. The results of which are disp
 
 #### Cloud Backup
 
-Shipyard has an optional End-to-End encrypted [cloud backup feature](https://github.com/khulnaSoft/shipyard/blob/master/docs/backup-restore.md). No data is ever transmitted unless you actively enable this feature through the UI.
+Shipyard has an optional End-to-End encrypted [cloud backup feature](https://github.com/khulnasoft/shipyard/blob/master/docs/backup-restore.md). No data is ever transmitted unless you actively enable this feature through the UI.
 
-All data is encrypted before being sent to the backend. This is done in [`CloudBackup.js`](https://github.com/khulnaSoft/shipyard/blob/master/src/utils/CloudBackup.js), using [crypto.js](https://github.com/brix/crypto-js)'s AES method, using the users chosen password as the key. The data is then sent to a [Cloudflare worker](https://developers.cloudflare.com/workers/learning/how-workers-works) (a platform for running serverless functions), and stored in a [KV](https://developers.cloudflare.com/workers/learning/how-kv-works) data store.
+All data is encrypted before being sent to the backend. This is done in [`CloudBackup.js`](https://github.com/khulnasoft/shipyard/blob/master/src/utils/CloudBackup.js), using [crypto.js](https://github.com/brix/crypto-js)'s AES method, using the users chosen password as the key. The data is then sent to a [Cloudflare worker](https://developers.cloudflare.com/workers/learning/how-workers-works) (a platform for running serverless functions), and stored in a [KV](https://developers.cloudflare.com/workers/learning/how-kv-works) data store.
 
 Your selected password never leaves your device, and is hashed before being compared. It is only possible to restore a configuration if you have both the backup ID and decryption password. Because the data is encrypted on the client-side (before being sent to the cloud), it is not possible for a man-in-the-middle, government entity, website owner, or even Cloudflare to be able read any of your data.
 
 #### Web Search
 
-Shipyard has a primitive [web search feature](https://github.com/khulnaSoft/shipyard/blob/master/docs/searching.md#web-search). No external requests are made, instead you are redirected to your chosen search engine (defaults to DuckDuckGo), using your chosen opening method.
+Shipyard has a primitive [web search feature](https://github.com/khulnasoft/shipyard/blob/master/docs/searching.md#web-search). No external requests are made, instead you are redirected to your chosen search engine (defaults to DuckDuckGo), using your chosen opening method.
 
 This feature can be disabled under appConfig, with `webSearch: { disableWebSearch: true }`
 
@@ -112,57 +112,57 @@ Certain themes may use external assets (such as fonts or images). Currently, thi
 
 ### Widgets
 
-Shipyard supports [Widgets](/docs/widgets.md) for displaying dynamic content. Below is a list of all widgets that make external data requests, along with the endpoint they call and a link to the Privacy Policy of that service.
+Shipyard supports [Widgets](/docs/widgets) for displaying dynamic content. Below is a list of all widgets that make external data requests, along with the endpoint they call and a link to the Privacy Policy of that service.
 
-- **[Weather](/docs/widgets.md#weather)** and **[Weather Forecast](/docs/widgets.md#weather-forecast)**: `https://api.openweathermap.org`
+- **[Weather](/docs/widgets#weather)** and **[Weather Forecast](/docs/widgets#weather-forecast)**: `https://api.openweathermap.org`
   - [OWM Privacy Policy](https://openweather.co.uk/privacy-policy)
-- **[RSS Feed](/docs/widgets.md#rss-feed)**: `https://api.rss2json.com/v1/api.json`
+- **[RSS Feed](/docs/widgets#rss-feed)**: `https://api.rss2json.com/v1/api.json`
   - [Rss2Json Privacy Policy](https://rss2json.com/privacy-policy)
-- **[IP Address](/docs/widgets.md#public-ip)**: `https://ipapi.co/json` or `http://ip-api.com/json` or `https://api.ip2location.io/`
+- **[IP Address](/docs/widgets#public-ip)**: `https://ipapi.co/json` or `http://ip-api.com/json` or `https://api.ip2location.io/`
   - [IPGeoLocation Privacy Policy](https://ipgeolocation.io/privacy.html)
   - [IP-API Privacy Policy](https://ip-api.com/docs/legal)
   - [IP2Location.io Privacy Policy](https://ip2location.io/privacy-policy)
-- **[IP Blacklist](/docs/widgets.md#ip-blacklist)**: `https://api.blacklistchecker.com`
+- **[IP Blacklist](/docs/widgets#ip-blacklist)**: `https://api.blacklistchecker.com`
   - [Blacklist Checker Privacy Policy](https://blacklistchecker.com/privacy)
-- **[Domain Monitor](/docs/widgets.md#domain-monitor)**: `http://api.whoapi.com`
+- **[Domain Monitor](/docs/widgets#domain-monitor)**: `http://api.whoapi.com`
   - [WhoAPI Privacy Policy](https://whoapi.com/privacy-policy/)
-- **[Crypto Watch List](/docs/widgets.md#crypto-watch-list)** and **[Token Price History](/docs/widgets.md#crypto-token-price-history)**: `https://api.coingecko.com`
+- **[Crypto Watch List](/docs/widgets#crypto-watch-list)** and **[Token Price History](/docs/widgets#crypto-token-price-history)**: `https://api.coingecko.com`
   - [CoinGecko Privacy Policy](https://www.coingecko.com/en/privacy)
-- **[Wallet Balance](/docs/widgets.md#wallet-balance)**: `https://api.blockcypher.com/`
+- **[Wallet Balance](/docs/widgets#wallet-balance)**: `https://api.blockcypher.com/`
   - [BlockCypher Privacy Policy](https://www.blockcypher.com/privacy.html)
-- **[Code::Stats](/docs/widgets.md#code-stats)**: `https://codestats.net`
+- **[Code::Stats](/docs/widgets#code-stats)**: `https://codestats.net`
   - [Code::Stats Privacy Policy](https://codestats.net/tos#privacy)
-- **[addy.io](/docs/widgets.md#addyio)**: `https://app.addy.io`
+- **[addy.io](/docs/widgets#addyio)**: `https://app.addy.io`
   - [addy.io Privacy Policy](https://addy.io/privacy/)
-- **[Vulnerability Feed](/docs/widgets.md#vulnerability-feed)**: `https://www.cvedetails.com`
+- **[Vulnerability Feed](/docs/widgets#vulnerability-feed)**: `https://www.cvedetails.com`
   - [CVE Details Privacy Policy](https://www.cvedetails.com/privacy.php)
-- **[Exchange Rate](/docs/widgets.md#exchange-rates)**: `https://v6.exchangerate-api.com`
+- **[Exchange Rate](/docs/widgets#exchange-rates)**: `https://v6.exchangerate-api.com`
   - [ExchangeRateAPI Privacy Policy](https://www.exchangerate-api.com/terms)
-- **[Public Holidays](/docs/widgets.md#public-holidays)**: `https://kayaposoft.com`
+- **[Public Holidays](/docs/widgets#public-holidays)**: `https://kayaposoft.com`
   - [jurajmajer/enrico](https://github.com/jurajmajer/enrico)
-- **[Covid-19 Status](/docs/widgets.md#covid-19-status)**: `https://codestats.net`
+- **[Covid-19 Status](/docs/widgets#covid-19-status)**: `https://codestats.net`
   - [disease-sh/api](https://github.com/disease-sh/api)
-- **[Sports Scores](/docs/widgets.md#sports-scores)**: `https://thesportsdb.com`
+- **[Sports Scores](/docs/widgets#sports-scores)**: `https://thesportsdb.com`
   - No Policy Available
-- **[News Headlines](/docs/widgets.md#news-headlines)**: `https://api.currentsapi.services`
+- **[News Headlines](/docs/widgets#news-headlines)**: `https://api.currentsapi.services`
   - [CurrentsAPI Privacy Policy](https://currentsapi.services/privacy)
-- **[Mullvad Status](/docs/widgets.md#mullvad-status)**: `https://am.i.mullvad.net`
+- **[Mullvad Status](/docs/widgets#mullvad-status)**: `https://am.i.mullvad.net`
   - [Mullvad Privacy Policy](https://mullvad.net/en/help/privacy-policy/)
-- **[TFL Status](/docs/widgets.md#tfl-status)**: `https://api.tfl.gov.uk`
+- **[TFL Status](/docs/widgets#tfl-status)**: `https://api.tfl.gov.uk`
   - [TFL Privacy Policy](https://tfl.gov.uk/corporate/privacy-and-cookies/)
-- **[Stock Price History](/docs/widgets.md#stock-price-history)**: `https://alphavantage.co`
+- **[Stock Price History](/docs/widgets#stock-price-history)**: `https://alphavantage.co`
   - [AlphaVantage Privacy Policy](https://www.alphavantage.co/privacy/)
-- **[ETH Gas Prices](/docs/widgets.md#eth-gas-prices)**: `https://ethgas.watch`
+- **[ETH Gas Prices](/docs/widgets#eth-gas-prices)**: `https://ethgas.watch`
   - [wslyvh/ethgaswatch](https://github.com/wslyvh/ethgaswatch)
-- **[Joke](/docs/widgets.md#joke)**: `https://v2.jokeapi.dev`
+- **[Joke](/docs/widgets#joke)**: `https://v2.jokeapi.dev`
   - [SV443's Privacy Policy](https://sv443.net/privacypolicy/en)
-- **[Flight Data](/docs/widgets.md#flight-data)**: `https://aerodatabox.p.rapidapi.com`
+- **[Flight Data](/docs/widgets#flight-data)**: `https://aerodatabox.p.rapidapi.com`
   - [AeroDataBox Privacy Policy](https://www.aerodatabox.com/#h.p_CXtIYZWF_WQd)
-- **[Astronomy Picture of the Day](/docs/widgets.md#astronomy-picture-of-the-day)**: `https://apodapi.herokuapp.com`
+- **[Astronomy Picture of the Day](/docs/widgets#astronomy-picture-of-the-day)**: `https://apodapi.herokuapp.com`
   - [NASA's Privacy Policy](https://www.nasa.gov/about/highlights/HP_Privacy.html)
-- **[GitHub Trending](/docs/widgets.md#github-trending)** and **[GitHub Profile Stats](/docs/widgets.md#github-profile-stats)**: `https://api.github.com`
+- **[GitHub Trending](/docs/widgets#github-trending)** and **[GitHub Profile Stats](/docs/widgets#github-profile-stats)**: `https://api.github.com`
   - [GitHub's Privacy Policy](https://docs.github.com/en/github/site-policy/github-privacy-statement)
-- **[Cron Monitoring (Health Checks)](/docs/widgets.md#cron-monitoring-health-checks)**: `https://healthchecks.io`
+- **[Cron Monitoring (Health Checks)](/docs/widgets#cron-monitoring-health-checks)**: `https://healthchecks.io`
   - [Health-Checks Privacy Policy](https://healthchecks.io/privacy/)
 
 ---
@@ -211,13 +211,13 @@ The following section outlines all data that is stored in the browsers, as cooki
 
 ### Deleting Stored Data
 
-You can manually view and delete session storage, local storage and cookies at anytime. Fist [open](/docs/troubleshooting.md#how-to-open-browser-console) your browsers developer tools (usually <kbd>F12</kbd>), then under the Application tab select the storage category. Here you will see a list of stored data, and you can select any item and delete it.
+You can manually view and delete session storage, local storage and cookies at anytime. Fist [open](/docs/troubleshooting#how-to-open-browser-console) your browsers developer tools (usually <kbd>F12</kbd>), then under the Application tab select the storage category. Here you will see a list of stored data, and you can select any item and delete it.
 
 ---
 
 ## Dependencies
 
-As with most web projects, Shipyard relies on several [dependencies](https://github.com/khulnaSoft/shipyard/blob/master/docs/credits.md#dependencies-). For links to each, and a breakdown of their licenses, please see [Legal](https://github.com/khulnaSoft/shipyard/blob/master/.github/LEGAL.md).
+As with most web projects, Shipyard relies on several [dependencies](https://github.com/khulnasoft/shipyard/blob/master/docs/credits.md#dependencies-). For links to each, and a breakdown of their licenses, please see [Legal](https://github.com/khulnasoft/shipyard/blob/master/.github/LEGAL.md).
 
 Dependencies can introduce security vulnerabilities, but since all these packages are open source any issues are usually very quickly spotted. Shipyard is using Snyk for dependency security monitoring, and you can see [the latest report here](https://snyk.io/test/github/khulnasoft/shipyard). If any issue is detected by Snyk, a note about it will appear at the top of the Readme, and will usually be fixed within 48 hours.
 
@@ -229,12 +229,12 @@ Note that packages listed under `devDependencies` section are only used for buil
 
 Running your self-hosted applications in individual, containerized environments (such as containers or VMs) helps keep them isolated, and prevent an exploit in one service effecting another.
 
-If you're running Shipyard in a container, see [Management Docs --> Container Security](https://github.com/khulnaSoft/shipyard/blob/master/docs/management.md#container-security) for step-by-step security guide.
+If you're running Shipyard in a container, see [Management Docs --> Container Security](https://github.com/khulnasoft/shipyard/blob/master/docs/management.md#container-security) for step-by-step security guide.
 
 There is very little complexity involved with Shipyard, and therefore the attack surface is reasonably small, but it is still important to follow best practices and employ monitoring for all your self-hosted apps. A couple of things that you should look at include:
 
 - Use SSL for securing traffic in transit
-- Configure [authentication](/docs/authentication.md#alternative-authentication-methods) to prevent unauthorized access
+- Configure [authentication](/docs/authentication#alternative-authentication-methods) to prevent unauthorized access
 - Keep your system, software and Shipyard up-to-date
 - Ensure your server is appropriately secured
 - Manage users and SSH correctly
@@ -243,7 +243,7 @@ There is very little complexity involved with Shipyard, and therefore the attack
 - Setup malicious traffic detection
 - Understand the [Docker attack fronts](https://docs.docker.com/engine/security/), and follow [Docker Security Best Practices](https://snyk.io/blog/10-docker-image-security-best-practices/)
 
-This is covered in more detail in [App Management](/docs/management.md).
+This is covered in more detail in [App Management](/docs/management).
 
 ---
 
@@ -257,11 +257,11 @@ Shipyard supports SRI, and it is recommended to enable this if you are hosting y
 
 ### SSL
 
-Native SSL support is enabled, for setup instructions, see the [Management Docs](/docs/management.md#ssl-certificates)
+Native SSL support is enabled, for setup instructions, see the [Management Docs](/docs/management#ssl-certificates)
 
 ### Authentication
 
-Shipyard supports both basic auth, as well as server-based SSO using Keycloak. Full details of which, along with alternate authentication methods can be found in the [Authentication Docs](/docs/authentication.md). If your dashboard is exposed to the internet and/ or contains any sensitive info it is strongly recommended to configure access control with Keycloak or another server-side method.
+Shipyard supports both basic auth, as well as server-based SSO using Keycloak. Full details of which, along with alternate authentication methods can be found in the [Authentication Docs](/docs/authentication). If your dashboard is exposed to the internet and/ or contains any sensitive info it is strongly recommended to configure access control with Keycloak or another server-side method.
 
 ---
 
@@ -281,7 +281,7 @@ You may wish to disable features that you don't want to use, if they involve sto
 
 ## Reporting a Security Issue
 
-If you think you've found a critical issue with Shipyard, please send an email to `security@mail.khulnasoft.omg.lol`. You can encrypt it, using [`0688 F8D3 4587 D954 E9E5 1FB8 FEDB 68F5 5C02 83A7`](https://keybase.io/khulansoft/pgp_keys.asc?fingerprint=0688f8d34587d954e9e51fb8fedb68f55c0283a7). You should receive a response within 48 hours. For more information, see [SECURITY.md](https://github.com/khulnaSoft/shipyard/blob/master/.github/SECURITY.md).
+If you think you've found a critical issue with Shipyard, please send an email to `security@mail.alicia.omg.lol`. You can encrypt it, using [`0688 F8D3 4587 D954 E9E5 1FB8 FEDB 68F5 5C02 83A7`](https://keybase.io/aliciasykes/pgp_keys.asc?fingerprint=0688f8d34587d954e9e51fb8fedb68f55c0283a7). You should receive a response within 48 hours. For more information, see [SECURITY.md](https://github.com/khulnasoft/shipyard/blob/master/.github/SECURITY.md).
 
 All non-critical issues can be raised as a ticket.
 

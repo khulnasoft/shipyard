@@ -90,7 +90,7 @@ If your service is online, but responds with a status code that is not in the 2x
 
 If you get an error, like `Service Unavailable: Server resulted in a fatal error`, even when it's definitely online, this is most likely caused by missing the protocol. Don't forget to include `https://` (or whatever protocol) before the URL, and ensure that if needed, you've specified the port.
 
-Running Shipyard in HOST network mode, instead of BRIDGE will allow status check access to other services in HOST mode. For more info, see [#445](https://github.com/khulnaSoft/shipyard/discussions/445).
+Running Shipyard in HOST network mode, instead of BRIDGE will allow status check access to other services in HOST mode. For more info, see [#445](https://github.com/khulnasoft/shipyard/discussions/445).
 
 If you have firewall rules configured, then ensure that they don't prevent Shipyard from making requests to the other services you are trying to access.
 

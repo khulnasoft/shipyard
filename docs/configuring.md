@@ -1,6 +1,6 @@
 # Configuring
 
-All app configuration is specified in [`/user-data/conf.yml`](https://github.com/khulnaSoft/shipyard/blob/master/user-data/conf.yml) which is in [YAML Format](https://yaml.org/) format. If you're using Docker, this file can be passed in as a volume. Changes can either be made directly to this file, or done [through the UI](#editing-config-through-the-ui). From the UI you can also export, backup, reset, validate and download your configuration file.
+All app configuration is specified in [`/user-data/conf.yml`](https://github.com/khulnasoft/shipyard/blob/master/user-data/conf.yml) which is in [YAML Format](https://yaml.org/) format. If you're using Docker, this file can be passed in as a volume. Changes can either be made directly to this file, or done [through the UI](#editing-config-through-the-ui). From the UI you can also export, backup, reset, validate and download your configuration file.
 
 ## There are three ways to edit the config
 
@@ -15,10 +15,10 @@ All app configuration is specified in [`/user-data/conf.yml`](https://github.com
 
 ## Tips
 
-- You may find it helpful to look at some sample config files to get you started, a collection of which can be found [here](https://gist.github.com/KhulnaSoft-bot/000f712a5ce98f212817d20bc16bab10)
+- You may find it helpful to look at some sample config files to get you started, a collection of which can be found [here](https://gist.github.com/khulnasoft/000f712a5ce98f212817d20bc16bab10)
 - You can check that your config file fits the schema, by running `yarn validate-config`
 - After modifying your config, the app needs to be recompiled, by running `yarn build`  - this happens automatically if you're using Docker
-- It is recommended to keep a backup of your config file. You can download it under Config menu, or use the [Cloud Backup](./docs/backup-restore.md) feature.
+- It is recommended to keep a backup of your config file. You can download it under Config menu, or use the [Cloud Backup](/docs/backup-restore) feature.
 - You can make use of YAML features, like anchors, comments, multi-line strings, etc to reuse attributes and keep your config file readable
 - Once you have finished configuring your dashboard, you can choose to [disable UI config](#preventing-changes) if you wish
 - All fields are optional, unless otherwise stated.
@@ -64,7 +64,7 @@ The following file provides a reference of all supported configuration options.
 **`sections`** | `array` | Required | An array of sections, each containing an array of items, which will be displayed as links. See [`section`](#section)
 **`pages`** | `array` | _Optional_ | An array additional config files, used for multi-page dashboards. See [`pages`](#pages-optional)
 
-**[⬆️ Back to Top](#configuring)**
+**[⬆️ Back to Top](#top)**
 
 ## `PageInfo`
 
@@ -76,7 +76,7 @@ The following file provides a reference of all supported configuration options.
 **`footerText`** | `string` | _Optional_ | Text to display in the footer (note that this will override the default footer content). This can also include HTML and inline CSS
 **`logo`** | `string` | _Optional_ | The path to an image to display in the header (to the right of the title). This can be either local, where `/` is the root of `./public`, or any remote image, such as `https://i.ibb.co/yhbt6CY/shipyard.png`. It's recommended to scale your image down, so that it doesn't impact load times
 
-**[⬆️ Back to Top](#configuring)**
+**[⬆️ Back to Top](#top)**
 
 ## `pageInfo.navLinks` _(optional)_
 
@@ -86,22 +86,22 @@ The following file provides a reference of all supported configuration options.
 **`path`** | `string` | Required | The URL to navigate to when clicked. Can be relative (e.g. `/about`) or absolute (e.g. `https://example.com` or `http://192.168.1.1`)
 **`target`** | `string` |  _Optional_ | The opening method (external links only). Can be either `newtab`, `sametab`, `top` or `parent`. Defaults to `newtab`
 
-**[⬆️ Back to Top](#configuring)**
+**[⬆️ Back to Top](#top)**
 
 ## `pages[]` _(optional)_
 
 **Field** | **Type** | **Required**| **Description**
 --- | --- | --- | ---
 **`name`** | `string` |  Required | A unique name for that page
-**`path`** | `string` |  Required | The path (local or remote) to the config file to use.<br>For files located within `/public`, you only need to specify filename, for externally hosted files you must include the full URL
+**`path`** | `string` |  Required | The path (local or remote) to the config file to use.<br />For files located within `/public`, you only need to specify filename, for externally hosted files you must include the full URL
 
-**[⬆️ Back to Top](#configuring)**
+**[⬆️ Back to Top](#top)**
 
 ## `appConfig` _(optional)_
 
 **Field** | **Type** | **Required**| **Description**
 --- | --- | --- | ---
-**`language`** | `string` | _Optional_ | The 2 (or 4-digit) [ISO 639-1 code](https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes) for your language, e.g. `en` or `en-GB`. This must be a language that the app has already been [translated](https://github.com/khulnaSoft/shipyard/tree/master/src/assets/locales) into. If your language is unavailable, Shipyard will fallback to English. By default Shipyard will attempt to auto-detect your language, although this may not work on some privacy browsers.
+**`language`** | `string` | _Optional_ | The 2 (or 4-digit) [ISO 639-1 code](https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes) for your language, e.g. `en` or `en-GB`. This must be a language that the app has already been [translated](https://github.com/khulnasoft/shipyard/tree/master/src/assets/locales) into. If your language is unavailable, Shipyard will fallback to English. By default Shipyard will attempt to auto-detect your language, although this may not work on some privacy browsers.
 ~~**`startingView`**~~ | `enum` | _Optional_ | Which page to load by default, and on the base page or domain root. You can still switch to different views from within the UI. Can be either `default`, `minimal` or `workspace`. Defaults to `default`. NOTE: This has been replaced by an environmental variable: `VUE_APP_STARTING_VIEW` in V3 onwards
 **`defaultOpeningMethod`** | `enum` | _Optional_ | The default opening method for items, if no `target` is specified for a given item. Can be either `newtab`, `sametab`, `modal`, `workspace`, `clipboard`, `top` or `parent`. Defaults to `newtab`
 **`statusCheck`** | `boolean` | _Optional_ | When set to `true`, Shipyard will ping each of your services and display their status as a dot next to each item. This can be overridden by setting `statusCheck` under each item. Defaults to `false`
@@ -111,15 +111,15 @@ The following file provides a reference of all supported configuration options.
 **`enableFontAwesome`** | `boolean` | _Optional_ | If set to `true` font-awesome will be loaded, if set to `false` they will not be. if left blank font-awesome will be enabled only if required by 1 or more icons
 **`enableMaterialDesignIcons`** | `boolean` | _Optional_ | If set to `true` mdi icons will be loaded, if set to `false` they will not be. Where `true` is enabled, if left blank material design icons will be enabled only if required by 1 or more icons
 **`fontAwesomeKey`** | `string` | _Optional_ | If you have a font-awesome key, then you can use it here and make use of premium icons. It is a 10-digit alpha-numeric string from you're FA kit URL  (e.g. `13014ae648`)
-**`faviconApi`** | `enum` | _Optional_ | Only applicable if you are using favicons for item icons. Specifies which service to use to resolve favicons. Set to `local` to do this locally, without using an API. Services running locally will use this option always. Available options are: `local`, `faviconkit`, `iconhorse`, `google`, `clearbit`, `webmasterapi` and `allesedv`. Defaults to `faviconkit`. See [Icons](/docs/icons.md#favicons) for more info
+**`faviconApi`** | `enum` | _Optional_ | Only applicable if you are using favicons for item icons. Specifies which service to use to resolve favicons. Set to `local` to do this locally, without using an API. Services running locally will use this option always. Available options are: `local`, `faviconkit`, `iconhorse`, `google`, `clearbit`, `webmasterapi` and `allesedv`. Defaults to `faviconkit`. See [Icons](/docs/icons#favicons) for more info
 **`auth`** | `object` | _Optional_ | All settings relating to user authentication. See [`auth`](#appconfigauth-optional)
-**`defaultIcon`** | `string` | _Optional_ | An icon to be applied to any items, which don't already have an icon set. See [Icon Docs](/docs/icons.md#default-icon) for more info
+**`defaultIcon`** | `string` | _Optional_ | An icon to be applied to any items, which don't already have an icon set. See [Icon Docs](/docs/icons#default-icon) for more info
 **`layout`** | `enum` | _Optional_ | Layout for homepage, either `horizontal`, `vertical` or `auto`. Defaults to `auto`. This specifies the layout and direction of how sections are positioned on the home screen. This can also be modified and overridden from the UI.
 **`iconSize`** | `enum` | _Optional_ | The size of link items / icons. Can be either `small`, `medium,` or `large`. Defaults to `medium`. This can also be set directly from the UI.
 **`colCount`** | `number` | _Optional_ | The number of columns of sections displayed on the homepage, using the default view. Should be in integer between `1` and `8`. Note that by default this is applied responsively, based on current screen size, and specifying a value here will override this behavior, which may not be desirable.
 **`theme`** | `string` | _Optional_ | The default theme for first load (you can change this later from the UI)
 **`cssThemes`** | `string[]` | _Optional_ | An array of custom theme names which can be used in the theme switcher dropdown
-**`customColors`** | `object`| _Optional_ | Enables you to apply a custom color palette to any given theme. Use the theme name (lowercase) as the key, for an object including key-value-pairs, with the color variable name as keys, and 6-digit hex code as value. See [Theming](/docs/theming.md#modifying-theme-colors) for more info
+**`customColors`** | `object`| _Optional_ | Enables you to apply a custom color palette to any given theme. Use the theme name (lowercase) as the key, for an object including key-value-pairs, with the color variable name as keys, and 6-digit hex code as value. See [Theming](/docs/theming#modifying-theme-colors) for more info
 **`externalStyleSheet`** | `string`  or `string[]` | _Optional_ | Either a URL to an external stylesheet or an array or URLs, which can be applied as themes within the UI
 **`customCss`** | `string` | _Optional_ | Raw CSS that will be applied to the page. This can also be set from the UI. Please minify it first.
 **`hideComponents`** | `object` | _Optional_ | A list of key page components (header, footer, search, settings, etc) that are present by default, but can be removed using this option. See [`appConfig.hideComponents`](#appconfighideComponents-optional)
@@ -139,7 +139,7 @@ The following file provides a reference of all supported configuration options.
 **`enableServiceWorker`** | `boolean` | _Optional_ | Service workers cache web applications to improve load times and offer basic offline functionality, and are enabled by default in Shipyard. The service worker can sometimes cause older content to be cached, requiring the app to be hard-refreshed. If you do not want SW functionality, or are having issues with caching, set this property to `false` to disable all service workers.
 **`disableContextMenu`** | `boolean` | _Optional_ | If set to `true`, the custom right-click context menu will be disabled. Defaults to `false`.
 
-**[⬆️ Back to Top](#configuring)**
+**[⬆️ Back to Top](#top)**
 
 ## `appConfig.auth` _(optional)_
 
@@ -149,11 +149,11 @@ The following file provides a reference of all supported configuration options.
 
 > [!WARNING]
 > Built-in auth should **not be used** for security-critical applications, or if your Shipyard instance is publicly accessible.
-> For these, it is recommended to use an [alternate authentication method](/docs/authentication.md#alternative-authentication-methods).
+> For these, it is recommended to use an [alternate authentication method](/docs/authentication#alternative-authentication-methods).
 
 **Field** | **Type** | **Required**| **Description**
 --- | --- | --- | ---
-**`users`** | `array` | _Optional_ | An array of objects containing usernames and hashed passwords. If this is not provided, then authentication will be off by default, and you will not need any credentials to access the app. See [`appConfig.auth.users`](#appconfigauthusers-optional). <br>**Note** this method of authentication is handled on the client side, so for security critical situations, it is recommended to use an [alternate authentication method](/docs/authentication.md#alternative-authentication-methods).
+**`users`** | `array` | _Optional_ | An array of objects containing usernames and hashed passwords. If this is not provided, then authentication will be off by default, and you will not need any credentials to access the app. See [`appConfig.auth.users`](#appconfigauthusers-optional). <br />**Note** this method of authentication is handled on the client side, so for security critical situations, it is recommended to use an [alternate authentication method](/docs/authentication#alternative-authentication-methods).
 **`enableKeycloak`** | `boolean` | _Optional_ | If set to `true`, then authentication using Keycloak will be enabled. Note that you need to have an instance running, and have also configured `auth.keycloak`. Defaults to `false`
 **`keycloak`** | `object` | _Optional_ | Config options to point Shipyard to your Keycloak server. Requires `enableKeycloak: true`. See  [`auth.keycloak`](#appconfigauthkeycloak-optional) for more info
 **`enableHeaderAuth`** | `boolean` | _Optional_ | If set to `true`, then authentication using HeaderAuth will be enabled. Note that you need to have your web server/reverse proxy running, and have also configured `auth.headerAuth`. Defaults to `false`
@@ -162,9 +162,9 @@ The following file provides a reference of all supported configuration options.
 **`oidc`** | `object` | _Optional_ | Config options to point Dash to your OIDC configuration. Request `enableOidc: true`. See [`auth.oidc`](#appconfigauthoidc-optional) for more info
 **`enableGuestAccess`** | `boolean` | _Optional_ | When set to `true`, an unauthenticated user will be able to access the dashboard, with read-only access, without having to login. Requires `auth.users` to be configured. Defaults to `false`.
 
-For more info, see the **[Authentication Docs](/docs/authentication.md)**
+For more info, see the **[Authentication Docs](/docs/authentication)**
 
-**[⬆️ Back to Top](#configuring)**
+**[⬆️ Back to Top](#top)**
 
 ## `appConfig.auth.users` _(optional)_
 
@@ -174,7 +174,7 @@ For more info, see the **[Authentication Docs](/docs/authentication.md)**
 **`hash`** | `string` | Required | A SHA-256 hashed password
 **`type`** | `string` | _Optional_ | The user type, either admin or normal
 
-**[⬆️ Back to Top](#configuring)**
+**[⬆️ Back to Top](#top)**
 
 ## `appConfig.auth.keycloak` _(optional)_
 
@@ -185,7 +185,7 @@ For more info, see the **[Authentication Docs](/docs/authentication.md)**
 **`clientId`** | `string` | Required | The Client ID of the client you created for use with Shipyard
 **`legacySupport`** | `boolean` | _Optional_ | If using Keycloak 17 or older, then set this to `true`
 
-**[⬆️ Back to Top](#configuring)**
+**[⬆️ Back to Top](#top)**
 
 ## `appConfig.auth.headerAuth` _(optional)_
 
@@ -194,7 +194,7 @@ For more info, see the **[Authentication Docs](/docs/authentication.md)**
 **`userHeader`** | `string` | _Optional_ | The Header name which contains username (default: REMOTE_USER). Case insensitive
 **`proxyWhitelist`** | `array` | Required | An array of Upstream proxy servers to expect authencticated requests from
 
-**[⬆️ Back to Top](#configuring)**
+**[⬆️ Back to Top](#top)**
 
 ## `appConfig.auth.oidc` _(optional)_
 
@@ -204,7 +204,7 @@ For more info, see the **[Authentication Docs](/docs/authentication.md)**
 **`endpoint`** | `string` | Required | The URL of the OIDC server that should be used.
 **`scope`** | `string` | Required | The scope(s) to request from the OIDC provider
 
-**[⬆️ Back to Top](#configuring)**
+**[⬆️ Back to Top](#top)**
 
 ## `appConfig.webSearch` _(optional)_
 
@@ -216,7 +216,7 @@ For more info, see the **[Authentication Docs](/docs/authentication.md)**
 **`openingMethod`** | `string` | _Optional_ | Set your preferred opening method for search results: `newtab`, `sametab`, `workspace`. Defaults to `newtab`
 **`searchBangs`** | `object` | _Optional_ | A key-value-pair set of custom search _bangs_ for redirecting query to a specific app or search engine. The key of each should be the bang you will type (typically starting with `/`, `!` or `:`), and value is the destination, either as a search engine key (e.g. `reddit`) or a URL with search parameters (e.g. `https://en.wikipedia.org/w/?search=`)
 
-**[⬆️ Back to Top](#configuring)**
+**[⬆️ Back to Top](#top)**
 
 ## `appConfig.hideComponents` _(optional)_
 
@@ -228,7 +228,7 @@ For more info, see the **[Authentication Docs](/docs/authentication.md)**
 **`hideSettings`** | `boolean` | _Optional_ | If set to `true`, the settings menu will be initially collapsed. Defaults to `false`
 **`hideFooter`** | `boolean` | _Optional_ | If set to `true`, the footer will not be visible. Defaults to `false`
 
-**[⬆️ Back to Top](#configuring)**
+**[⬆️ Back to Top](#top)**
 
 ## `section`
 
@@ -240,7 +240,7 @@ For more info, see the **[Authentication Docs](/docs/authentication.md)**
 **`widgets`** | `array` | _Optional_ | An array of widgets to be displayed within the section. See [`widget`](#sectionwidget-optional)
 **`displayData`** | `object` | _Optional_ | Meta-data to optionally override display settings for a given section. See [`displayData`](#sectiondisplaydata-optional)
 
-**[⬆️ Back to Top](#configuring)**
+**[⬆️ Back to Top](#top)**
 
 ## `section.item`
 
@@ -265,7 +265,7 @@ For more info, see the **[Authentication Docs](/docs/authentication.md)**
 **`provider`** | `string` | _Optional_ | The name of the provider for a given service, useful for when including hosted apps. In some themes, this is visible under the item name
 **`displayData`** | `object` | _Optional_ | Meta-data to optionally override display settings for a given item. See [`displayData`](#itemdisplaydata-optional)
 
-**[⬆️ Back to Top](#configuring)**
+**[⬆️ Back to Top](#top)**
 
 ## `item.displayData` _(optional)_
 
@@ -277,21 +277,21 @@ For more info, see the **[Authentication Docs](/docs/authentication.md)**
 **`hideForKeycloakUsers`** | `object`  | _Optional_ | Current item will be visible to all keycloak users, except for those configured via these groups and roles. See `hideForKeycloakUsers`
 **`showForKeycloakUsers`** | `object`  | _Optional_ | Current item will be hidden from all keycloak users, except for those configured via these groups and roles. See `showForKeycloakUsers`
 
-**[⬆️ Back to Top](#configuring)**
+**[⬆️ Back to Top](#top)**
 
 ## `section.widgets` _(optional)_
 
 **Field** | **Type** | **Required**| **Description**
 --- | --- | --- | ---
-**`type`** | `string` | Required | The widget type. See [Widget Docs](/docs/widgets.md) for full list of supported widgets
-**`options`** | `object` | _Optional_ | Some widgets accept either optional or required additional options. Again, see the [Widget Docs](/docs/widgets.md) for full list of options
-**`updateInterval`** | `number` | _Optional_ | You can keep a widget constantly updated by specifying an update interval, in seconds. See [Continuous Updates Docs](/docs/widgets.md#continuous-updates) for more info
-**`useProxy`** | `boolean` | _Optional_ | Some widgets make API requests to services that are not CORS-enabled. For these instances, you will need to route requests through a proxy, Shipyard has a built in CORS-proxy, which you can use by setting this option to `true`. Defaults to `false`. See the [Proxying Requests Docs](/docs/widgets.md#proxying-requests) for more info
+**`type`** | `string` | Required | The widget type. See [Widget Docs](/docs/widgets) for full list of supported widgets
+**`options`** | `object` | _Optional_ | Some widgets accept either optional or required additional options. Again, see the [Widget Docs](/docs/widgets) for full list of options
+**`updateInterval`** | `number` | _Optional_ | You can keep a widget constantly updated by specifying an update interval, in seconds. See [Continuous Updates Docs](/docs/widgets#continuous-updates) for more info
+**`useProxy`** | `boolean` | _Optional_ | Some widgets make API requests to services that are not CORS-enabled. For these instances, you will need to route requests through a proxy, Shipyard has a built in CORS-proxy, which you can use by setting this option to `true`. Defaults to `false`. See the [Proxying Requests Docs](/docs/widgets#proxying-requests) for more info
 **`timeout`** | `number` | _Optional_ | Request timeout in milliseconds, defaults to ½ a second (`500`)
 **`ignoreErrors`** | `boolean` | _Optional_ | Prevent an error message being displayed, if a network request or something else fails. Useful for false-positives
 **`label`** | `string` | _Optional_ | Add custom label to a given widget. Useful for identification, if there are multiple of the same type of widget in a single section
 
-**[⬆️ Back to Top](#configuring)**
+**[⬆️ Back to Top](#top)**
 
 ## `section.displayData` _(optional)_
 
@@ -314,15 +314,15 @@ For more info, see the **[Authentication Docs](/docs/authentication.md)**
 **`hideForKeycloakUsers`** | `object`  | _Optional_ | Current section will be visible to all keycloak users, except for those configured via these groups and roles. See `hideForKeycloakUsers`
 **`showForKeycloakUsers`** | `object`  | _Optional_ | Current section will be hidden from all keycloak users, except for those configured via these groups and roles. See `showForKeycloakUsers`
 
-**[⬆️ Back to Top](#configuring)**
+**[⬆️ Back to Top](#top)**
 
 ## `section.icon` and `section.item.icon`
 
 **Field** | **Type** | **Required**| **Description**
 --- | --- | --- | ---
-**`icon`** | `string` | _Optional_ | The icon for a given item or section. <br>See [Icon Docs](/docs/icons.md) for all available supported icon types, including: auto-fetched favicons, generative icons, emoji icons, home-lab service logos, font-awesome, simple-icons, material icons, and icons specified by URL
+**`icon`** | `string` | _Optional_ | The icon for a given item or section. <br />See [Icon Docs](/docs/icons) for all available supported icon types, including: auto-fetched favicons, generative icons, emoji icons, home-lab service logos, font-awesome, simple-icons, material icons, and icons specified by URL
 
-**[⬆️ Back to Top](#configuring)**
+**[⬆️ Back to Top](#top)**
 
 ## `section.displayData.hideForKeycloakUsers`, `section.displayData.showForKeycloakUsers`, `item.displayData.hideForKeycloakUsers` and `item.displayData.showForKeycloakUsers`
 
@@ -331,7 +331,7 @@ For more info, see the **[Authentication Docs](/docs/authentication.md)**
 **`groups`** | `string[]` | _Optional_ | Current Section or Item will be hidden or shown based on the user having any of the groups in this list
 **`roles`** | `string[]` | _Optional_ | Current Section or Item will be hidden or shown based on the user having any of the roles in this list
 
-**[⬆️ Back to Top](#configuring)**
+**[⬆️ Back to Top](#top)**
 
 ---
 
@@ -339,17 +339,17 @@ For more info, see the **[Authentication Docs](/docs/authentication.md)**
 
 ### Editing Config through the UI
 
-Config can be modified directly through the UI, and then written to disk, or applied locally. This can be done wither with the raw config editor (introduced in V 0.6.5 / [#3](https://github.com/khulnaSoft/shipyard/pull/3)), or the interactive editor (introduced in V 1.8.9 / [#298](https://github.com/khulnaSoft/shipyard/pull/298)).
+Config can be modified directly through the UI, and then written to disk, or applied locally. This can be done wither with the raw config editor (introduced in V 0.6.5 / [#3](https://github.com/khulnasoft/shipyard/pull/3)), or the interactive editor (introduced in V 1.8.9 / [#298](https://github.com/khulnasoft/shipyard/pull/298)).
 
 <p align="center">
   <a href="https://ibb.co/CzkyMNb">
-    <b>Interactive Editor</b><br>
+    <b>Interactive Editor</b><br />
     <img alt="Interactive Editor demo" src="https://user-images.githubusercontent.com/1862727/139543020-b0576d28-0830-476f-afc8-a815d4de6def.gif" width="600" />
   </a>
-  <br>
+  <br />
   <a href="https://ibb.co/zRv542H">
-  <b>JSON Editor</b><br>
-  <img alt="Config Editor demo" src="https://raw.githubusercontent.com/khulnaSoft/shipyard/master/docs/assets/config-editor-demo.gif" width="600" />
+  <b>JSON Editor</b><br />
+  <img alt="Config Editor demo" src="https://raw.githubusercontent.com/khulnasoft/shipyard/master/docs/assets/config-editor-demo.gif" width="600" />
   </a>
 </p>
 
@@ -384,11 +384,11 @@ sections: # An array of sections
   - title: GitHub
     description: Source code and documentation on GitHub
     icon: fab fa-github
-    url: https://github.com/khulnaSoft/shipyard
+    url: https://github.com/khulnasoft/shipyard
   - title: Issues
     description: View currently open issues, or raise a new one
     icon: fas fa-bug
-    url: https://github.com/khulnaSoft/shipyard/issues
+    url: https://github.com/khulnasoft/shipyard/issues
   - title: Demo
     description: A live demo
     icon: far fa-rocket
@@ -403,10 +403,10 @@ sections: # An array of sections
     url: http://192.168.130.1/
 ```
 
-For more example config files, see: [this gist](https://gist.github.com/KhulnaSoft-bot/000f712a5ce98f212817d20bc16bab10)
+For more example config files, see: [this gist](https://gist.github.com/khulnasoft/000f712a5ce98f212817d20bc16bab10)
 
-If you need any help, feel free to [Raise an Issue](https://github.com/khulnaSoft/shipyard/issues/new?assignees=KhulnaSoft-bot&labels=%F0%9F%A4%B7%E2%80%8D%E2%99%82%EF%B8%8F+Question&template=question.md&title=%5BQUESTION%5D) or [Start a Discussion](https://github.com/khulnaSoft/shipyard/discussions)
+If you need any help, feel free to [Raise an Issue](https://github.com/khulnasoft/shipyard/issues/new?assignees=khulnasoft&labels=%F0%9F%A4%B7%E2%80%8D%E2%99%82%EF%B8%8F+Question&template=question.md&title=%5BQUESTION%5D) or [Start a Discussion](https://github.com/khulnasoft/shipyard/discussions)
 
 Happy Configuring 🤓🔧
 
-**[⬆️ Back to Top](#configuring)**
+**[⬆️ Back to Top](#top)**
