@@ -43,13 +43,13 @@ jobs:
       - name: Create and Push Tag ⤴️
         if: steps.package_version.outputs.VERSION != steps.latest_tag.outputs.TAG && steps.latest_tag.outputs.TAG != '0'
         run: |
-          git config --local user.email "khulnasoft-bot@d0h.co"
+          git config --local user.email "support@khulnasoft.com"
           git config --local user.name "KhulnaSoft-Bot"
           git tag -a ${{ steps.package_version.outputs.VERSION }} -m "Release v${{ steps.package_version.outputs.VERSION }}"
           git push origin ${{ steps.package_version.outputs.VERSION }}
         env:
           GIT_AUTHOR_NAME: KhulnaSoft-Bot
-          GIT_AUTHOR_EMAIL: khulnasoft-bot@d0h.co
+          GIT_AUTHOR_EMAIL: support@khulnasoft.com
           GIT_COMMITTER_NAME: KhulnaSoft-Bot
-          GIT_COMMITTER_EMAIL: khulnasoft-bot@d0h.co
+          GIT_COMMITTER_EMAIL: support@khulnasoft.com
           GITHUB_TOKEN: ${{ secrets.ORG_REPO_TOKEN || secrets.GITHUB_TOKEN }}
