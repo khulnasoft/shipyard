@@ -9,7 +9,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Checkout
-      uses: actions/checkout@master        
+      uses: actions/checkout@master
     - name: Upload Docs to GH Wiki
       uses: docker://decathlon/wiki-page-creator-action:latest
       env:
@@ -26,5 +26,5 @@ jobs:
 #         access_token: ${{ secrets.GITHUB_TOKEN }}
 #         wiki_folder: ./docs
 #         commit_username: 'khulnasoft-bot'
-#         commit_email: 'khulnasoft-bot@khulnasoft.com'
+#         commit_email: 'support@khulnasoft.com'
 #         commit_message: '📕 Chore: Sync Wiki'

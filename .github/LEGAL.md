@@ -1,17 +1,7 @@
 ---
 
 The following 3rd-party software packages may be used by or distributed with **shipyard**.  Any information relevant to third-party vendors listed below are collected using common, reasonable means.
-
-Date generated | Revision ID
-:------------: | :----------:
-01/22/22 | cc7101a871e151a2dea7830d1e492ef6ef05fd53
-
 ---
-
-## Dependencies
-### [ajv (8.6.2)](https://www.npmjs.com/package/ajv)
-#### Declared Licenses
-MIT
 
 ```
 The MIT License (MIT)

@@ -137,13 +137,13 @@ For example, you would set your translation to:
 And then pass that variable (`name`) within a JSON object as the second parameter on `$t`, like:
 
 ```javascript
-$t('welcome-message', { name: 'Alicia' })
+$t('welcome-message', { name: 'KhulnaSoft' })
 ```
 
 Which will render:
 
 ```text
-Hello Alicia!
+Hello KhulnaSoft!
 ```
 
 There are many other advanced features, including  Pluralization,  Datetime & Number Formatting, Message Support and more, all of which are outlined in the [Vue-i18n Docs](https://vue-i18n.intlify.dev/guide/).

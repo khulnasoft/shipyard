@@ -77,7 +77,7 @@
         <a href="https://github.com/khulnasoft-bot">
             <img src="https://avatars.githubusercontent.com/u/87835202?v=4" width="80;" alt="khulnasoft-bot"/>
             <br />
-            <sub><b>Alicia Bot</b></sub>
+            <sub><b>KhulnaSoft Bot</b></sub>
         </a>
     </td>
     <td align="center">

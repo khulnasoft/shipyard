@@ -5,10 +5,10 @@
 # Codeowners Docs: https://github.blog/2017-07-06-introducing-code-owners/
 
 # Repo Owners
-*   @khulnasoft
+*   @khulnasoft @gitworkflows @gitworkflows
 
 # Translations
-src/assets/locales/fr.json    @EVOTk
+src/assets/locales/fr.json    @nxpkg
 
 # Bot PR Permissions
 docs/assets/CONTRIBUTORS.svg  @khulnasoft-bot
