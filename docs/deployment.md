@@ -97,7 +97,7 @@ The image defaults to `:latest`, but you can instead specify a specific version,
 
 Using Docker Compose can be useful for saving your specific config in files, without having to type out a long run command each time. Save compose config as a YAML file, and then run `docker compose up -d` (optionally use the `-f` flag to specify file location, if it isn't located at `./docker-compose.yml`), `-d` is detached mode (not running in the foreground of your terminal). Compose is also useful if you are using clusters, as the format is very similar to stack files, used with Docker Swarm.
 
-The following is a complete example of a [`docker-compose.yml`](https://github.com/khulnasoft/shipyard/blob/master/docker-compose.yml) for Shipyard. Run it as is, or uncomment the additional options you need.
+The following is a complete example of a [`docker-compose.yml`](https://github.com/khulnaSoft/shipyard/blob/master/docker-compose.yml) for Shipyard. Run it as is, or uncomment the additional options you need.
 
 ```yaml
 ---
@@ -132,7 +132,7 @@ services:
 
 You can use a different tag, by for example setting `image: khulnasoft/shipyard:arm64v8`, or pull from GHCR instead by setting `image: ghcr.io/khulnasoft/shipyard`.
 
-If you are building from source, and would like to use one of the [other Dockerfiles](https://github.com/khulnasoft/shipyard/tree/master/docker), then under `services.shipyard` first set `context: .`, then specify the the path to the dockerfile, e.g. `dockerfile: ./docker/Dockerfile-arm32v7`
+If you are building from source, and would like to use one of the [other Dockerfiles](https://github.com/khulnaSoft/shipyard/tree/master/docker), then under `services.shipyard` first set `context: .`, then specify the the path to the dockerfile, e.g. `dockerfile: ./docker/Dockerfile-arm32v7`
 
 ---
 
@@ -181,7 +181,7 @@ shipyard should be up within 1-2min after you've started the install task proced
 
 If you do not want to use Docker, you can run Shipyard directly on your host system. For this, you will need both [git](https://git-scm.com/downloads) and the latest or LTS version of [Node.js](https://nodejs.org/) installed, and optionally [yarn](https://yarnpkg.com/)
 
-1. Get Code: `git clone https://github.com/khulnasoft/shipyard.git` and `cd shipyard`
+1. Get Code: `git clone https://github.com/khulnaSoft/shipyard.git` and `cd shipyard`
 2. Configuration: Fill in your settings in `./user-data/conf.yml`
 3. Install dependencies: `yarn`
 4. Build: `yarn build`
@@ -193,7 +193,7 @@ If you do not want to use Docker, you can run Shipyard directly on your host sys
 
 If you don't have a home server, then fear not - Shipyard can be deployed to pretty much any cloud provider. The above Docker and NPM guides will work exactly the same on a VPS, but I've also setup some 1-Click deploy links for 10+ of the most common cloud providers, to make things easier. Note that if your instance is exposed to the internet, it will be your responsibility to adequately secure it.
 
-Some hosting providers required a bit of extra configuration, which was why I've made separate branches for deploying to those services (named: [`deploy_cloudflare`](https://github.com/khulnasoft/shipyard/tree/deploy_cloudflare), [`deploy_digital-ocean`](https://github.com/khulnasoft/shipyard/tree/deploy_digital-ocean), [`deploy_platform-sh`](https://github.com/khulnasoft/shipyard/tree/deploy_platform-sh) and [`deploy_render`](https://github.com/khulnasoft/shipyard/tree/deploy_render)). If there's another cloud service which you'd like 1-click deployment to be supported for, feel free to raise an issue.
+Some hosting providers required a bit of extra configuration, which was why I've made separate branches for deploying to those services (named: [`deploy_cloudflare`](https://github.com/khulnaSoft/shipyard/tree/deploy_cloudflare), [`deploy_digital-ocean`](https://github.com/khulnaSoft/shipyard/tree/deploy_digital-ocean), [`deploy_platform-sh`](https://github.com/khulnaSoft/shipyard/tree/deploy_platform-sh) and [`deploy_render`](https://github.com/khulnaSoft/shipyard/tree/deploy_render)). If there's another cloud service which you'd like 1-click deployment to be supported for, feel free to raise an issue.
 
 > [!NOTE]
 > If you use a static hosting provider, then status checks, writing new config changes to disk from the UI, and triggering a rebuild through the UI will not be available. This is because these features need endpoints provided by Shipyard's local Node server. Everything else should work just the same though.
@@ -212,14 +212,14 @@ https://app.netlify.com/start/deploy?repository=https://github.com/khulnasoft/sh
 
 ### Heroku
 
-[![Deploy to Heroku](https://i.ibb.co/GdMFzBP/deploy-heroku-button.png)](https://heroku.com/deploy?template=https://github.com/khulnasoft/shipyard)
+[![Deploy to Heroku](https://i.ibb.co/GdMFzBP/deploy-heroku-button.png)](https://heroku.com/deploy?template=https://github.com/khulnaSoft/shipyard)
 
 [Heroku](https://www.heroku.com/) is a fully managed cloud platform as a service. You define app settings in a Procfile and app.json, which specifying how the app should be build and how the server should be started. Heroku costs a minimum of $5 for 1,000 dyno hours per month (there are around 720 hours in a  month), and supports custom domains. Heroku's single-dyno service is not as quite performant as some other providers, and the app will have a short wake-up time when not visited for a while
 
 To deploy Shipyard to Heroku, use the following link
 
 ```text
-https://heroku.com/deploy?template=https://github.com/khulnasoft/shipyard
+https://heroku.com/deploy?template=https://github.com/khulnaSoft/shipyard
 ```
 
 ### Vercel
@@ -304,14 +304,14 @@ https://my.scalingo.com/deploy?source=https://github.com/khulnasoft/shipyard#mas
 
 ### Play-with-Docker
 
-[![Try in PWD](https://i.ibb.co/SfbH7Zy/deploy-pwd-button.png)](https://labs.play-with-docker.com/?stack=https://raw.githubusercontent.com/khulnasoft/shipyard/master/docker-compose.yml)
+[![Try in PWD](https://i.ibb.co/SfbH7Zy/deploy-pwd-button.png)](https://labs.play-with-docker.com/?stack=https://raw.githubusercontent.com/khulnaSoft/shipyard/master/docker-compose.yml)
 
 [Play with Docker](https://labs.play-with-docker.com/) is a community project by Marcos Liljedhal and Jonathan Leibiusky and sponsored by Docker, intended to provide a hands-on learning environment. Their labs let you quickly spin up a Docker container or stack, and test out the image in a temporary, sandboxed environment. There's no need to sign up, and it's completely free.
 
 To run Shipyard in PWD, use the following URL:
 
 ```text
-https://labs.play-with-docker.com/?stack=https://raw.githubusercontent.com/khulnasoft/shipyard/master/docker-compose.yml
+https://labs.play-with-docker.com/?stack=https://raw.githubusercontent.com/khulnaSoft/shipyard/master/docker-compose.yml
 ```
 
 ### Surge.sh

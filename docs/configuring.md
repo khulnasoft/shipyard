@@ -1,6 +1,6 @@
 # Configuring
 
-All app configuration is specified in [`/user-data/conf.yml`](https://github.com/khulnasoft/shipyard/blob/master/user-data/conf.yml) which is in [YAML Format](https://yaml.org/) format. If you're using Docker, this file can be passed in as a volume. Changes can either be made directly to this file, or done [through the UI](#editing-config-through-the-ui). From the UI you can also export, backup, reset, validate and download your configuration file.
+All app configuration is specified in [`/user-data/conf.yml`](https://github.com/khulnaSoft/shipyard/blob/master/user-data/conf.yml) which is in [YAML Format](https://yaml.org/) format. If you're using Docker, this file can be passed in as a volume. Changes can either be made directly to this file, or done [through the UI](#editing-config-through-the-ui). From the UI you can also export, backup, reset, validate and download your configuration file.
 
 ## There are three ways to edit the config
 
@@ -15,7 +15,7 @@ All app configuration is specified in [`/user-data/conf.yml`](https://github.com
 
 ## Tips
 
-- You may find it helpful to look at some sample config files to get you started, a collection of which can be found [here](https://gist.github.com/khulnasoft/000f712a5ce98f212817d20bc16bab10)
+- You may find it helpful to look at some sample config files to get you started, a collection of which can be found [here](https://gist.github.com/KhulnaSoft-bot/000f712a5ce98f212817d20bc16bab10)
 - You can check that your config file fits the schema, by running `yarn validate-config`
 - After modifying your config, the app needs to be recompiled, by running `yarn build`  - this happens automatically if you're using Docker
 - It is recommended to keep a backup of your config file. You can download it under Config menu, or use the [Cloud Backup](/docs/backup-restore) feature.
@@ -101,7 +101,7 @@ The following file provides a reference of all supported configuration options.
 
 **Field** | **Type** | **Required**| **Description**
 --- | --- | --- | ---
-**`language`** | `string` | _Optional_ | The 2 (or 4-digit) [ISO 639-1 code](https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes) for your language, e.g. `en` or `en-GB`. This must be a language that the app has already been [translated](https://github.com/khulnasoft/shipyard/tree/master/src/assets/locales) into. If your language is unavailable, Shipyard will fallback to English. By default Shipyard will attempt to auto-detect your language, although this may not work on some privacy browsers.
+**`language`** | `string` | _Optional_ | The 2 (or 4-digit) [ISO 639-1 code](https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes) for your language, e.g. `en` or `en-GB`. This must be a language that the app has already been [translated](https://github.com/khulnaSoft/shipyard/tree/master/src/assets/locales) into. If your language is unavailable, Shipyard will fallback to English. By default Shipyard will attempt to auto-detect your language, although this may not work on some privacy browsers.
 ~~**`startingView`**~~ | `enum` | _Optional_ | Which page to load by default, and on the base page or domain root. You can still switch to different views from within the UI. Can be either `default`, `minimal` or `workspace`. Defaults to `default`. NOTE: This has been replaced by an environmental variable: `VUE_APP_STARTING_VIEW` in V3 onwards
 **`defaultOpeningMethod`** | `enum` | _Optional_ | The default opening method for items, if no `target` is specified for a given item. Can be either `newtab`, `sametab`, `modal`, `workspace`, `clipboard`, `top` or `parent`. Defaults to `newtab`
 **`statusCheck`** | `boolean` | _Optional_ | When set to `true`, Shipyard will ping each of your services and display their status as a dot next to each item. This can be overridden by setting `statusCheck` under each item. Defaults to `false`
@@ -339,7 +339,7 @@ For more info, see the **[Authentication Docs](/docs/authentication)**
 
 ### Editing Config through the UI
 
-Config can be modified directly through the UI, and then written to disk, or applied locally. This can be done wither with the raw config editor (introduced in V 0.6.5 / [#3](https://github.com/khulnasoft/shipyard/pull/3)), or the interactive editor (introduced in V 1.8.9 / [#298](https://github.com/khulnasoft/shipyard/pull/298)).
+Config can be modified directly through the UI, and then written to disk, or applied locally. This can be done wither with the raw config editor (introduced in V 0.6.5 / [#3](https://github.com/khulnaSoft/shipyard/pull/3)), or the interactive editor (introduced in V 1.8.9 / [#298](https://github.com/khulnaSoft/shipyard/pull/298)).
 
 <p align="center">
   <a href="https://ibb.co/CzkyMNb">
@@ -349,7 +349,7 @@ Config can be modified directly through the UI, and then written to disk, or app
   <br />
   <a href="https://ibb.co/zRv542H">
   <b>JSON Editor</b><br />
-  <img alt="Config Editor demo" src="https://raw.githubusercontent.com/khulnasoft/shipyard/master/docs/assets/config-editor-demo.gif" width="600" />
+  <img alt="Config Editor demo" src="https://raw.githubusercontent.com/khulnaSoft/shipyard/master/docs/assets/config-editor-demo.gif" width="600" />
   </a>
 </p>
 
@@ -384,11 +384,11 @@ sections: # An array of sections
   - title: GitHub
     description: Source code and documentation on GitHub
     icon: fab fa-github
-    url: https://github.com/khulnasoft/shipyard
+    url: https://github.com/khulnaSoft/shipyard
   - title: Issues
     description: View currently open issues, or raise a new one
     icon: fas fa-bug
-    url: https://github.com/khulnasoft/shipyard/issues
+    url: https://github.com/khulnaSoft/shipyard/issues
   - title: Demo
     description: A live demo
     icon: far fa-rocket
@@ -403,9 +403,9 @@ sections: # An array of sections
     url: http://192.168.130.1/
 ```
 
-For more example config files, see: [this gist](https://gist.github.com/khulnasoft/000f712a5ce98f212817d20bc16bab10)
+For more example config files, see: [this gist](https://gist.github.com/KhulnaSoft-bot/000f712a5ce98f212817d20bc16bab10)
 
-If you need any help, feel free to [Raise an Issue](https://github.com/khulnasoft/shipyard/issues/new?assignees=khulnasoft&labels=%F0%9F%A4%B7%E2%80%8D%E2%99%82%EF%B8%8F+Question&template=question.md&title=%5BQUESTION%5D) or [Start a Discussion](https://github.com/khulnasoft/shipyard/discussions)
+If you need any help, feel free to [Raise an Issue](https://github.com/khulnaSoft/shipyard/issues/new?assignees=KhulnaSoft-bot&labels=%F0%9F%A4%B7%E2%80%8D%E2%99%82%EF%B8%8F+Question&template=question.md&title=%5BQUESTION%5D) or [Start a Discussion](https://github.com/khulnaSoft/shipyard/discussions)
 
 Happy Configuring 🤓🔧
 

@@ -5,7 +5,7 @@
 
 ## MNDashboard 
 
-> By [@mahrnet](https://github.com/mahrnet) <sup>Re: [#1491](https://github.com/khulnasoft/shipyard/issues/1491)</sup>
+> By [@mahrnet](https://github.com/mahrnet) <sup>Re: [#1491](https://github.com/khulnaSoft/shipyard/issues/1491)</sup>
 
 ![screenshot-MNDashboard](https://i.ibb.co/mCJRZgp/d2-At-QO4c-PT4u.png)
 
@@ -13,13 +13,13 @@
 
 ## Home Lab 2.0
 
-![screenshot-homelab](https://raw.githubusercontent.com/khulnasoft/shipyard/master/docs/showcase/1-home-lab-material.png)
+![screenshot-homelab](https://raw.githubusercontent.com/khulnaSoft/shipyard/master/docs/showcase/1-home-lab-material.png)
 
 ---
 
 ## Dipan's Dash
 
-> By [@Dipanghosh](https://github.com/dipanghosh) - [dipan.de](https://dipan.de/) <sup>Re: [#777](https://github.com/khulnasoft/shipyard/discussions/777)</sup>
+> By [@Dipanghosh](https://github.com/dipanghosh) - [dipan.de](https://dipan.de/) <sup>Re: [#777](https://github.com/khulnaSoft/shipyard/discussions/777)</sup>
 
 > With the option of embedding iframes, it becomes possible to combine and conquer. I have set up Shipyard to include graphs from grafana, and set them so that they update automatically. I also have uptime monitors from uptime Kuma, panels from homeassistant are also possible to be included.<br />
 > Shipyard is awesome!
@@ -30,7 +30,7 @@
 
 ## Ratty222
 
-> By [@ratty222](https://github.com/ratty222) <sup>Re: [#384](https://github.com/khulnasoft/shipyard/discussions/384)</sup>
+> By [@ratty222](https://github.com/ratty222) <sup>Re: [#384](https://github.com/khulnaSoft/shipyard/discussions/384)</sup>
 
 ![screenshot-ratty222-shipyard](https://user-images.githubusercontent.com/1862727/147582551-4c655d37-8bcc-4f95-ab41-164a9d0d6a07.png)
 
@@ -38,7 +38,7 @@
 
 ## Hugalafutro Shipyard
 
-> By [@hugalafutro](https://github.com/hugalafutro) <sup>Re: [#505](https://github.com/khulnasoft/shipyard/discussions/505)</sup>
+> By [@hugalafutro](https://github.com/hugalafutro) <sup>Re: [#505](https://github.com/khulnaSoft/shipyard/discussions/505)</sup>
 
 [![hugalafutro-shipyard-screenshot](https://i.ibb.co/PDpLDKS/hugalafutro-shipyard.gif)](https://i.ibb.co/PDpLDKS/hugalafutro-shipyard.gif)
 
@@ -46,15 +46,15 @@
 
 ## NAS Home Dashboard
 
-> By [@cerealconyogurt](https://github.com/cerealconyogurt) <sup>Re: [#74](https://github.com/khulnasoft/shipyard/issues/74)</sup>
+> By [@cerealconyogurt](https://github.com/cerealconyogurt) <sup>Re: [#74](https://github.com/khulnaSoft/shipyard/issues/74)</sup>
 
-![screenshot-networking-services](https://raw.githubusercontent.com/khulnasoft/shipyard/master/docs/showcase/6-nas-home-dashboard.png)
+![screenshot-networking-services](https://raw.githubusercontent.com/khulnaSoft/shipyard/master/docs/showcase/6-nas-home-dashboard.png)
 
 ---
 
 ## Brewhack
 
-> By [@brpeterso](https://github.com/brpeterso) <sup>Re: [#680](https://github.com/khulnasoft/shipyard/issues/680)</sup>
+> By [@brpeterso](https://github.com/brpeterso) <sup>Re: [#680](https://github.com/khulnaSoft/shipyard/issues/680)</sup>
 
 ![screenshot-brewhack-dashboard](https://i.ibb.co/cNjzPT4/brewhack.png)
 
@@ -62,25 +62,25 @@
 
 ## The Dragons Lair
 
-> By [dr460nf1r3](https://github.com/dr460nf1r3) <sup>via [#684](https://github.com/khulnasoft/shipyard/issues/684)</sup>
+> By [dr460nf1r3](https://github.com/dr460nf1r3) <sup>via [#684](https://github.com/khulnaSoft/shipyard/issues/684)</sup>
 
 > My new startpage featuring the stuff I use most. And of course dragons!
 
-![screenshot-dragons-lair](https://raw.githubusercontent.com/khulnasoft/shipyard/master/docs/showcase/13-dragons-lair.png)
+![screenshot-dragons-lair](https://raw.githubusercontent.com/khulnaSoft/shipyard/master/docs/showcase/13-dragons-lair.png)
 
 ---
 
 ## Homelab & VPS dashboard
 
-> By [@shadowking001](https://github.com/shadowking001) <sup>Re: [#86](https://github.com/khulnasoft/shipyard/issues/86)</sup>
+> By [@shadowking001](https://github.com/shadowking001) <sup>Re: [#86](https://github.com/khulnaSoft/shipyard/issues/86)</sup>
 
-![screenshot-shadowking001-shipyard](https://raw.githubusercontent.com/khulnasoft/shipyard/master/docs/showcase/8-shadowking001s-shipyard.png)
+![screenshot-shadowking001-shipyard](https://raw.githubusercontent.com/khulnaSoft/shipyard/master/docs/showcase/8-shadowking001s-shipyard.png)
 
 ---
 
 ## Raspberry PI Docker Dashboard
 
-> By [@henkiewie](https://github.com/henkiewie) <sup>Re: [#622](https://github.com/khulnasoft/shipyard/issues/622)</sup>
+> By [@henkiewie](https://github.com/henkiewie) <sup>Re: [#622](https://github.com/khulnaSoft/shipyard/issues/622)</sup>
 
 > I use this dashboard every day. It now even includes a player for a radio stream which I configured with Logitech media server and icecast. I made an smaller version of the grafana dashboard to fit an iframe in kiosk mode, so it monitors the most important values of my RPI. The PI is in Argon m2 case and used as a NAS. The dashboard is a copy of the adventure theme with some changes saved in `/app/src/styles/user-defined-themes.scss`
 
@@ -92,21 +92,21 @@
 
 > By [u//RickyCZ](https://www.reddit.com/user/RickyCZ) <sup>via [Reddit](https://www.reddit.com/r/selfhosted/comments/pose15/just_got_started_a_week_ago_selfhosting_is_very/)</sup>
 
-![screenshot-week-of-self-hosting](https://raw.githubusercontent.com/khulnasoft/shipyard/master/docs/showcase/11-ricky-cz.png)
+![screenshot-week-of-self-hosting](https://raw.githubusercontent.com/khulnaSoft/shipyard/master/docs/showcase/11-ricky-cz.png)
 
 ---
 
 ## EVO Dashboard
 
-> By [@EVOTk](https://github.com/EVOTk) <sup>Re: [#316](https://github.com/khulnasoft/shipyard/pull/316)</sup>
+> By [@EVOTk](https://github.com/EVOTk) <sup>Re: [#316](https://github.com/khulnaSoft/shipyard/pull/316)</sup>
 
-![screenshot-evo-dashboard](https://raw.githubusercontent.com/khulnasoft/shipyard/master/docs/showcase/12-evo-dashboard.png)
+![screenshot-evo-dashboard](https://raw.githubusercontent.com/khulnaSoft/shipyard/master/docs/showcase/12-evo-dashboard.png)
 
 ---
 
 ## The Private Dashboard
 
-> By [@DylanBeMe](https://github.com/DylanBeMe) <sup>Re: [#419](https://github.com/khulnasoft/shipyard/issues/419)</sup>
+> By [@DylanBeMe](https://github.com/DylanBeMe) <sup>Re: [#419](https://github.com/khulnaSoft/shipyard/issues/419)</sup>
 
 ![screenshot-private-dashboard](https://i.ibb.co/hKS483T/private-dashboard-Dylan-Be-Me.png)
 
@@ -114,19 +114,19 @@
 
 ## Networking Services
 
-> By [@khulnasoft](https://github.com/khulnasoft)
+> By [@KhulnaSoft-bot](https://github.com/khulnasoft)
 
-![screenshot-networking-services](https://raw.githubusercontent.com/khulnasoft/shipyard/master/docs/showcase/2-networking-services-minimal-dark.png)
+![screenshot-networking-services](https://raw.githubusercontent.com/khulnaSoft/shipyard/master/docs/showcase/2-networking-services-minimal-dark.png)
 
 ---
 
 ## Shipyard Live
 
-> By [@khulnasoft](https://github.com/khulnasoft)
+> By [@KhulnaSoft-bot](https://github.com/khulnasoft)
 
 > A dashboard I made to manage all project development links from one place. View demo at [live.ship.khulnasoft.com](https://live.ship.khulnasoft.com/).
 
-![screenshot-shipyard-live](https://raw.githubusercontent.com/khulnasoft/shipyard/master/docs/showcase/10-shipyard-live.png)
+![screenshot-shipyard-live](https://raw.githubusercontent.com/khulnaSoft/shipyard/master/docs/showcase/10-shipyard-live.png)
 
 ---
 
@@ -146,25 +146,25 @@
 
 ## CFT Toolbox
 
-![screenshot-cft-toolbox](https://raw.githubusercontent.com/khulnasoft/shipyard/master/docs/showcase/3-cft-toolbox.png)
+![screenshot-cft-toolbox](https://raw.githubusercontent.com/khulnaSoft/shipyard/master/docs/showcase/3-cft-toolbox.png)
 
 ---
 
 ## Bookmarks
 
-![screenshot-bookmarks](https://raw.githubusercontent.com/khulnasoft/shipyard/master/docs/showcase/4-bookmarks-colourful.png)
+![screenshot-bookmarks](https://raw.githubusercontent.com/khulnaSoft/shipyard/master/docs/showcase/4-bookmarks-colourful.png)
 
 ---
 
 ## Project Management
 
-![screenshot-project-management](https://raw.githubusercontent.com/khulnasoft/shipyard/master/docs/showcase/5-project-management.png)
+![screenshot-project-management](https://raw.githubusercontent.com/khulnaSoft/shipyard/master/docs/showcase/5-project-management.png)
 
 ---
 
 ## Shipyard Example
 
-> An example dashboard, by [@khulnasoft](https://github.com/khulnasoft). View live at [demo.ship.khulnasoft.com](https://demo.ship.khulnasoft.com/).
+> An example dashboard, by [@KhulnaSoft-bot](https://github.com/khulnasoft). View live at [demo.ship.khulnasoft.com](https://demo.ship.khulnasoft.com/).
 
 ![screenshot-shipyard-example](https://i.ibb.co/YbzqPK7/demo-shipyard.png)
 
@@ -172,9 +172,9 @@
 
 ## HomeLAb 3.0
 
-> By [@skoogee](https://github.com/skoogee) (<http://zhrn.cc>) <sup>[#279](https://github.com/khulnasoft/shipyard/issues/279)</sup>
+> By [@skoogee](https://github.com/skoogee) (<http://zhrn.cc>) <sup>[#279](https://github.com/khulnaSoft/shipyard/issues/279)</sup>
 
-> Shipyard, is the most complete dashboard I ever tried, has all the features, and it sets itself apart from the rest. It is my default homepage now. I am thankful to the developer @khulnasoft for sharing such a wonderful creation.
+> Shipyard, is the most complete dashboard I ever tried, has all the features, and it sets itself apart from the rest. It is my default homepage now. I am thankful to the developer @KhulnaSoft-bot for sharing such a wonderful creation.
 
 [![screenshot-12-skoogee-homelab-3](https://i.ibb.co/F5yBTsT/12-skoogee-homelab-3.png?)](https://ibb.co/album/ynSwzm)
 
@@ -182,7 +182,7 @@
 
 ## Ground Control
 
-> By [@dtctek](https://github.com/dtctek) <sup>Re: [#83](https://github.com/khulnasoft/shipyard/issues/83)</sup>
+> By [@dtctek](https://github.com/dtctek) <sup>Re: [#83](https://github.com/khulnaSoft/shipyard/issues/83)</sup>
 
 ![screenshot-ground-control](https://user-images.githubusercontent.com/1862727/149821995-e9b41dab-186c-42e6-b5b3-e233259b241d.png)
 
@@ -198,7 +198,7 @@
 
 ## Crypto Dash
 
-> Example usage of widgets to monitor cryptocurrencies news, prices and data. Config is [available here](https://gist.github.com/khulnasoft/000f712a5ce98f212817d20bc16bab10#file-example-8-shipyard-crypto-widgets-conf-yml)
+> Example usage of widgets to monitor cryptocurrencies news, prices and data. Config is [available here](https://gist.github.com/KhulnaSoft-bot/000f712a5ce98f212817d20bc16bab10#file-example-8-shipyard-crypto-widgets-conf-yml)
 
 ![screenshot-crypto-dash](https://user-images.githubusercontent.com/1862727/147394584-352fe3bf-740d-4624-a01b-9003a97bc832.png)
 
@@ -222,7 +222,7 @@
 
 ## Yet Another Homelab
 
-![screenshot-yet-another-homelab](https://raw.githubusercontent.com/khulnasoft/shipyard/master/docs/showcase/9-home-lab-oblivion.png)
+![screenshot-yet-another-homelab](https://raw.githubusercontent.com/khulnaSoft/shipyard/master/docs/showcase/9-home-lab-oblivion.png)
 
 ---
 
@@ -231,7 +231,7 @@
 ### How to Submit
 
 - [Open an Issue](https://git.io/JEtgM)
-- [Open a PR](https://github.com/khulnasoft/shipyard/compare)
+- [Open a PR](https://github.com/khulnaSoft/shipyard/compare)
 
 ### What to Include
 

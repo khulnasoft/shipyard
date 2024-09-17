@@ -29,7 +29,7 @@ You can also opt to keep previously opened websites/ apps open in the background
 
 <p align="center">
   <b>Example of Workspace View</b><br />
-  <img alt="Workspace view demo" src="https://raw.githubusercontent.com/khulnasoft/shipyard/master/docs/assets/workspace-demo.gif" width="800" />
+  <img alt="Workspace view demo" src="https://raw.githubusercontent.com/khulnaSoft/shipyard/master/docs/assets/workspace-demo.gif" width="800" />
 </p>
 
 ### Minimal View
@@ -38,7 +38,7 @@ The minimal view aims to be super fast and simple, and can be used as a browser 
 
 <p align="center">
   <b>Example of Minimal View</b><br />
-  <img alt="Workspace view demo" src="https://raw.githubusercontent.com/khulnasoft/shipyard/master/docs/assets/minimal-view-demo.gif" width="800" />
+  <img alt="Workspace view demo" src="https://raw.githubusercontent.com/khulnaSoft/shipyard/master/docs/assets/minimal-view-demo.gif" width="800" />
 </p>
 
 ## Opening Methods

@@ -49,7 +49,7 @@ For example:
 appConfig:
   auth:
     users:
-    - user: alicia
+    - user: khulnasoft
       hash: 4D1E58C90B3B94BCAD9848ECCACD6D2A8C9FBC5CA913304BBA5CDEAB36FEEFA3
       type: admin
     - user: bob
@@ -89,7 +89,7 @@ pages:
     path: intranet.yml
     displayData:
       hideForGuests: true
-      hideForUsers: [alicia, bob]
+      hideForUsers: [khulnasoft, bob]
 ```    
 
 ```yaml
@@ -97,7 +97,7 @@ pages:
   icon: fas fa-code
   displayData:
     cols: 2
-    hideForUsers: [alicia, bob]
+    hideForUsers: [khulnasoft, bob]
   items:
     ...
 ```
@@ -110,7 +110,7 @@ pages:
   items:
     - title: Hide Me
       displayData:
-        hideForUsers: [alicia, bob]
+        hideForUsers: [khulnasoft, bob]
 ```
 
 ### Permissions
@@ -218,7 +218,7 @@ appConfig:
     enableKeycloak: true
     keycloak:
       serverUrl: 'http://localhost:8081'
-      realm: 'alicia-homelab'
+      realm: 'khulnasoft-homelab'
       clientId: 'shipyard'
 ```
 
@@ -248,7 +248,7 @@ sections:
             groups: ['DevelopmentTeam']
 ```
 
-Depending on how you're hosting Shipyard and Keycloak, you may also need to set some HTTP headers, to prevent a CORS error. This would typically be the `Access-Control-Allow-Origin [URL-of Shipyard]` on your Keycloak instance. See the [Setting Headers](https://github.com/khulnasoft/shipyard/blob/master/docs/management.md#setting-headers) guide in the management docs for more info.
+Depending on how you're hosting Shipyard and Keycloak, you may also need to set some HTTP headers, to prevent a CORS error. This would typically be the `Access-Control-Allow-Origin [URL-of Shipyard]` on your Keycloak instance. See the [Setting Headers](https://github.com/khulnaSoft/shipyard/blob/master/docs/management.md#setting-headers) guide in the management docs for more info.
 
 Your app is now secured :) When you load Shipyard, it will redirect to your Keycloak login page, and any user without valid credentials will be prevented from accessing your dashboard.
 
@@ -584,7 +584,7 @@ require valid-user
 Then create a `.htpasswd` file in the same directory. List users and their hashed passwords here, with one user on each line, and a colon between username and password (e.g. `[username]:[hashed-password]`). You will need to generate an MD5 hash of your desired password, this can be done with an [online tool](https://www.web2generators.com/apache-tools/htpasswd-generator).  Your file will look something like:
 
 ```text
-alicia:$apr1$jv0spemw$RzOX5/GgY69JMkgV6u16l0
+khulnasoft:$apr1$jv0spemw$RzOX5/GgY69JMkgV6u16l0
 ```
 
 #### NGINX
@@ -604,7 +604,7 @@ Caddy has a [basic-auth](https://caddyserver.com/docs/caddyfile/directives/basic
 
 ```text
 basicauth /secret/* {
-	alicia JDJhJDEwJEVCNmdaNEg2Ti5iejRMYkF3MFZhZ3VtV3E1SzBWZEZ5Q3VWc0tzOEJwZE9TaFlZdEVkZDhX
+	khulnasoft JDJhJDEwJEVCNmdaNEg2Ti5iejRMYkF3MFZhZ3VtV3E1SzBWZEZ5Q3VWc0tzOEJwZE9TaFlZdEVkZDhX
 }
 ```
 
@@ -630,7 +630,7 @@ $HTTP["host"] == "shipyard.my-domain.net" {
     "/docs/" => (
       "method" => "basic",
       "realm" => "Password protected area",
-      "require" => "user=alicia"
+      "require" => "user=khulnasoft"
     )
   )
 }
@@ -640,7 +640,7 @@ Restart your web server for changes to take effect.
 
 ### OAuth Services
 
-There are also authentication services, such as [Ory.sh](https://www.ory.sh/), [Okta](https://developer.okta.com/), [Auth0](https://auth0.com/), [Firebase](https://firebase.google.com/docs/auth/). Implementing one of these solutions would involve some changes to the [`Auth.js`](https://github.com/khulnasoft/shipyard/blob/master/src/utils/Auth.js) file, but should be fairly straightforward.
+There are also authentication services, such as [Ory.sh](https://www.ory.sh/), [Okta](https://developer.okta.com/), [Auth0](https://auth0.com/), [Firebase](https://firebase.google.com/docs/auth/). Implementing one of these solutions would involve some changes to the [`Auth.js`](https://github.com/khulnaSoft/shipyard/blob/master/src/utils/Auth.js) file, but should be fairly straightforward.
 
 ### Static Site Hosting Providers
 

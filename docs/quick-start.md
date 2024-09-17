@@ -9,7 +9,7 @@ Welcome to Shipyard! So glad you're here 😊 In a couple of minutes, you'll hav
 ## 1. Prerequisites
 
 The quickest and easiest method of running Shipyard is using Docker (or another container engine). You can find installation instructions for your system in the [Docker Documentation](https://docs.docker.com/get-docker/).
-If you don't want to use Docker, then you can use one of Shipyard's other supported installation methods instead, all of which are outlined in the [Deployment Docs](https://github.com/khulnasoft/shipyard/blob/master/docs/deployment.md).
+If you don't want to use Docker, then you can use one of Shipyard's other supported installation methods instead, all of which are outlined in the [Deployment Docs](https://github.com/khulnaSoft/shipyard/blob/master/docs/deployment.md).
 
 ---
 
@@ -26,7 +26,7 @@ docker run -d \
   khulnasoft/shipyard:latest
 ```
 
-Either replace the -v path to point to your config file, or leave it out. For a full list of available options, then see [Shipyard with Docker](https://github.com/khulnasoft/shipyard/blob/master/docs/deployment.md#deploy-with-docker) Docs. If you'd prefer to use Docker Compose, then see [Shipyard with Docker Compose](https://github.com/khulnasoft/shipyard/blob/master/docs/deployment.md#using-docker-compose) Docs. Alternate registries, architectures and pinned versions are also supported.
+Either replace the -v path to point to your config file, or leave it out. For a full list of available options, then see [Shipyard with Docker](https://github.com/khulnaSoft/shipyard/blob/master/docs/deployment.md#deploy-with-docker) Docs. If you'd prefer to use Docker Compose, then see [Shipyard with Docker Compose](https://github.com/khulnaSoft/shipyard/blob/master/docs/deployment.md#using-docker-compose) Docs. Alternate registries, architectures and pinned versions are also supported.
 
 Your dashboard should now be up and running at `http://localhost:8080` (or your servers IP address/ domain, and the port that you chose). The first time you build, it may take a few minutes.
 
@@ -45,12 +45,12 @@ Example Files in `user-data`:
 - `conf.yml` - This is the only file that is compulsary, it's your main Shipyard config
 - `**.yml` - Include more config files, if you'd like to have multiple pages, see [Multi-page support](/docs/pages-and-sections#multi-page-support) for docs
 - `favicon.ico` - The default favicon, shown in the browser's tab title
-- `initialization.html` - Static HTML page displayed before the app has finished compiling, see [`public/initialization.html`](https://github.com/khulnasoft/shipyard/blob/master/public/initialization.html)
+- `initialization.html` - Static HTML page displayed before the app has finished compiling, see [`public/initialization.html`](https://github.com/khulnaSoft/shipyard/blob/master/public/initialization.html)
 - `robots.txt` - Search engine crawl rules, override this if you want your dashboard to be indexable
 - `manifest.json` - PWA configuration file, for installing Shipyard on mobile devices
-- `index.html` - The main index page which initializes the client-side app, copy it from [`/public/index.html`](https://github.com/khulnasoft/shipyard/blob/master/public/index.html)
+- `index.html` - The main index page which initializes the client-side app, copy it from [`/public/index.html`](https://github.com/khulnaSoft/shipyard/blob/master/public/index.html)
 - `**.html` - Write your own HTML pages, and access them at `http://my-shipyard-instance.local/my-page.html`
-- `fonts/` - Custom fonts (be sure to include the ones already in [`public/fonts`](https://github.com/khulnasoft/shipyard/tree/master/public/fonts)
+- `fonts/` - Custom fonts (be sure to include the ones already in [`public/fonts`](https://github.com/khulnaSoft/shipyard/tree/master/public/fonts)
 - `item-icons/` - To use your own icons for items on your dashboard, see [Icons --> Local Icons](/docs/icons#local-icons)
 - `web-icons/` - Override Shipyard logo
 - `widget-resources/` - Fonts, icons and assets for custom widgets
@@ -60,15 +60,15 @@ Example Files in `user-data`:
 ## 4. Configure
 
 Now that you've got Shipyard running, you are going to want to set it up with your own content.
-Config is written in [YAML Format](https://yaml.org/), and saved in [`/user-data/conf.yml`](https://github.com/khulnasoft/shipyard/blob/master/user-data/conf.yml).
+Config is written in [YAML Format](https://yaml.org/), and saved in [`/user-data/conf.yml`](https://github.com/khulnaSoft/shipyard/blob/master/user-data/conf.yml).
 The format on the config file is pretty straight forward. There are three root attributes:
 
-- [`pageInfo`](https://github.com/khulnasoft/shipyard/blob/master/docs/configuring.md#pageinfo) - Dashboard meta data, like title, description, nav bar links and footer text
-- [`appConfig`](https://github.com/khulnasoft/shipyard/blob/master/docs/configuring.md#appconfig-optional) - Dashboard settings, like themes, authentication, language and customization
-- [`sections`](https://github.com/khulnasoft/shipyard/blob/master/docs/configuring.md#section) - An array of sections, each including an array of items
-- [`pages`](https://github.com/khulnasoft/shipyard/blob/master/docs/configuring.md#pages-optional) - Have multiples pages in your dashboard
+- [`pageInfo`](https://github.com/khulnaSoft/shipyard/blob/master/docs/configuring.md#pageinfo) - Dashboard meta data, like title, description, nav bar links and footer text
+- [`appConfig`](https://github.com/khulnaSoft/shipyard/blob/master/docs/configuring.md#appconfig-optional) - Dashboard settings, like themes, authentication, language and customization
+- [`sections`](https://github.com/khulnaSoft/shipyard/blob/master/docs/configuring.md#section) - An array of sections, each including an array of items
+- [`pages`](https://github.com/khulnaSoft/shipyard/blob/master/docs/configuring.md#pages-optional) - Have multiples pages in your dashboard
 
-You can view a full list of all available config options in the [Configuring Docs](https://github.com/khulnasoft/shipyard/blob/master/docs/configuring.md).
+You can view a full list of all available config options in the [Configuring Docs](https://github.com/khulnaSoft/shipyard/blob/master/docs/configuring.md).
 
 ```yaml
 pageInfo:
@@ -80,11 +80,11 @@ sections: # An array of sections
   - title: GitHub
     description: Shipyard source code and docs
     icon: fab fa-github
-    url: https://github.com/khulnasoft/shipyard
+    url: https://github.com/khulnaSoft/shipyard
   - title: Issues
     description: View open issues, or raise a new one
     icon: fas fa-bug
-    url: https://github.com/khulnasoft/shipyard/issues
+    url: https://github.com/khulnaSoft/shipyard/issues
 - name: Local Services
   items:
   - title: Firewall
@@ -101,14 +101,14 @@ Notes:
   - E.g. `-v ./host-system/my-local-conf.yml:/app/user-data/conf.yml`
 - It's also possible to edit your config directly through the UI, and changes will be saved in this file
 - Check your config against Shipyard's schema, with `docker exec -it [container-id] yarn validate-config`
-- You might find it helpful to look at some examples, a collection of which can be [found here](https://gist.github.com/khulnasoft/000f712a5ce98f212817d20bc16bab10)
+- You might find it helpful to look at some examples, a collection of which can be [found here](https://gist.github.com/KhulnaSoft-bot/000f712a5ce98f212817d20bc16bab10)
 - It's also possible to load a remote config, e.g. from a GitHub Gist
 
 ---
 
 ## 5. Further Customisation
 
-Once you've got Shipyard setup, you'll want to ensure the container is properly healthy, secured, backed up and kept up-to-date. All this is covered in the [Management Docs](https://github.com/khulnasoft/shipyard/blob/master/docs/management.md).
+Once you've got Shipyard setup, you'll want to ensure the container is properly healthy, secured, backed up and kept up-to-date. All this is covered in the [Management Docs](https://github.com/khulnaSoft/shipyard/blob/master/docs/management.md).
 
 You might also want to check out the docs for specific features you'd like to use:
 
@@ -125,9 +125,9 @@ You might also want to check out the docs for specific features you'd like to us
 
 ## 6. Final Note
 
-If you need any help or support in getting Shipyard running, head over to the [Discussions](https://github.com/khulnasoft/shipyard/discussions) page. If you think you've found a bug, please do [raise it](https://github.com/khulnasoft/shipyard/issues/new/choose) so it can be fixed. For contact options, see the [Support Page](https://github.com/khulnasoft/shipyard/blob/master/.github/SUPPORT.md).
+If you need any help or support in getting Shipyard running, head over to the [Discussions](https://github.com/khulnaSoft/shipyard/discussions) page. If you think you've found a bug, please do [raise it](https://github.com/khulnaSoft/shipyard/issues/new/choose) so it can be fixed. For contact options, see the [Support Page](https://github.com/khulnaSoft/shipyard/blob/master/.github/SUPPORT.md).
 
-If you're enjoying Shipyard, and have a few minutes to spare, please do take a moment to look at the [Contributing Page](https://github.com/khulnasoft/shipyard/blob/master/docs/contributing.md). Huge thanks to [everyone](https://github.com/khulnasoft/shipyard/blob/master/docs/credits.md) who has already helped out!
+If you're enjoying Shipyard, and have a few minutes to spare, please do take a moment to look at the [Contributing Page](https://github.com/khulnaSoft/shipyard/blob/master/docs/contributing.md). Huge thanks to [everyone](https://github.com/khulnaSoft/shipyard/blob/master/docs/credits.md) who has already helped out!
 
 Enjoy your dashboard :)
 
@@ -138,7 +138,7 @@ Enjoy your dashboard :)
 You can also easily run the app on your system without Docker. For this [Git](https://git-scm.com/downloads), [Node.js](https://nodejs.org/), and [Yarn](https://yarnpkg.com/) are required.
 
 ```bash
-git clone https://github.com/khulnasoft/shipyard.git && cd shipyard
+git clone https://github.com/khulnaSoft/shipyard.git && cd shipyard
 yarn # Install dependencies
 yarn build # Build the app
 yarn start # Start the app
@@ -164,9 +164,9 @@ Don't have a server? No problem! You can run Shipyard for free on Netlify (as we
 Shipyard supports 1-Click deployments on several popular cloud platforms. To spin up a new instance, just click a link below:
 
 - [<img src="https://i.ibb.co/ZxtzrP3/netlify.png" width="18"/> Deploy to Netlify](https://app.netlify.com/start/deploy?repository=https://github.com/khulnasoft/shipyard)
-- [<img src="https://i.ibb.co/d2P1WZ7/heroku.png" width="18"/> Deploy to Heroku](https://heroku.com/deploy?template=https://github.com/khulnasoft/shipyard)
+- [<img src="https://i.ibb.co/d2P1WZ7/heroku.png" width="18"/> Deploy to Heroku](https://heroku.com/deploy?template=https://github.com/khulnaSoft/shipyard)
 - [<img src="https://i.ibb.co/Ld2FZzb/vercel.png" width="18"/> Deploy to Vercel](https://vercel.com/new/project?template=https://github.com/khulnasoft/shipyard)
 - [<img src="https://i.ibb.co/xCHtzgh/render.png" width="18"/> Deploy to Render](https://render.com/deploy?repo=https://github.com/khulnasoft/shipyard/tree/deploy_render)
 - [<img src="https://i.ibb.co/J7MGymY/googlecloud.png" width="18"/> Deploy to GCP](https://deploy.cloud.run/?git_repo=https://github.com/khulnasoft/shipyard.git)
-- [<img src="https://i.ibb.co/HVWVYF7/docker.png" width="18"/> Deploy to PWD](https://labs.play-with-docker.com/?stack=https://raw.githubusercontent.com/khulnasoft/shipyard/master/docker-compose.yml)
+- [<img src="https://i.ibb.co/HVWVYF7/docker.png" width="18"/> Deploy to PWD](https://labs.play-with-docker.com/?stack=https://raw.githubusercontent.com/khulnaSoft/shipyard/master/docker-compose.yml)
 - [<img src="https://i.ibb.co/7NxnM2P/easypanel.png" width="18"/> Deploy to Easypanel](https://easypanel.io/docs/templates/shipyard)

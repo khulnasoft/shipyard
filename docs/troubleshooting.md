@@ -56,7 +56,7 @@ Look here for more information: [https://ship.khulnasoft.com/docs/deployment#dep
 
 If you're running on Netlify, there are some cloud functions which take care of all the server endpoints (like status checking), so these will work as expected.
 
-See also [#1465](https://github.com/khulnasoft/shipyard/issues/1465)
+See also [#1465](https://github.com/khulnaSoft/shipyard/issues/1465)
 
 ### Possible Issue 2: Unable to save
 In Docker, double check that the file isn't read-only, and that the container actually has permissions to modify it. You shouldn't really be running it as a root user, and I'm not sure if it will work if you do-
@@ -128,7 +128,7 @@ If this works, but you wish to continue using HTML5 history mode, then a bit of 
 Similar to the above issue, if you get a 404 after using iOS and Android's "Add to Home Screen" feature, then this is caused by Vue router.
 It can be fixed by setting `appConfig.routingMode` to `hash`
 
-See also: [#628](https://github.com/khulnasoft/shipyard/issues/628), [#762](https://github.com/khulnasoft/shipyard/issues/762)
+See also: [#628](https://github.com/khulnaSoft/shipyard/issues/628), [#762](https://github.com/khulnaSoft/shipyard/issues/762)
 
 ---
 
@@ -136,13 +136,13 @@ See also: [#628](https://github.com/khulnasoft/shipyard/issues/628), [#762](http
 
 Similar to above, if you get a 404 error when visiting a page directly on multi-page apps, then this can be fixed under `appConfig`, by setting `routingMode` to `hash`. Then rebuilding, and refreshing the page.
 
-See also: [#670](https://github.com/khulnasoft/shipyard/issues/670), [#763](https://github.com/khulnasoft/shipyard/issues/763)
+See also: [#670](https://github.com/khulnaSoft/shipyard/issues/670), [#763](https://github.com/khulnaSoft/shipyard/issues/763)
 
 ---
 
 ## Yarn Error
 
-For more info, see [Issue #1](https://github.com/khulnasoft/shipyard/issues/1)
+For more info, see [Issue #1](https://github.com/khulnaSoft/shipyard/issues/1)
 
 First of all, check that you've got yarn installed correctly - see the [yarn installation docs](https://classic.yarnpkg.com/en/docs/install) for more info.
 
@@ -156,7 +156,7 @@ If you're getting an error about scenarios, then you've likely installed the wro
 Alternatively, as a workaround, you have several options:
 
 - Try using [NPM](https://www.npmjs.com/get-npm) instead: So clone, cd, then run `npm install`, `npm run build` and `npm start`
-- Try using [Docker](https://www.docker.com/get-started) instead, and all of the system setup and dependencies will already be taken care of. So from within the directory, just run `docker build -t khulnasoft/shipyard .` to build, and then use docker start to run the project, e.g: `docker run -it -p 8080:8080 khulnasoft/shipyard` (see the [deploying docs](https://github.com/khulnasoft/shipyard/blob/master/docs/deployment.md#deploy-with-docker) for more info)
+- Try using [Docker](https://www.docker.com/get-started) instead, and all of the system setup and dependencies will already be taken care of. So from within the directory, just run `docker build -t khulnasoft/shipyard .` to build, and then use docker start to run the project, e.g: `docker run -it -p 8080:8080 khulnasoft/shipyard` (see the [deploying docs](https://github.com/khulnaSoft/shipyard/blob/master/docs/deployment.md#deploy-with-docker) for more info)
 
 ---
 
@@ -191,7 +191,7 @@ FATAL ERROR: Reached heap limit Allocation failed - JavaScript heap out of memor
 
 This is likely caused by insufficient memory allocation to the container. When the container first starts up, or has to rebuild, the memory usage spikes, and if there isn't enough memory, it may terminate. This can be specified with, for example: `--memory=1024m`. For more info, see [Docker: Runtime options with Memory, CPUs, and GPUs](https://docs.docker.com/config/containers/resource_constraints/).
 
-See also: [#380](https://github.com/khulnasoft/shipyard/issues/380), [#350](https://github.com/khulnasoft/shipyard/issues/350), [#297](https://github.com/khulnasoft/shipyard/issues/297), [#349](https://github.com/khulnasoft/shipyard/issues/349), [#510](https://github.com/khulnasoft/shipyard/issues/510), [#511](https://github.com/khulnasoft/shipyard/issues/511) and [#834](https://github.com/khulnasoft/shipyard/issues/834)
+See also: [#380](https://github.com/khulnaSoft/shipyard/issues/380), [#350](https://github.com/khulnaSoft/shipyard/issues/350), [#297](https://github.com/khulnaSoft/shipyard/issues/297), [#349](https://github.com/khulnaSoft/shipyard/issues/349), [#510](https://github.com/khulnaSoft/shipyard/issues/510), [#511](https://github.com/khulnaSoft/shipyard/issues/511) and [#834](https://github.com/khulnaSoft/shipyard/issues/834)
 
 ---
 
@@ -199,7 +199,7 @@ See also: [#380](https://github.com/khulnasoft/shipyard/issues/380), [#350](http
 
 In Docker, this can be caused by not enough memory. When the container first starts up, or has to rebuild, the memory usage spikes, and so a larger allocation may be required. This can be specified with, for example: `--memory=1024m`. For more info, see [Docker: Runtime options with Memory, CPUs, and GPUs](https://docs.docker.com/config/containers/resource_constraints/)
 
-See also [#624](https://github.com/khulnasoft/shipyard/issues/624)
+See also [#624](https://github.com/khulnaSoft/shipyard/issues/624)
 
 ---
 
@@ -207,7 +207,7 @@ See also [#624](https://github.com/khulnasoft/shipyard/issues/624)
 
 In V 1.6.5 an update was made that in the future will become a breaking change. You will need to update you config to reflect this before V 2.0.0 is released. In the meantime, your previous config will continue to function normally, but you will see a validation warning. The change means that the structure of the `appConfig.auth` object is now an object, which has a `users` property.
 
-For more info, see [this announcement](https://github.com/khulnasoft/shipyard/discussions/177).
+For more info, see [this announcement](https://github.com/khulnaSoft/shipyard/discussions/177).
 
 You can fix this by replacing:
 
@@ -289,7 +289,7 @@ You'll instead need to copy the YAML after making your changes, and paste that i
 
 If you're running on Netlify, there are some cloud functions which take care of all the server endpoints (like status checking), so these will work as expected.
 
-See also [#1465](https://github.com/khulnasoft/shipyard/issues/1465)
+See also [#1465](https://github.com/khulnaSoft/shipyard/issues/1465)
 
 ---
 
@@ -344,9 +344,9 @@ You can [check your rate limit status](https://www.docker.com/blog/checking-your
 
 ## Config Validation Errors
 
-The configuration file is validated against [Shipyard's Schema](https://github.com/khulnasoft/shipyard/blob/master/src/utils/ConfigSchema.json) using AJV.
+The configuration file is validated against [Shipyard's Schema](https://github.com/khulnaSoft/shipyard/blob/master/src/utils/ConfigSchema.json) using AJV.
 
-First, check that your syntax is valid, using [YAML Validator](https://codebeautify.org/yaml-validator/) or [JSON Validator](https://codebeautify.org/jsonvalidator). If the issue persists, then take a look at the [schema](https://github.com/khulnasoft/shipyard/blob/master/src/utils/ConfigSchema.json), and verify that the field you are trying to add/ modify matches the required format. You can also use [this tool](https://www.jsonschemavalidator.net/s/JFUj7X9J) to validate your JSON config against the schema, or run `yarn validate-config`.
+First, check that your syntax is valid, using [YAML Validator](https://codebeautify.org/yaml-validator/) or [JSON Validator](https://codebeautify.org/jsonvalidator). If the issue persists, then take a look at the [schema](https://github.com/khulnaSoft/shipyard/blob/master/src/utils/ConfigSchema.json), and verify that the field you are trying to add/ modify matches the required format. You can also use [this tool](https://www.jsonschemavalidator.net/s/JFUj7X9J) to validate your JSON config against the schema, or run `yarn validate-config`.
 
 If you're trying to use a recently released feature, and are getting a warning, this is likely because you've not yet updated the the current latest version of Shipyard.
 
@@ -367,7 +367,7 @@ An error similar to: `Fatal error in , line 0. Unreachable code, FailureMessage 
 Is related to a bug in a downstream package, see [nodejs/docker-node#1477](https://github.com/nodejs/docker-node/issues/1477).
 Usually, updating your system and packages will resolve the issue.
 
-See also: [#776](https://github.com/khulnasoft/shipyard/issues/776)
+See also: [#776](https://github.com/khulnaSoft/shipyard/issues/776)
 
 ---
 
@@ -415,7 +415,7 @@ If your service is online, but responds with a status code that is not in the 2x
 
 If you get an error, like `Service Unavailable: Server resulted in a fatal error`, even when it's definitely online, this is most likely caused by missing the protocol. Don't forget to include `https://` (or whatever protocol) before the URL, and ensure that if needed, you've specified the port.
 
-Running Shipyard in HOST network mode, instead of BRIDGE will allow status check access to other services in HOST mode. For more info, see [#445](https://github.com/khulnasoft/shipyard/discussions/445).
+Running Shipyard in HOST network mode, instead of BRIDGE will allow status check access to other services in HOST mode. For more info, see [#445](https://github.com/khulnaSoft/shipyard/discussions/445).
 
 If you have firewall rules configured, then ensure that they don't prevent Shipyard from making requests to the other services you are trying to access.
 
@@ -439,7 +439,7 @@ Before proceeding, ensure that if the widget requires auth your API is correct, 
 
 ### Timeout Error
 
-If the error message in the console includes: `Error: timeout of 500ms exceeded`, then your Glances endpoint is slower to respond than expected. You can fix this by [setting timeout](https://github.com/khulnasoft/shipyard/blob/master/docs/widgets.md#setting-timeout) to a larger value. This is done on each widget, with the `timeout` attribute, and is specified in ms. E.g. `timeout: 5000` would only fail if no response is returned within 5 seconds.
+If the error message in the console includes: `Error: timeout of 500ms exceeded`, then your Glances endpoint is slower to respond than expected. You can fix this by [setting timeout](https://github.com/khulnaSoft/shipyard/blob/master/docs/widgets.md#setting-timeout) to a larger value. This is done on each widget, with the `timeout` attribute, and is specified in ms. E.g. `timeout: 5000` would only fail if no response is returned within 5 seconds.
 
 ### CORS error
 
@@ -514,7 +514,7 @@ Since the forecasting API requires an upgraded plan. ULPT: You can get a free, p
 
 A future update will be pushed out, to use a free weather forecasting API.
 
-See also: [#803](https://github.com/khulnasoft/shipyard/issues/803), [#789](https://github.com/khulnasoft/shipyard/issues/789), [#577](https://github.com/khulnasoft/shipyard/issues/577), [#621](https://github.com/khulnasoft/shipyard/issues/621), [#578](https://github.com/khulnasoft/shipyard/issues/578), [#806](https://github.com/khulnasoft/shipyard/discussions/806)
+See also: [#803](https://github.com/khulnaSoft/shipyard/issues/803), [#789](https://github.com/khulnaSoft/shipyard/issues/789), [#577](https://github.com/khulnaSoft/shipyard/issues/577), [#621](https://github.com/khulnaSoft/shipyard/issues/621), [#578](https://github.com/khulnaSoft/shipyard/issues/578), [#806](https://github.com/khulnaSoft/shipyard/discussions/806)
 
 ---
 
@@ -522,11 +522,11 @@ See also: [#803](https://github.com/khulnasoft/shipyard/issues/803), [#789](http
 
 If any widget is not displaying the data you expect, first confirm that your config is correct, then try manually calling the API endpoint.
 
-If the raw API output is correct, yet the widget is rendering incorrect results, then it is likely a bug, and a ticket should be raised. You can start to debug the issue, by looking at the widget's code ([here](https://github.com/khulnasoft/shipyard/tree/master/src/components/Widgets)), and the browser console + networking tab.
+If the raw API output is correct, yet the widget is rendering incorrect results, then it is likely a bug, and a ticket should be raised. You can start to debug the issue, by looking at the widget's code ([here](https://github.com/khulnaSoft/shipyard/tree/master/src/components/Widgets)), and the browser console + networking tab.
 
-If the API itself is returning incorrect, incomplete or inaccurate data then an issue needs to be raised **with the API provider** (not Shipyard!). You can find the API provider included within the widget docs, or for a full list see the [Privacy Docs](https://github.com/khulnasoft/shipyard/blob/master/docs/privacy.md#widgets).
+If the API itself is returning incorrect, incomplete or inaccurate data then an issue needs to be raised **with the API provider** (not Shipyard!). You can find the API provider included within the widget docs, or for a full list see the [Privacy Docs](https://github.com/khulnaSoft/shipyard/blob/master/docs/privacy.md#widgets).
 
-See also: [#807](https://github.com/khulnasoft/shipyard/issues/807) (re, domain monitor)
+See also: [#807](https://github.com/khulnaSoft/shipyard/issues/807) (re, domain monitor)
 
 ---
 
@@ -556,7 +556,7 @@ The most common reason for this, is if you not running the app over HTTPS. Copyi
 As a workaround, you could either:
 
 - Highlight the text and copy / <kbd>Ctrl</kbd> + <kbd>C</kbd>
-- Or setup SSL - [here's a guide](https://github.com/khulnasoft/shipyard/blob/master/docs/management.md#ssl-certificates) on doing so
+- Or setup SSL - [here's a guide](https://github.com/khulnaSoft/shipyard/blob/master/docs/management.md#ssl-certificates) on doing so
 
 ---
 
@@ -592,14 +592,14 @@ For a full list of all data that may be cached, see the [Privacy Docs](/docs/pri
 
 ### Step 1 - Where to open issues
 
-You will need a GitHub account in order to raise a ticket. You can then [click here](https://github.com/khulnasoft/shipyard/issues/new?assignees=khulnasoft&labels=%F0%9F%90%9B+Bug&template=bug.yml&title=%5BBUG%5D+%3Ctitle%3E) to open a new bug report.
+You will need a GitHub account in order to raise a ticket. You can then [click here](https://github.com/khulnaSoft/shipyard/issues/new?assignees=khulnasoft&labels=%F0%9F%90%9B+Bug&template=bug.yml&title=%5BBUG%5D+%3Ctitle%3E) to open a new bug report.
 
 ### Step 2 - Checking it's not already covered
 
 Before submitting, please check that:
 
 - A similar ticket has not previously been opened
-- The issue is not covered in the [troubleshooting guide](https://github.com/khulnasoft/shipyard/blob/master/docs/troubleshooting.md) or [docs](https://github.com/khulnasoft/shipyard/tree/master/docs#readme)
+- The issue is not covered in the [troubleshooting guide](https://github.com/khulnaSoft/shipyard/blob/master/docs/troubleshooting.md) or [docs](https://github.com/khulnaSoft/shipyard/tree/master/docs#readme)
 
 ### Step 3 - Describe the Issue
 
@@ -626,7 +626,7 @@ A maintainer will aim to respond within 48 hours.
 The timeframe for resolving your issue, will vary depending on severity of the bug and the complexity of the fix.
 You will be notified on your ticket, when a fix has been released.
 
-Finally, be sure to remain respectful to other users and project maintainers, in line with the [Contributor Covenant Code of Conduct](https://github.com/khulnasoft/shipyard/blob/master/.github/CODE_OF_CONDUCT.md#contributor-covenant-code-of-conduct).
+Finally, be sure to remain respectful to other users and project maintainers, in line with the [Contributor Covenant Code of Conduct](https://github.com/khulnaSoft/shipyard/blob/master/.github/CODE_OF_CONDUCT.md#contributor-covenant-code-of-conduct).
 
 ---
 
@@ -647,7 +647,7 @@ For more detailed walk through, see [this article](https://support.shortpoint.co
 
 ## Git Contributions not Displaying
 
-If you've contributed to Shipyard (or any other project), but your contributions are not showing up on your GH profile, or in Shipyard's [Credits Page](https://github.com/khulnasoft/shipyard/blob/master/docs/credits.md), then this is likely a git config issue.
+If you've contributed to Shipyard (or any other project), but your contributions are not showing up on your GH profile, or in Shipyard's [Credits Page](https://github.com/khulnaSoft/shipyard/blob/master/docs/credits.md), then this is likely a git config issue.
 
 These statistics are generated using the username / email associated with commits. This info needs to be setup on your local machine using [`git config`](https://git-scm.com/docs/git-config).
 

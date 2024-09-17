@@ -30,7 +30,7 @@ _The following article is a primer on managing self-hosted apps. It covers every
 
 Although not essential, you will most likely want to provide several assets to your running app.
 
-This is easy to do using [Docker Volumes](https://docs.docker.com/storage/volumes/), which lets you share a file or directory between your host system, and the container. Volumes are specified in the Docker run command, or Docker compose file, using the `--volume` or `-v` flags. The value of which consists of the path to the file / directory on your host system, followed by the destination path within the container. Fields are separated by a colon (`:`), and must be in the correct order. For example: `-v ~/alicia/my-local-conf.yml:/app/user-data/conf.yml`
+This is easy to do using [Docker Volumes](https://docs.docker.com/storage/volumes/), which lets you share a file or directory between your host system, and the container. Volumes are specified in the Docker run command, or Docker compose file, using the `--volume` or `-v` flags. The value of which consists of the path to the file / directory on your host system, followed by the destination path within the container. Fields are separated by a colon (`:`), and must be in the correct order. For example: `-v ~/khulnasoft/my-local-conf.yml:/app/user-data/conf.yml`
 
 In Shipyard, commonly configured resources include:
 
@@ -47,7 +47,7 @@ In Shipyard, commonly configured resources include:
 
 If you're running an app in Docker, then commands will need to be passed to the container to be executed. This can be done by preceding each command with `docker exec -it [container-id]`, where container ID can be found by running `docker ps`. For example `docker exec -it 26c156c467b4 yarn build`. You can also enter the container, with `docker exec -it [container-id] /bin/ash`, and navigate around it with normal Linux commands.
 
-Shipyard has several commands that can be used for various tasks, you can find a list of these either in the [Developing Docs](/docs/developing#project-commands), or by looking at the [`package.json`](https://github.com/khulnasoft/shipyard/blob/master/package.json#L5). These can be used by running `yarn [command-name]`.
+Shipyard has several commands that can be used for various tasks, you can find a list of these either in the [Developing Docs](/docs/developing#project-commands), or by looking at the [`package.json`](https://github.com/khulnaSoft/shipyard/blob/master/package.json#L5). These can be used by running `yarn [command-name]`.
 
 **[⬆️ Back to Top](#top)**
 
@@ -266,7 +266,7 @@ Shipyard natively supports secure authentication using KeyCloak. There is also a
 
 When you have a lot of containers, it quickly becomes hard to manage with `docker run` commands. The solution to this is [docker compose](https://docs.docker.com/compose/), a handy tool for defining all a containers run settings in a single YAML file, and then spinning up that container with a single short command - `docker compose up`. A good example of which can be seen in [@abhilesh's docker compose collection](https://github.com/abhilesh/self-hosted_docker_setups).
 
-You can use Shipyard's default [`docker-compose.yml`](https://github.com/khulnasoft/shipyard/blob/master/docker-compose.yml) file as a template, and modify it according to your needs.
+You can use Shipyard's default [`docker-compose.yml`](https://github.com/khulnaSoft/shipyard/blob/master/docker-compose.yml) file as a template, and modify it according to your needs.
 
 An example Docker compose, using the default base image from DockerHub, might look something like this:
 
@@ -298,7 +298,7 @@ services:
 
 ## Passing in Environmental Variables
 
-With Docker, you can define environmental variables under the `environment` section of your Docker compose file. Environmental variables are used to configure high-level settings, usually before the config file has been read. For a list of all supported env vars in Shipyard, see [the developing docs](/docs/developing#environmental-variables), or the default [`.env`](https://github.com/khulnasoft/shipyard/blob/master/.env) file.
+With Docker, you can define environmental variables under the `environment` section of your Docker compose file. Environmental variables are used to configure high-level settings, usually before the config file has been read. For a list of all supported env vars in Shipyard, see [the developing docs](/docs/developing#environmental-variables), or the default [`.env`](https://github.com/khulnaSoft/shipyard/blob/master/.env) file.
 
 A common use case, is to run Shipyard under a sub-page, instead of at the root of a URL (e.g. `https://my-homelab.local/shipyard` instead of `https://shipyard.my-homelab.local`). In this use-case, you'd specify the `BASE_URL` variable in your compose file.
 
@@ -493,7 +493,7 @@ Before getting started, you'll need to head over to [Remote.it](https://app.remo
 Then setup your local device:
 
 1. If you haven't already done so, you'll need to enable and configure SSH.
-	- This is out-of-scope of this article, but I've explained it in detail in [this post](https://notes.aliciasykes.com/22798/my-server-setup#configure-ssh).
+	- This is out-of-scope of this article, but I've explained it in detail in [this post](https://notes.khulnasoft.com/22798/my-server-setup#configure-ssh).
 2. Download the Remote.it install script from their [GitHub](https://github.com/remoteit/installer)
 	- `curl -LkO https://raw.githubusercontent.com/remoteit/installer/master/scripts/auto-install.sh`
 3. Make it executable, with `chmod +x ./auto-install.sh`, and then run it with `sudo ./auto-install.sh`
@@ -517,7 +517,7 @@ Some Ngrok features require you to be authenticated, you can [create a free acco
 
 It's recommended to use authentication for any publicly accessible service. Shipyard has an [Auth](/docs/authentication) feature built in, but an even easier method it to use the [`-auth`](https://ngrok.com/docs#http-auth) switch. E.g. `ngrok http -auth="username:password123" 8080`
 
-By default, your web app is assigned a randomly generated ngrok domain, but you can also use your own custom domain. Under the [Domains Tab](https://dashboard.ngrok.com/endpoints/domains) of your Ngrok dashboard, add your domain, and follow the CNAME instructions. You can now use your domain, with the [`-hostname`](https://ngrok.com/docs#http-custom-domains) switch, e.g. `ngrok http -region=us -hostname=shipyard.example.com 8080`. If you don't have your own domain name, you can instead use a custom sub-domain (e.g. `alicia-shipyard.ngrok.io`), using the [`-subdomain`](https://ngrok.com/docs#custom-subdomain-names) switch.
+By default, your web app is assigned a randomly generated ngrok domain, but you can also use your own custom domain. Under the [Domains Tab](https://dashboard.ngrok.com/endpoints/domains) of your Ngrok dashboard, add your domain, and follow the CNAME instructions. You can now use your domain, with the [`-hostname`](https://ngrok.com/docs#http-custom-domains) switch, e.g. `ngrok http -region=us -hostname=shipyard.example.com 8080`. If you don't have your own domain name, you can instead use a custom sub-domain (e.g. `khulnasoft-shipyard.ngrok.io`), using the [`-subdomain`](https://ngrok.com/docs#custom-subdomain-names) switch.
 
 To integrate this into your docker-compose, take a look at the [gtriggiano/ngrok-tunnel](https://github.com/gtriggiano/ngrok-tunnel) container.
 
@@ -754,7 +754,7 @@ Docker supports several modules that let you write your own security profiles.
 
 > _The following section only applies if you are not using Docker, and would like to use your own web server_
 
-Shipyard ships with a pre-configured Node.js server, in [`server.js`](https://github.com/khulnasoft/shipyard/blob/master/server.js) which serves up the contents of the `./dist` directory on a given port. You can start the server by running `node server`. Note that the app must have been build (run `yarn build`), and you need [Node.js](https://nodejs.org) installed.
+Shipyard ships with a pre-configured Node.js server, in [`server.js`](https://github.com/khulnaSoft/shipyard/blob/master/server.js) which serves up the contents of the `./dist` directory on a given port. You can start the server by running `node server`. Note that the app must have been build (run `yarn build`), and you need [Node.js](https://nodejs.org) installed.
 
 If you wish to run Shipyard from a sub page (e.g. `example.com/shipyard`), then just set the `BASE_URL` environmental variable to that page name (in this example, `/shipyard`), before building the app, and the path to all assets will then resolve to the new path, instead of `./`.
 
@@ -898,7 +898,7 @@ The first step is to fork the project on GitHub, and clone it to your local syst
 
 Similar to above, you'll first need to fork and clone Shipyard to your local system, and then install dependencies.
 
-Then, either use Shipyard's default [`Dockerfile`](https://github.com/khulnasoft/shipyard/blob/master/Dockerfile) as is, or modify it according to your needs.
+Then, either use Shipyard's default [`Dockerfile`](https://github.com/khulnaSoft/shipyard/blob/master/Dockerfile) as is, or modify it according to your needs.
 
 To build and deploy locally, first build the app with: `docker build -t shipyard .`, and then start the app with `docker run -p 8080:8080 --name my-dashboard shipyard`.  Or modify the `docker-compose.yml` file, replacing `image: khulnasoft/shipyard` with `build: .` and run `docker compose up`.
 
