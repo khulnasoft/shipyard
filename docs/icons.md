@@ -30,7 +30,7 @@ Shipyard can auto-fetch an icon for a given service, using it's favicon. Just se
 
 Since different websites host their favicons at different paths, for the best results Shipyard can use an API to resolve a websites icon.
 
-The default favicon API is  [allesedv.com](https://favicon.allesedv.com/), but you can change this under `appConfig.faviconApi`. If you'd prefer not to use an API, just set this value to `local`. You can also use different APIs for individual items, by setting `icon: favicon-[api]`, e.g. `favicon-clearbit`.
+The default favicon API is [allesedv.com](https://favicon.allesedv.com/), but you can change this under `appConfig.faviconApi`. If you'd prefer not to use an API, just set this value to `local`. You can also use different APIs for individual items, by setting `icon: favicon-[api]`, e.g. `favicon-clearbit`.
 
 The following favicon APIs are supported:
 
@@ -73,16 +73,16 @@ For example:
 
 ```yaml
 sections:
-- name: Simple Icons Example
-  items:
-  - title: Portainer
-    icon: si-portainer
-  - title: FreeNAS
-    icon: si-freenas
-  - title: NextCloud
-    icon: si-nextcloud
-  - title: Home Assistant
-    icon: si-homeassistant
+  - name: Simple Icons Example
+    items:
+      - title: Portainer
+        icon: si-portainer
+      - title: FreeNAS
+        icon: si-freenas
+      - title: NextCloud
+        icon: si-nextcloud
+      - title: Home Assistant
+        icon: si-homeassistant
 ```
 
 ---
@@ -111,22 +111,22 @@ For example, these will all render the same rocket (🚀) emoji: `icon: ':rocket
 
 ## Home-Lab Icons
 
-The [dashboard-icons](https://github.com/walkxcode/Dashboard-Icons) repo by [@WalkxCode](https://github.com/WalkxCode) provides a comprehensive collection of 360+ high-quality PNG icons for commonly self-hosted services. Shipyard natively supports these icons, and you can use them just by specifying the icon name (without extension) preceded by `hl-`. See [here](https://github.com/walkxcode/Dashboard-Icons/tree/main/png) for a full list of all available icons. Note that these are fetched and cached strait from GitHub, so if you require offline access, the [Local Icons](#local-icons) method may be a better option for you.
+The [dashboard-icons](https://github.com/walkxcode/Dashboard-Icons) repo by [@WalkxCode](https://github.com/WalkxCode) provides a comprehensive collection of 360+ high-quality PNG icons for commonly self-hosted services. Shipyard natively supports these icons, and you can use them just by specifying the icon name (without extension) preceded by `hl-`. See [here](https://github.com/walkxcode/Dashboard-Icons/tree/main/png) for a full list of all available icons. Note that these are fetched and cached straight from GitHub, so if you require offline access, the [Local Icons](#local-icons) method may be a better option for you.
 
 For example:
 
 ```yaml
 sections:
-- name: Home Lab Icons Example
-  items:
-  - title: AdGuard Home
-    icon: hl-adguardhome
-  - title: Long Horn
-    icon: hl-longhorn
-  - title: Nagios
-    icon: hl-nagios
-  - title: Whoogle Search
-    icon: hl-whooglesearch
+  - name: Home Lab Icons Example
+    items:
+      - title: AdGuard Home
+        icon: hl-adguardhome
+      - title: Long Horn
+        icon: hl-longhorn
+      - title: Nagios
+        icon: hl-nagios
+      - title: Whoogle Search
+        icon: hl-whooglesearch
 ```
 
 <p align="center">
@@ -143,14 +143,14 @@ For example:
 
 ```yaml
 sections:
-- name: Material Design Icons Example
-  items:
-  - title: Alien Icon
-    icon: mdi-alien
-  - title: Fire Icon
-    icon: mdi-fire
-  - title: Dino Icon
-    icon: mdi-google-downasaur
+  - name: Material Design Icons Example
+    items:
+      - title: Alien Icon
+        icon: mdi-alien
+      - title: Fire Icon
+        icon: mdi-fire
+      - title: Dino Icon
+        icon: mdi-google-downasaur
 ```
 
 <p align="center">
@@ -205,6 +205,6 @@ If you are a student, then you can get free access to premium icons on [Icon Sco
 
 If you are using icons from an external source, these will be fetched on initial page load automatically, if and when needed. But combining icons from multiple services may have a negative impact on performance.
 
-You can improve load speeds, by  downloading your required icons, and serving them locally. Scaling icons to the minimum required dimensions (e.g. 128x128 or 64x64) will also greatly improve application load times.
+You can improve load speeds, by downloading your required icons, and serving them locally. Scaling icons to the minimum required dimensions (e.g. 128x128 or 64x64) will also greatly improve application load times.
 
 For icons from external sources, please see the Privacy Policies and Licenses for that provider.
