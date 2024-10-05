@@ -3,7 +3,7 @@
 
 # Commands to start on workspace startup
 tasks:
-  - init: yarn install
+  - init: yarn install --ignore-engines
     command: yarn dev
 # Ports to expose on workspace startup
 ports:
