@@ -18,17 +18,17 @@
         </a>
     </td>
     <td align="center">
-        <a href="https://github.com/khulnasoft-bot">
-            <img src="https://avatars.githubusercontent.com/u/43526132?v=4" width="80;" alt="khulnasoft-bot"/>
-            <br />
-            <sub><b>KhulnaSoft Bot</b></sub>
-        </a>
-    </td>
-    <td align="center">
         <a href="https://github.com/FortiShield">
             <img src="https://avatars.githubusercontent.com/u/161459699?v=4" width="80;" alt="FortiShield"/>
             <br />
             <sub><b>FortiShield</b></sub>
+        </a>
+    </td>
+    <td align="center">
+        <a href="https://github.com/khulnasoft-bot">
+            <img src="https://avatars.githubusercontent.com/u/43526132?v=4" width="80;" alt="khulnasoft-bot"/>
+            <br />
+            <sub><b>KhulnaSoft Bot</b></sub>
         </a>
     </td>
     <td align="center">
