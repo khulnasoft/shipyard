@@ -1,0 +1,25 @@
+# Config for running Shipyard in GitPod's cloud dev environment
+# Docs: https://www.gitpod.io/docs/references/gitpod-yml
+
+# Commands to start on workspace startup
+tasks:
+  - init: yarn install --ignore-engines
+    command: yarn dev
+# Ports to expose on workspace startup
+ports:
+  - port: 8080 # Default dev server
+    visibility: private
+    onOpen: open-preview
+  - port: 4000 # Default prod server
+    visibility: public
+    onOpen: open-preview
+vscode:
+  # Adds Vue.js and formatting extensions
+  extensions:
+    - octref.vetur
+    - dbaeumer.vscode-eslint
+    - streetsidesoftware.code-spell-checker
+    - PKief.material-icon-theme
+    - wix.vscode-import-cost
+    - oderwat.indent-rainbow
+    - eamodio.gitlens
