@@ -57,7 +57,7 @@
     "@vue/cli-plugin-typescript": "^5.0.8",
     "@vue/cli-service": "^4.5.19",
     "@vue/eslint-config-standard": "^4.0.0",
-    "babel-eslint": "^10.0.1",
+    "@babel/eslint-parser": "^7.22.15",
     "copy-webpack-plugin": "6.4.0",
     "eslint": "^6.8.0",
     "eslint-config-airbnb": "^18.0.1",
@@ -90,7 +90,7 @@
       "no-else-return": 0
     },
     "parserOptions": {
-      "parser": "@babel/eslint-parser"
+      "parser": "babel-eslint"
     }
   },
   "babel": {
