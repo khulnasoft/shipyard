@@ -33,7 +33,7 @@
     "oidc-client-ts": "^3.0.1",
     "register-service-worker": "^1.7.2",
     "remedial": "^1.0.8",
-    "rss-parser": "^3.13.0",
+    "rss-parser": "3.13.0",
     "rsup-progress": "^3.2.0",
     "simple-icons": "^12.2.0",
     "v-jsoneditor": "^1.4.5",
@@ -57,7 +57,7 @@
     "@vue/cli-plugin-typescript": "^5.0.8",
     "@vue/cli-service": "^4.5.19",
     "@vue/eslint-config-standard": "^4.0.0",
-    "@babel/eslint-parser": "^7.18.9", 
+    "babel-eslint": "^10.0.1",
     "copy-webpack-plugin": "6.4.0",
     "eslint": "^6.8.0",
     "eslint-config-airbnb": "^18.0.1",
@@ -68,9 +68,7 @@
     "typescript": "^5.4.4",
     "vue-cli-plugin-yaml": "^1.0.2",
     "vue-svg-loader": "^0.16.0",
-    "vue-template-compiler": "^2.7.0",
-    "cross-env": "^7.0.3",
-    "prettier": "^2.7.1"
+    "vue-template-compiler": "^2.7.0"
   },
   "engines": {
     "node": ">=16.0.0 <21.6.2"
@@ -92,7 +90,7 @@
       "no-else-return": 0
     },
     "parserOptions": {
-      "parser": "@babel/eslint-parser"
+      "parser": "babel-eslint"
     }
   },
   "babel": {
