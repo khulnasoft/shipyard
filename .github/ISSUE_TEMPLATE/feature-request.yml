@@ -3,7 +3,7 @@ description: Suggest an idea for future development of Shipyard
 title: '[FEATURE_REQUEST] <title>'
 labels: ['🦄 Feature Request']
 assignees:
-  - NxPkg
+  - KhulnaSoft-bot
 
 body:
 
