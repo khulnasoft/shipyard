@@ -16,6 +16,7 @@ const crypto = require('crypto');
 
 /* Import NPM dependencies */
 const yaml = require('js-yaml');
+const RateLimit = require('express-rate-limit');
 
 /* Import Express + middleware functions */
 const express = require('express');
@@ -138,7 +139,15 @@ const protectConfig = getBasicAuthMiddleware();
 /* A middleware function for Connect, that filters requests based on method type */
 const method = (m, mw) => (req, res, next) => (req.method === m ? mw(req, res, next) : next());
 
+// set up rate limiter: maximum of 100 requests per 15 minutes
+const limiter = RateLimit({
+  windowMs: 15 * 60 * 1000, // 15 minutes
+  max: 100, // max 100 requests per windowMs
+});
+
 const app = express()
+  // Apply rate limiter to all requests
+  .use(limiter)
   // Load SSL redirection middleware
   .use(sslServer.middleware)
   // Load middlewares for parsing JSON, and supporting HTML5 history routing
