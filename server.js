@@ -201,7 +201,13 @@ const app = express()
   // Middleware to serve any .yml files in USER_DATA_DIR with optional protection
   .get('/*.yml', protectConfig, (req, res) => {
     const ymlFile = req.path.split('/').pop();
-    res.sendFile(path.join(__dirname, process.env.USER_DATA_DIR || 'user-data', ymlFile));
+    const userDataDir = path.resolve(__dirname, process.env.USER_DATA_DIR || 'user-data');
+    const resolvedPath = path.resolve(userDataDir, ymlFile);
+    if (!resolvedPath.startsWith(userDataDir)) {
+      res.status(403).send('Forbidden');
+      return;
+    }
+    res.sendFile(resolvedPath);
   })
   // Serves up static files
   .use(express.static(path.join(__dirname, process.env.USER_DATA_DIR || 'user-data')))
