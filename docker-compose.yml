@@ -1,7 +1,6 @@
 ---
 # Welcome to Shipyard! To get started, run `docker compose up -d`
 # You can configure your container here, by modifying this file
-version: "3.8"
 services:
   shipyard:
     container_name: Shipyard
