@@ -14,7 +14,8 @@
     "build-and-start": "npm-run-all --parallel build start",
     "validate-config": "node services/config-validator",
     "health-check": "node services/healthcheck",
-    "dependency-audit": "npx improved-yarn-audit --ignore-dev-deps"
+    "dependency-audit": "npx improved-yarn-audit --ignore-dev-deps",
+    "install": "yarn install --ignore-engines --immutable --no-cache --network-timeout 300000 --network-concurrency 1"
   },
   "dependencies": {
     "@babel/core": "^7.0.0",
