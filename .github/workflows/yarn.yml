@@ -24,7 +24,7 @@ jobs:
 
       # Step 3: Install dependencies without yarn.lock
       - name: Install dependencies
-        run: yarn install --no-lockfile
+        run: yarn install --no-lockfile --ignore-engines
 
       - name: Update outdated dependencies
         run: yarn upgrade
