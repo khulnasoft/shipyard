@@ -156,14 +156,14 @@ export default {
       return 'You may have unsaved edits. Are you sure you want to exit the page?';
     },
     /* Detect and apply theme based on OS preference */
-     applyThemeBasedOnOSPreference() {
-       const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
-       const osTheme = prefersDark ? this.appConfig.nightTheme : this.appConfig.dayTheme;
-       if (osTheme) {
-         this.$store.commit(Keys.SET_THEME, osTheme);
-         this.updateTheme(osTheme);
-       }
-     },
+    applyThemeBasedOnOSPreference() {
+      const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+      const osTheme = prefersDark ? this.appConfig.nightTheme : this.appConfig.dayTheme;
+      if (osTheme) {
+        this.$store.commit(Keys.SET_THEME, osTheme);
+        this.updateTheme(osTheme);
+      }
+    },
   },
   /* Basic initialization tasks on app load */
   async mounted() {
