@@ -110,6 +110,6 @@
     "last 2 versions"
   ],
   "resolutions": {
-    "@achrinza/node-ipc": "9.2.2"
+    "@achrinza/node-ipc": "^9.2.5"
   }
 }
