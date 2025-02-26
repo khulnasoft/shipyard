@@ -6,10 +6,10 @@
 # Build Stage - Install dependencies + build the app
 FROM node:lts-alpine3.14 as build
 WORKDIR /shipyard
-COPY package*.json .
-COPY yarn.lock .
-RUN yarn
-COPY . .
+COPY package*.json . 
+COPY yarn.lock . 
+RUN yarn install --ignore-engines --immutable --no-cache --network-timeout 300000 --network-concurrency 1
+COPY . . 
 RUN yarn build
 
 # Production Stage - Serve up built files with NGINX
