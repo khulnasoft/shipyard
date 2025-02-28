@@ -1,7 +1,7 @@
 import Keycloak from 'keycloak-js';
 import ConfigAccumulator from '@/utils/ConfigAccumalator';
 import { localStorageKeys } from '@/utils/defaults';
-import ErrorHandler from '@/utils/ErrorHandler';
+import { WarningInfoHandler } from '@/utils/ErrorHandler';
 
 const getAppConfig = () => {
   const Accumulator = new ConfigAccumulator();
@@ -34,7 +34,10 @@ class KeycloakAuth {
             return this.keycloakClient.login(this.loginOptions);
           }
         })
-        .catch((reason) => reject(reason));
+        .catch((reason) => {
+          WarningInfoHandler('Failed to authenticate with Keycloak', reason);
+          reject(reason);
+        });
     });
   }
 
@@ -89,7 +92,7 @@ export const initKeycloakAuth = () => {
 
 export const getKeycloakAuth = () => {
   if (!keycloak) {
-    ErrorHandler("Keycloak not initialized, can't get instance of class");
+    WarningInfoHandler("Keycloak not initialized, can't get instance of class");
   }
   return keycloak;
 };
