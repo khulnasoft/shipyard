@@ -3,6 +3,7 @@ import yaml from 'js-yaml';
 import { register } from 'register-service-worker';
 import { sessionStorageKeys } from '@/utils/defaults';
 import { statusMsg, statusErrorMsg } from '@/utils/CoolConsole';
+import { WarningInfoHandler } from '@/utils/ErrorHandler';
 
 /* Sets a local storage item with the state from the SW lifecycle */
 const setSwStatus = (swStateToSet) => {
@@ -85,7 +86,7 @@ const registerServiceWorker = async () => {
       },
       error(error) {
         setSwStatus({ error: true });
-        statusErrorMsg('Service Worker Status', 'Error during SW registration', error);
+        WarningInfoHandler('Error during SW registration', error);
       },
     });
   }
