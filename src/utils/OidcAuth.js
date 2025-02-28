@@ -1,8 +1,7 @@
 import { UserManager, WebStorageStateStore } from 'oidc-client-ts';
 import ConfigAccumulator from '@/utils/ConfigAccumalator';
 import { localStorageKeys } from '@/utils/defaults';
-import ErrorHandler from '@/utils/ErrorHandler';
-import { statusMsg, statusErrorMsg } from '@/utils/CoolConsole';
+import ErrorHandler, { WarningInfoHandler } from '@/utils/ErrorHandler';
 
 const getAppConfig = () => {
   const Accumulator = new ConfigAccumulator();
@@ -41,15 +40,17 @@ class OidcAuth {
     const user = await this.userManager.getUser();
 
     if (user === null) {
-      await this.userManager.signinRedirect();
+      try {
+        await this.userManager.signinRedirect();
+      } catch (e) {
+        WarningInfoHandler('Failed to authenticate with OIDC', e);
+      }
     } else {
       const { roles, groups } = user.profile;
       const info = {
         groups,
         roles,
       };
-
-      statusMsg(`user: ${user.profile.preferred_username}`, JSON.stringify(info));
 
       localStorage.setItem(localStorageKeys.KEYCLOAK_INFO, JSON.stringify(info));
       localStorage.setItem(localStorageKeys.USERNAME, user.profile.preferred_username);
@@ -63,7 +64,7 @@ class OidcAuth {
     try {
       await this.userManager.signoutRedirect();
     } catch (reason) {
-      statusErrorMsg('logout', 'could not log out. Redirecting to OIDC instead', reason);
+      WarningInfoHandler('logout', 'could not log out. Redirecting to OIDC instead', reason);
       window.location.href = this.userManager.settings.authority;
     }
   }
