@@ -15,8 +15,13 @@ RUN apt-get update && apt-get install -y \
     tree \
     && rm -rf /var/lib/apt/lists/*
 
-# Install Node.js (Latest LTS)
-RUN corepack enable && corepack prepare yarn@stable --activate
+# Install Node.js 16 using NVM (if not available)
+RUN curl -fsSL https://deb.nodesource.com/setup_16.x | bash - && \
+    apt-get install -y nodejs && \
+    npm install -g yarn
+
+# Set the correct Node.js version
+ENV NODE_VERSION=16
 
 # Set up Yarn global bin directory
 ENV PATH="/home/gitpod/.yarn/bin:${PATH}"
