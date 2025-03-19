@@ -3,7 +3,7 @@
 
 tasks:
   - name: Install dependencies
-    init: yarn install --ignore-engines
+    init: yarn install --ignore-engines --frozen-lockfile
   - name: Start development server
     command: yarn dev
 
