@@ -130,13 +130,13 @@ See also: [examples with Docker Compose](./docs/deployment.md#using-docker-compo
 
 ### Deploying from Source 🔨
 
-You will need [git](https://git-scm.com/downloads), the latest or LTS version of [Node.js](https://nodejs.org/) and _(optionally)_ [Yarn](https://yarnpkg.com/) installed on your system.
+You will need [git](https://git-scm.com/downloads), the latest or LTS version of [Node.js](https://nodejs.org/) and [PNPM](https://pnpm.io/) installed on your system.
 
 - Clone the Repo: `git clone https://github.com/khulnaSoft/shipyard.git` and `cd shipyard`
 - Configuration: Fill in your settings in `./user-data/conf.yml`
-- Install dependencies: `yarn`
-- Build: `yarn build`
-- Run: `yarn start`
+- Install dependencies: `pnpm install`
+- Build: `pnpm build`
+- Run: `pnpm start`
 
 > See docs: [Full list of Shipyard's commands](./docs/management.md#basic-commands)
 
@@ -241,7 +241,7 @@ Status indicators can be globally enabled by setting `appConfig.statusCheck: tru
 
 > For full widget documentation, see: [**Widgets**](./docs/widgets.md)
 
-You can display dynamic content from services in the form of widgets. There are several pre-built widgets availible for showing useful info, and integrations with commonly self-hosted services, but you can also easily create your own for almost any app.
+You can display dynamic content from services in the form of widgets. There are several pre-built widgets available for showing useful info, and integrations with commonly self-hosted services, but you can also easily create your own for almost any app.
 
 
 <p align="center">
@@ -545,15 +545,15 @@ Huge thanks to the sponsors helping to support Shipyard's development!
 [![Open in GitPod](https://img.shields.io/badge/Open_in-GitPod-ffae33?style=flat-square&logo=gitpod)](https://gitpod.io/#github.com/khulnasoft/shipyard.git)
 [![Open in GitHub Code Spaces](https://img.shields.io/badge/Open_in-Code%20Spaces-131313?style=flat-square&logo=github)](https://github.dev/khulnaSoft/shipyard)
 
-Before getting started, you'll need [Git](https://git-scm.com/downloads), [Node](https://nodejs.org/en/download/) and optionally [Yarn](https://yarnpkg.com/) (run `npm i -g yarn`) installed.
+Before getting started, you'll need [Git](https://git-scm.com/downloads), [Node](https://nodejs.org/en/download/) and [PNPM](https://pnpm.io/) installed.
 
 To set up the development environment:
 1. Get Code: `git clone https://github.com/khulnaSoft/shipyard.git`  and `cd shipyard`
-2. Install dependencies: `yarn`
-3. Start dev server: `yarn dev`
+2. Install dependencies: `pnpm install`
+3. Start dev server: `pnpm dev`
 4. Open the browser: `http://localhost:8080`
 
-When you're ready, you can build the production app with `yarn build`, and then run it with `yarn start`
+When you're ready, you can build the production app with `pnpm build`, and then run it with `pnpm start`
 
 If you're new to web development, I've put together a short [list of resources](https://github.com/khulnaSoft/shipyard/blob/master/docs/developing.md#resources-for-beginners) to help beginners get started
 
