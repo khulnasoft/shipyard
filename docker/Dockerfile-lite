@@ -6,11 +6,10 @@
 # Build Stage - Install dependencies + build the app
 FROM node:lts-alpine3.14 as build
 WORKDIR /shipyard
-COPY package*.json .
-COPY yarn.lock .
-RUN yarn
+COPY package.json pnpm-lock.yaml ./
+RUN npm install -g pnpm && pnpm install --frozen-lockfile
 COPY . .
-RUN yarn build
+RUN pnpm build
 
 # Production Stage - Serve up built files with NGINX
 FROM nginx:alpine as production
