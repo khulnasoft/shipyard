@@ -179,13 +179,13 @@ shipyard should be up within 1-2min after you've started the install task proced
 
 ## Build from Source
 
-If you do not want to use Docker, you can run Shipyard directly on your host system. For this, you will need both [git](https://git-scm.com/downloads) and the latest or LTS version of [Node.js](https://nodejs.org/) installed, and optionally [yarn](https://yarnpkg.com/)
+If you do not want to use Docker, you can run Shipyard directly on your host system. For this, you will need both [git](https://git-scm.com/downloads) and the latest or LTS version of [Node.js](https://nodejs.org/) installed, and optionally [PNPM](https://pnpm.io/)
 
-1. Get Code: `git clone https://github.com/khulnaSoft/shipyard.git` and `cd shipyard`
-2. Configuration: Fill in your settings in `./user-data/conf.yml`
-3. Install dependencies: `yarn`
-4. Build: `yarn build`
-5. Run: `yarn start`
+1. Get Code: `git clone https://github.com/khulnaSoft/shipyard.git`
+2. Navigate into directory: `cd shipyard`
+3. Install dependencies: `pnpm install`
+4. Build: `pnpm build`
+5. Run: `pnpm start`
 
 ---
 
@@ -324,8 +324,8 @@ Surge supports [password-protected projects](https://surge.sh/help/adding-passwo
 To deploy Shipyard to Surge.sh, first clone and cd into Shipyard, install dependencies, and then use the following commands
 
 ```bash
-yarn add -g surge
-yarn build
+pnpm add -g surge
+pnpm build
 surge ./dist
 ```
 
