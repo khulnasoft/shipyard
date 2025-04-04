@@ -3,8 +3,9 @@
   "tasks": [
     {
       "label": "shipyard start",
-      "type": "npm",
-      "script": "dev",
+      "type": "shell",
+      "command": "pnpm",
+      "args": ["dev"],
       "isBackground": true,
       "problemMatcher": [
         {
@@ -15,7 +16,7 @@
             "endsPattern": "Compiled successfully"
           }
         }
-      ],
+      ]
     }
   ]
 }
