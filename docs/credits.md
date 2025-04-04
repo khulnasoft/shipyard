@@ -196,7 +196,7 @@ This repo makes heavy use of [GitHub actions](https://github.com/features/action
 - [`pr-commenter-action`](https://github.com/exercism/pr-commenter-action) by @exercism - Adds info comments to PR based on the files changed
 - [`snyk note`](https://github.com/snyk/actions/node) by @snyk - Reports vulnerabilities in the code or dependencies
 - [`todo-to-issue-action`](https://github.com/alstr/todo-to-issue-action) by @alstr - Opens issues from todos in the code
-- [`yarn-lock-changes`](https://github.com/Simek/yarn-lock-changes) by @Simek - Outputs dependency changes in PR
+- [`pnpm-lock-export`](https://github.com/unjs/pnpm-lock-export) by @unjs - Outputs dependency changes in PR
 
 ---
 
