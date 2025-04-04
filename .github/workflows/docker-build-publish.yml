@@ -21,7 +21,7 @@ permissions:
   packages: write
 
 env:
-  DH_IMAGE: ${{ secrets.DOCKER_REPO }}
+  DH_IMAGE: ${{ secrets.DOCKER_USERNAME }}
   GH_IMAGE: ${{ github.repository_owner }}/${{ github.event.repository.name }}
 
 jobs:
