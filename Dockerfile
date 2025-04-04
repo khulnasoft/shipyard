@@ -15,14 +15,14 @@ RUN \
 WORKDIR /app
 
 # Install app dependencies
-COPY package.json yarn.lock ./
-RUN yarn install --ignore-engines --immutable --no-cache --network-timeout 300000 --network-concurrency 1
+COPY package.json pnpm-lock.yaml ./
+RUN pnpm install --ignore-engines --frozen-lockfile --no-cache --network-timeout 300000 --network-concurrency 1
 
 # Copy over all project files and folders to the working directory
 COPY . ./
 
 # Build initial app for production
-RUN yarn build --mode production --no-clean
+RUN pnpm build --mode production --no-clean
 
 # Production stage
 FROM node:20.11.1-alpine3.19
@@ -42,10 +42,10 @@ RUN apk add --no-cache tzdata
 COPY --from=BUILD_IMAGE /app ./
 
 # Finally, run start command to serve up the built application
-CMD [ "yarn", "build-and-start" ]
+CMD [ "pnpm", "build-and-start" ]
 
 # Expose the port
 EXPOSE ${PORT}
 
 # Run simple healthchecks every 5 mins, to check that everythings still great
-HEALTHCHECK --interval=5m --timeout=5s --start-period=30s CMD yarn health-check
+HEALTHCHECK --interval=5m --timeout=5s --start-period=30s CMD pnpm health-check
