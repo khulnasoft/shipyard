@@ -1,8 +1,10 @@
 {
   "compilerOptions": {
+    "incremental": true,
+    "tsBuildInfoFile": "./tsbuildinfo",
     "target": "esnext",
     "module": "esnext",
-    "strict": false,
+    "strict": true,
     "jsx": "preserve",
     "importHelpers": true,
     "moduleResolution": "node",
@@ -13,7 +15,6 @@
     "baseUrl": ".",
     "types": [
       "webpack-env",
-      "jest",
       "node"
     ],
     "paths": {
@@ -26,14 +27,23 @@
       "dom",
       "dom.iterable",
       "scripthost"
-    ]
+    ],
+    "noImplicitAny": true,
+    "strictNullChecks" : true,
+    "useDefineForClassFields": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "resolveJsonModule": true,
+    "allowJs": true,
   },
   "include": [
     "src/**/*.ts",
-    "src/**/*.vue",
-    "tests/**/*.ts"
+    "src/**/*.tsx",
+    "tests/**/*.ts",
+    "tests/**/*.tsx",
   ],
   "exclude": [
-    "node_modules"
+    "node_modules",
+    "dist"
   ]
 }

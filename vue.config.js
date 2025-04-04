@@ -19,6 +19,7 @@
 
 const path = require('path');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
+const NodePolyfillPlugin = require('node-polyfill-webpack-plugin');
 
 // Get app mode: production, development, or test
 const mode = process.env.NODE_ENV || 'production';
@@ -51,7 +52,10 @@ const plugins = !isServer ? [
 const configureWebpack = {
   devtool: 'source-map',
   mode,
-  plugins,
+  plugins: [
+    ...plugins,
+    new NodePolyfillPlugin(),
+  ],
   module: {
     rules: [
       { test: /.svg$/, loader: 'vue-svg-loader' },
@@ -60,22 +64,65 @@ const configureWebpack = {
         loader: 'ts-loader',
         options: { appendTsSuffixTo: [/\.vue$/] },
       },
+      {
+        test: /\.(woff2?|ttf|eot)$/,
+        type: 'asset/resource',
+        generator: {
+          filename: 'fonts/[name][ext]',
+        },
+      },
     ],
+  },
+  resolve: {
+    fallback: {
+      http: require.resolve('stream-http'),
+      https: require.resolve('https-browserify'),
+      timers: require.resolve('timers-browserify'),
+      crypto: require.resolve('crypto-browserify'),
+      stream: require.resolve('stream-browserify'),
+      buffer: require.resolve('buffer/'),
+      util: require.resolve('util/'),
+      assert: require.resolve('assert/'),
+      fs: false,
+      tls: false,
+      net: false,
+      path: false,
+      zlib: false,
+      os: false,
+    },
   },
   performance: {
     maxEntrypointSize: 10000000,
     maxAssetSize: 10000000,
   },
+  // Add output configuration to ensure unique filenames
+  output: {
+    filename: '[name].[contenthash].js',
+    chunkFilename: '[name].[contenthash].js',
+  },
 };
 
 // Development server config
 const devServer = {
-  contentBase: [
-    path.join(__dirname, 'public'),
-    path.join(__dirname, process.env.USER_DATA_DIR || 'user-data'),
-  ],
-  watchContentBase: true,
-  publicPath: '/',
+  static: {
+    directory: path.join(__dirname, 'public'),
+    publicPath: '/',
+    watch: true,
+    staticOptions: {
+      fallthrough: true,
+    },
+  },
+  historyApiFallback: true,
+  // Add additional static content from user-data directory
+  setupMiddlewares: (middlewares, devServer) => {
+    devServer.app.use(
+      '/',
+      require('express').static(
+        path.join(__dirname, process.env.USER_DATA_DIR || 'user-data'),
+      ),
+    );
+    return middlewares;
+  },
 };
 
 // Application pages
@@ -89,9 +136,33 @@ const pages = {
 // Export the main Vue app config
 module.exports = {
   publicPath,
-  pwa,
+  pwa: {
+    name: 'Shipyard',
+    manifestPath: 'manifest.[hash:8].json',
+    manifestOptions: {
+      background_color: '#ffffff',
+      display: 'standalone',
+      name: 'Shipyard',
+      short_name: 'Shipyard',
+      start_url: '.',
+      theme_color: '#4DBA87',
+    },
+    workboxOptions: {
+      exclude: [/\.map$/, /_redirects/],
+      skipWaiting: true,
+    },
+  },
   integrity,
-  configureWebpack,
+  configureWebpack: {
+    ...configureWebpack,
+    output: {
+      ...configureWebpack.output,
+      // Ensure unique filename for manifest
+      filename: (pathData) => (pathData.chunk.name === 'manifest'
+        ? 'js/[name].[hash:8].js'
+        : configureWebpack.output.filename),
+    },
+  },
   pages,
   devServer,
   chainWebpack: config => {
