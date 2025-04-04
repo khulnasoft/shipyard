@@ -1,5 +1,3 @@
-# Shows changes to any yarn.lock in PR comment
-# Useful for easily understanding dependency changes and consequences
 name: Dependency Updates Summary
 
 on:
@@ -11,17 +9,24 @@ jobs:
   pnpm-lock-changes:
     name: Create pnpm Lock Changes Comment
     runs-on: ubuntu-latest
+
     steps:
       - name: Checkout
         uses: actions/checkout@v3
         with:
           fetch-depth: 0
-      - name: Generate Lock Changes
-        uses: unjs/pnpm-lock-export@v1
+
+      - name: Setup Node
+        uses: actions/setup-node@v3
         with:
-          path: 'pnpm-lock.yaml'
-          format: 'markdown'
-          output: 'lock-changes.md'
+          node-version: 18
+
+      - name: Install pnpm-lock-export CLI
+        run: npm install -g pnpm-lock-export
+
+      - name: Generate Lock Changes
+        run: pnpm-lock-export --path=pnpm-lock.yaml --format=markdown --output=lock-changes.md
+
       - name: Comment PR
         uses: machine-learning-apps/pr-comment@master
         env:
