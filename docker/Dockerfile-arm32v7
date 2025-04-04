@@ -10,8 +10,9 @@ FROM arm32v7/alpine:3.12
 # Add QEMU from build stage
 COPY --from=builder qemu-arm-static /usr/bin
 
-# Install Node and Yarn
-RUN apk add --update --no-cache nodejs npm yarn
+# Install Node and PNPM
+RUN apk add --update --no-cache nodejs npm
+RUN npm install -g pnpm
 
 # Define some ENV Vars
 ENV PORT=80 \
@@ -25,19 +26,19 @@ WORKDIR ${DIRECTORY}
 COPY package*.json ./
 
 # Install project dependencies
-RUN yarn
+RUN pnpm install
 
 # Copy over all project files and folders to the working directory
 COPY . .
 
 # Build initial app for production
-RUN yarn build
+RUN pnpm build
 
 # Expose given port
 EXPOSE ${PORT}
 
 # Finally, run start command to serve up the built application
-CMD [ "yarn", "build-and-start"]
+CMD [ "pnpm", "build-and-start"]
 
 # Run simple healthchecks every 5 mins, to check the Shipyard's everythings great
-HEALTHCHECK --interval=5m --timeout=2s --start-period=30s CMD yarn health-check
+HEALTHCHECK --interval=5m --timeout=2s --start-period=30s CMD pnpm health-check
