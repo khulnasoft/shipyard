@@ -16,8 +16,8 @@ All app configuration is specified in [`/user-data/conf.yml`](https://github.com
 ## Tips
 
 - You may find it helpful to look at some sample config files to get you started, a collection of which can be found [here](https://gist.github.com/KhulnaSoft-bot/000f712a5ce98f212817d20bc16bab10)
-- You can check that your config file fits the schema, by running `yarn validate-config`
-- After modifying your config, the app needs to be recompiled, by running `yarn build`  - this happens automatically if you're using Docker
+- You can check that your config file fits the schema, by running `pnpm validate-config`
+- After modifying your config, the app needs to be recompiled, by running `pnpm build`  - this happens automatically if you're using Docker
 - It is recommended to keep a backup of your config file. You can download it under Config menu, or use the [Cloud Backup](./docs/backup-restore.md) feature.
 - You can make use of YAML features, like anchors, comments, multi-line strings, etc to reuse attributes and keep your config file readable
 - Once you have finished configuring your dashboard, you can choose to [disable UI config](#preventing-changes) if you wish
@@ -145,7 +145,7 @@ The following file provides a reference of all supported configuration options.
 
 > [!NOTE]
 > Since the auth is initiated in the main app entry point (for security), a rebuild is required to apply changes to the auth configuration.
-> You can trigger a rebuild through the UI, under Config --> Rebuild, or by running `yarn build` in the root directory.
+> You can trigger a rebuild through the UI, under Config --> Rebuild, or by running `pnpm build` in the root directory.
 
 > [!WARNING]
 > Built-in auth should **not be used** for security-critical applications, or if your Shipyard instance is publicly accessible.
