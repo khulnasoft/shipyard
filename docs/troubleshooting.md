@@ -11,7 +11,7 @@
 - [Refused to Connect in Web Content View](#refused-to-connect-in-modal-or-workspace-view)
 - [404 On Static Hosting](#404-on-static-hosting)
 - [404 from Mobile Home Screen](#404-after-launch-from-mobile-home-screen)
-- [Yarn Build or Run Error](#yarn-error)
+- [PNPM Error](#pnpm-error)
 - [Remote Config Not Loading](#remote-config-not-loading)
 - [Heap limit Allocation failed](#ineffective-mark-compacts-near-heap-limit-allocation-failed)
 - [Command failed with signal "SIGKILL"](#command-failed-with-signal-sigkill)
@@ -140,18 +140,17 @@ See also: [#670](https://github.com/khulnaSoft/shipyard/issues/670), [#763](http
 
 ---
 
-## Yarn Error
+## PNPM Error
 
 For more info, see [Issue #1](https://github.com/khulnaSoft/shipyard/issues/1)
 
-First of all, check that you've got yarn installed correctly - see the [yarn installation docs](https://classic.yarnpkg.com/en/docs/install) for more info.
+First of all, check that you've got PNPM installed correctly - see the [PNPM installation docs](https://pnpm.io/installation) for more info.
 
-If you're getting an error about scenarios, then you've likely installed the wrong yarn... (you're [not](https://github.com/yarnpkg/yarn/issues/2821) the only one!). You can fix it by uninstalling, adding the correct repo, and reinstalling, for example, in Debian:
-
-- `sudo apt remove yarn`
-- `curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -`
-- `echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list`
-- `sudo apt update && sudo apt install yarn`
+If you're getting dependency-related errors, try the following steps:
+1. Clear PNPM's cache: `pnpm store prune`
+2. Remove node_modules: `rm -rf node_modules`
+3. Remove lockfile: `rm pnpm-lock.yaml`
+4. Reinstall dependencies: `pnpm install`
 
 Alternatively, as a workaround, you have several options:
 
@@ -346,7 +345,7 @@ You can [check your rate limit status](https://www.docker.com/blog/checking-your
 
 The configuration file is validated against [Shipyard's Schema](https://github.com/khulnaSoft/shipyard/blob/master/src/utils/ConfigSchema.json) using AJV.
 
-First, check that your syntax is valid, using [YAML Validator](https://codebeautify.org/yaml-validator/) or [JSON Validator](https://codebeautify.org/jsonvalidator). If the issue persists, then take a look at the [schema](https://github.com/khulnaSoft/shipyard/blob/master/src/utils/ConfigSchema.json), and verify that the field you are trying to add/ modify matches the required format. You can also use [this tool](https://www.jsonschemavalidator.net/s/JFUj7X9J) to validate your JSON config against the schema, or run `yarn validate-config`.
+First, check that your syntax is valid, using [YAML Validator](https://codebeautify.org/yaml-validator/) or [JSON Validator](https://codebeautify.org/jsonvalidator). If the issue persists, then take a look at the [schema](https://github.com/khulnaSoft/shipyard/blob/master/src/utils/ConfigSchema.json), and verify that the field you are trying to add/ modify matches the required format. You can also use [this tool](https://www.jsonschemavalidator.net/s/JFUj7X9J) to validate your JSON config against the schema, or run `pnpm validate-config`.
 
 If you're trying to use a recently released feature, and are getting a warning, this is likely because you've not yet updated the the current latest version of Shipyard.
 
@@ -357,7 +356,7 @@ If the issue still persists, you should raise an issue.
 ## Node Sass does not yet support your current environment
 
 Caused by node-sass's binaries being built for a for a different architecture
-To fix this, just run: `yarn rebuild node-sass`
+To fix this, just run: `pnpm rebuild node-sass`
 
 ---
 
@@ -373,8 +372,8 @@ See also: [#776](https://github.com/khulnaSoft/shipyard/issues/776)
 
 ## Error: Cannot find module './_baseValues'
 
-Clearing the cache should fix this: `yarn cache clean`
-If the issue persists, remove (`rm -rf node_modules\ yarn.lock`) and reinstall (`yarn`) node_modules
+Clearing the cache should fix this: `pnpm store prune`
+If the issue persists, remove (`rm -rf node_modules pnpm-lock.yaml`) and reinstall (`pnpm install`) node_modules
 
 ---
 
