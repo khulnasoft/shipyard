@@ -1,4 +1,3 @@
-
 # Developing
 
 This article outlines how to get Shipyard running in a development environment, and outlines the basics of the architecture.
@@ -25,14 +24,14 @@ If you're adding new features, you may want to check out the [Development Guides
 
 ### Prerequisites
 
-You will need either the latest or LTS version of **[Node.js](https://nodejs.org/)** to build and serve the application and **[Git](https://git-scm.com/downloads)** to easily fetch the code, and push any changes. If you plan on running or deploying the container, you'll also need **[Docker](https://docs.docker.com/get-docker/)**. To avoid any unexpected issues, ensure you've got at least **[NPM](https://www.npmjs.com/get-npm)** V 7.5 or **[Yarn](https://classic.yarnpkg.com/en/docs/install/#windows-stable)** 1.22 (you may find [NVM](https://github.com/nvm-sh/nvm) helpful for switching/ managing versions).
+You will need either the latest or LTS version of **[Node.js](https://nodejs.org/)** to build and serve the application and **[Git](https://git-scm.com/downloads)** to easily fetch the code, and push any changes. If you plan on running or deploying the container, you'll also need **[Docker](https://docs.docker.com/get-docker/)**. To avoid any unexpected issues, ensure you've got at least **[PNPM](https://pnpm.io/)** v8.0 or later installed (you may find [NVM](https://github.com/nvm-sh/nvm) helpful for switching/ managing Node versions).
 
 ### Running the Project
 
 1. Get Code: `git clone https://github.com/khulnaSoft/shipyard.git`
 2. Navigate into the directory: `cd shipyard`
-3. Install dependencies: `yarn`
-4. Start dev server: `yarn dev`
+3. Install dependencies: `pnpm install`
+4. Start dev server: `pnpm dev`
 
 Shipyard should now be being served on <http://localhost:8080/>. Hot reload is enabled, so making changes to any of the files will trigger them to be rebuilt and the page refreshed.
 
@@ -40,29 +39,28 @@ Shipyard should now be being served on <http://localhost:8080/>. Hot reload is e
 
 #### Basics
 
-- **`yarn build`** - In the interest of speed, the application is pre-compiled, this means that the config file is read during build-time, and therefore the app needs to rebuilt for any new changes to take effect. Luckily this is very straight forward. Just run `yarn build` or `docker exec -it [container-id] yarn build`
-- **`yarn start`** - Starts a web server, and serves up the production site from `./dist` (must run build command first)
+- **`pnpm build`** - In the interest of speed, the application is pre-compiled, this means that the config file is read during build-time, and therefore the app needs to rebuilt for any new changes to take effect. Luckily this is very straight forward. Just run `pnpm build` or `docker exec -it [container-id] pnpm build`
+- **`pnpm start`** - Starts a web server, and serves up the production site from `./dist` (must run build command first)
 
 #### Development
 
-- **`yarn dev`** - Starts the development server with hot reloading
-- **`yarn lint`** - Lints code to ensure it follows a consistent, neat style
-- **`yarn test`** - Runs tests, and outputs results
+- **`pnpm dev`** - Starts the development server with hot reloading
+- **`pnpm lint`** - Lints code to ensure it follows a consistent, neat style
+- **`pnpm test`** - Runs tests, and outputs results
 
 #### Utils and Checks
 
-- **`yarn validate-config`** - If you have quite a long configuration file, you may wish to check that it's all good to go, before deploying the app. This can be done with `yarn validate-config` or `docker exec -it [container-id] yarn validate-config`. Your config file needs to be in `/user-data/conf.yml` (or within your Docker container at `/app/user-data/conf.yml`). This will first check that your YAML is valid, and then validates it against Shipyard's [schema](https://github.com/khulnaSoft/shipyard/blob/master/src/utils/ConfigSchema.js).
-- **`yarn health-check`** - Checks that the application is up and running on it's specified port, and outputs current status and response times. Useful for integrating into your monitoring service, if you need to maintain high system availability
+- **`pnpm validate-config`** - If you have quite a long configuration file, you may wish to check that it's all good to go, before deploying the app. This can be done with `pnpm validate-config` or `docker exec -it [container-id] pnpm validate-config`. Your config file needs to be in `/user-data/conf.yml` (or within your Docker container at `/app/user-data/conf.yml`). This will first check that your YAML is valid, and then validates it against Shipyard's [schema](https://github.com/khulnaSoft/shipyard/blob/master/src/utils/ConfigSchema.js).
+- **`pnpm health-check`** - Checks that the application is up and running on it's specified port, and outputs current status and response times. Useful for integrating into your monitoring service, if you need to maintain high system availability
 
 #### Alternate Start Commands
 
-- **`yarn build-and-start`** - Builds the app, runs checks and starts the production server. Commands are run in parallel, and so is faster than running them in independently. Uses the `yarn build` and `yarn start` commands
-- **`yarn build-watch`** - If you find yourself making frequent changes to your configuration, and do not want to have to keep manually rebuilding, then this option is for you. It will watch for changes to any files within the projects root, and then trigger a rebuild. Note that if you are developing new features, then `yarn dev` would be more appropriate, as it's significantly faster at recompiling (under 1 second), and has hot reloading, linting and testing integrated
-- **`yarn pm2-start`** - Starts the Node server using [PM2](https://pm2.keymetrics.io/), a process manager for Node.js applications, that helps them stay alive. PM2 has some built-in basic monitoring features, and an optional [management solution](https://pm2.io/). If you are running the app on bare metal, it is recommended to use this start command
+- **`pnpm build-and-start`** - Builds the app, runs checks and starts the production server. Commands are run in parallel, and so is faster than running them in independently. Uses the `pnpm build` and `pnpm start` commands
+- **`pnpm build-watch`** - If you find yourself making frequent changes to your configuration, and do not want to have to keep manually rebuilding, then this option is for you. It will watch for changes to any files within the projects root, and then trigger a rebuild. Note that if you are developing new features, then `pnpm dev` would be more appropriate, as it's significantly faster at recompiling (under 1 second), and has hot reloading, linting and testing integrated
+- **`pnpm pm2-start`** - Starts the Node server using [PM2](https://pm2.keymetrics.io/), a process manager for Node.js applications, that helps them stay alive. PM2 has some built-in basic monitoring features, and an optional [management solution](https://pm2.io/). If you are running the app on bare metal, it is recommended to use this start command
 
 #### Notes
 
-- If you are using NPM, replace `yarn` with `npm run`
 - If you are using Docker, precede each command with `docker exec -it [container-id]`. Container ID can be found by running `docker ps`
 - You can manage the app using the [Vue-CLI Service](https://cli.vuejs.org/guide/cli-service.html), with `npx vue-cli-service [command]`. Or to start the Vue Management UI, run `npx vue ui`, and open `http://localhost:8000`
 
@@ -183,7 +181,7 @@ As well as Node, Git and Docker- you'll also need an IDE (e.g. [VS Code](https:/
 
 ### Style Guide
 
-Linting is done using [ESLint](https://eslint.org/), and using the [Vue.js Styleguide](https://github.com/vuejs/eslint-config-standard), which is very similar to the [AirBnB Styleguide](https://github.com/airbnb/javascript). You can run `yarn lint` to report and fix issues. While the dev server is running, issues will be reported to the console automatically, and any lint errors will trigger the build to fail. Note that all lint checks must pass before any PR can be merged. Linting is also run as a git pre-commit hook
+Linting is done using [ESLint](https://eslint.org/), and using the [Vue.js Styleguide](https://github.com/vuejs/eslint-config-standard), which is very similar to the [AirBnB Styleguide](https://github.com/airbnb/javascript). You can run `pnpm lint` to report and fix issues. While the dev server is running, issues will be reported to the console automatically, and any lint errors will trigger the build to fail. Note that all lint checks must pass before any PR can be merged. Linting is also run as a git pre-commit hook
 
 The most significant things to note are:
 
@@ -218,7 +216,7 @@ Styleguides:
 ├── Dockerfile          # The blueprint for building the Docker container
 ├── docker-compose.yml  # A Docker run command
 ├── .env                # Location for any environmental variables
-├── yarn.lock           # Auto-generated list of current packages and version numbers
+├── pnpm-lock.yaml      # Auto-generated list of current packages and version numbers
 ├── docs/               # Markdown documentation
 ├── README.md           # Readme, basic info for getting started
 ├── LICENSE.md          # License for use
