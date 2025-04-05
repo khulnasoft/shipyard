@@ -15,7 +15,7 @@ jobs:
     - name: Install pnpm
       run: |
         curl -fsSL https://get.pnpm.io/install.sh | sh -
-        echo "::add-path::$(pnpm bin)"
+        echo "$(pnpm bin)" >> $GITHUB_PATH
 
     # Find and comment with compressed size
     - name: Get Compressed Size
