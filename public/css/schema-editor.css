@@ -1,0 +1,18 @@
+/* Error: Undefined mixin.
+ *    ,
+ * 22 | /       @include tablet-down {
+ * 23 | |         flex-direction: column-reverse;
+ * 24 | \       }
+ *    '
+ *   src/styles/schema-editor.scss 22:7  root stylesheet */
+
+body::before {
+  font-family: "Source Code Pro", "SF Mono", Monaco, Inconsolata, "Fira Mono",
+      "Droid Sans Mono", monospace, monospace;
+  white-space: pre;
+  display: block;
+  padding: 1em;
+  margin-bottom: 1em;
+  border-bottom: 2px solid black;
+  content: "Error: Undefined mixin.\a    \2577 \a 22 \2502  \250c        @include tablet-down {\a 23 \2502  \2502          flex-direction: column-reverse;\a 24 \2502  \2514        }\a    \2575 \a   src/styles/schema-editor.scss 22:7  root stylesheet";
+}
