@@ -66,31 +66,26 @@ const store = new Vuex.Store({
       return state.config;
     },
     pageInfo(state) {
-      if (!state.config) return {};
       return state.config.pageInfo || {};
     },
     appConfig(state) {
-      if (!state.config) return {};
       return state.config.appConfig || {};
     },
     sections(state) {
       return filterUserSections(state.config.sections || []);
     },
-    pages(state) {
-      return state.config.pages || [];
-    },
     theme(state) {
       const localStorageKey = state.currentConfigInfo.confId
         ? `${localStorageKeys.THEME}-${state.currentConfigInfo.confId}` : localStorageKeys.THEME;
-      const localTheme = localStorage[localStorageKey];
+      const localTheme = localStorage.getItem(localStorageKey);
       // Return either theme from local storage, or from appConfig
-      return localTheme || state.config.appConfig.theme || defaultTheme;
+      return localTheme || (state.config.appConfig && state.config.appConfig.theme) || defaultTheme;
     },
-    webSearch(state, getters) {
-      return getters.appConfig.webSearch || {};
+    visibleComponents(state) {
+      return componentVisibility(state.config.appConfig || {});
     },
-    visibleComponents(state, getters) {
-      return componentVisibility(getters.appConfig);
+    webSearch(state) {
+      return state.config.appConfig && state.config.appConfig.webSearch;
     },
     /* Make config read/ write permissions object */
     permissions(state, getters) {
@@ -100,47 +95,52 @@ const store = new Vuex.Store({
         allowSaveLocally: true,
         allowViewConfig: true,
       };
-      // Disable saving changes locally, only
+      // Disable writing to disk if preventWriteToDisk is true or allowConfigEdit is false
+      if (appConfig.preventWriteToDisk || appConfig.allowConfigEdit === false) {
+        perms.allowWriteToDisk = false;
+      }
+      // Disable local saving if preventLocalSave is true
       if (appConfig.preventLocalSave) {
         perms.allowSaveLocally = false;
       }
-      // Disable saving changes to disk, only
-      if (appConfig.preventWriteToDisk || !isUserAdmin()) {
+      // Disable all config operations if disableConfiguration is true
+      if (appConfig.disableConfiguration) {
         perms.allowWriteToDisk = false;
+        perms.allowSaveLocally = false;
+        perms.allowViewConfig = false;
       }
-      // Legacy Option: Will be removed in V 2.1.0
-      if (appConfig.allowConfigEdit === false) {
+      // Disable config operations for non-admin if disableConfigurationForNonAdmin is true
+      if (appConfig.disableConfigurationForNonAdmin && !isUserAdmin()) {
         perms.allowWriteToDisk = false;
+        perms.allowSaveLocally = false;
+        perms.allowViewConfig = false;
       }
-      // Disable everything
-      if (appConfig.disableConfiguration
-        || (appConfig.disableConfigurationForNonAdmin && !isUserAdmin())
-        || isLoggedInAsGuest()) {
+      // Disable all config operations for guest users
+      if (isLoggedInAsGuest()) {
         perms.allowWriteToDisk = false;
         perms.allowSaveLocally = false;
         perms.allowViewConfig = false;
       }
       return perms;
     },
-    // eslint-disable-next-line arrow-body-style
-    getSectionByIndex: (state, getters) => (index) => {
-      return getters.sections[index];
-    },
     getItemById: (state, getters) => (id) => {
       let item;
-      getters.sections.forEach(sec => {
-        if (sec.items) {
-          const foundItem = sec.items.find((itm) => itm.id === id);
-          if (foundItem) item = foundItem;
-        }
+      getters.sections.forEach(section => {
+        (section.items || []).forEach(currentItem => {
+          if (currentItem.id === id) {
+            item = currentItem;
+          }
+        });
       });
       return item;
     },
     getParentSectionOfItem: (state, getters) => (itemId) => {
       let foundSection;
-      getters.sections.forEach((section) => {
-        (section.items || []).forEach((item) => {
-          if (item.id === itemId) foundSection = section;
+      getters.sections.forEach(section => {
+        (section.items || []).forEach(item => {
+          if (item.id === itemId) {
+            foundSection = section;
+          }
         });
       });
       return foundSection;
@@ -149,15 +149,17 @@ const store = new Vuex.Store({
       const pageId = state.currentConfigInfo.confId;
       const layoutStoreKey = pageId
         ? `${localStorageKeys.LAYOUT_ORIENTATION}-${pageId}` : localStorageKeys.LAYOUT_ORIENTATION;
-      const appConfigLayout = state.config.appConfig.layout;
-      return localStorage.getItem(layoutStoreKey) || appConfigLayout || 'auto';
+      const localLayout = localStorage.getItem(layoutStoreKey);
+      const appConfigLayout = state.config.appConfig && state.config.appConfig.layout;
+      return localLayout || appConfigLayout || 'auto';
     },
     iconSize(state) {
       const pageId = state.currentConfigInfo.confId;
       const sizeStoreKey = pageId
         ? `${localStorageKeys.ICON_SIZE}-${pageId}` : localStorageKeys.ICON_SIZE;
-      const appConfigSize = state.config.appConfig.iconSize;
-      return localStorage.getItem(sizeStoreKey) || appConfigSize || 'medium';
+      const localSize = localStorage.getItem(sizeStoreKey);
+      const appConfigSize = state.config.appConfig && state.config.appConfig.iconSize;
+      return localSize || appConfigSize || 'medium';
     },
   },
   mutations: {
@@ -232,6 +234,29 @@ const store = new Vuex.Store({
       state.config = newConfig;
       InfoHandler('Sections updated', InfoKeys.EDITOR);
     },
+    [INSERT_SECTION](state, payload) {
+      const { section, index } = payload;
+      const config = { ...state.config };
+      // Insert the section at the specified index
+      config.sections.splice(index, 0, section);
+      // Apply item IDs to ensure uniqueness
+      config.sections = applyItemId(config.sections);
+      state.config = config;
+      InfoHandler('Section added', InfoKeys.EDITOR);
+    },
+    [REMOVE_SECTION](state, sectionName) {
+      const config = { ...state.config };
+      // Find the section index
+      const sectionIndex = config.sections.findIndex(s => s.name === sectionName);
+      // Remove the section if found
+      if (sectionIndex !== -1) {
+        config.sections.splice(sectionIndex, 1);
+        // Reapply item IDs to ensure consistency
+        config.sections = applyItemId(config.sections);
+        state.config = config;
+        InfoHandler('Section removed', InfoKeys.EDITOR);
+      }
+    },
     [UPDATE_SECTION](state, payload) {
       const { sectionIndex, sectionData } = payload;
       const newConfig = { ...state.config };
@@ -239,50 +264,22 @@ const store = new Vuex.Store({
       state.config = newConfig;
       InfoHandler('Section updated', InfoKeys.EDITOR);
     },
-    [INSERT_SECTION](state, newSection) {
-      const newConfig = { ...state.config };
-      newSection.items = [];
-      newConfig.sections.push(newSection);
-      state.config = newConfig;
-      InfoHandler('New section added', InfoKeys.EDITOR);
-    },
-    [REMOVE_SECTION](state, payload) {
-      const { sectionIndex, sectionName } = payload;
-      const newConfig = { ...state.config };
-      if (newConfig.sections[sectionIndex].name === sectionName) {
-        newConfig.sections.splice(sectionIndex, 1);
-        InfoHandler('Section removed', InfoKeys.EDITOR);
-      }
-      state.config = newConfig;
-    },
     [INSERT_ITEM](state, payload) {
-      const { newItem, targetSection } = payload;
+      const { newItem, targetSection, appendTo } = payload;
       const config = { ...state.config };
+      
       config.sections.forEach((section) => {
         if (section.name === targetSection) {
-          if (!section.items) section.items = [];
-          section.items.push(newItem);
-          InfoHandler('New item added', InfoKeys.EDITOR);
-        }
-      });
-      config.sections = applyItemId(config.sections);
-      state.config = config;
-    },
-    [COPY_ITEM](state, payload) {
-      const { item, toSection, appendTo } = payload;
-      const config = { ...state.config };
-      const newItem = { ...item };
-      config.sections.forEach((section) => {
-        if (section.name === toSection) {
           if (!section.items) section.items = [];
           if (appendTo === 'beginning') {
             section.items.unshift(newItem);
           } else {
             section.items.push(newItem);
           }
-          InfoHandler('Item copied', InfoKeys.EDITOR);
+          InfoHandler('Item added', InfoKeys.EDITOR);
         }
       });
+      
       config.sections = applyItemId(config.sections);
       state.config = config;
     },
@@ -342,11 +339,26 @@ const store = new Vuex.Store({
       state.config.appConfig.customCss = customCss;
       InfoHandler('Custom colors updated', InfoKeys.VISUAL);
     },
-    [CONF_MENU_INDEX](state, index) {
-      state.navigateConfToTab = index;
+    [COPY_ITEM](state, payload) {
+      const { item, toSection, appendTo } = payload;
+      const config = { ...state.config };
+      const newItem = { ...item };
+      
+      config.sections.forEach((section) => {
+        if (section.name === toSection) {
+          if (!section.items) section.items = [];
+          if (appendTo === 'beginning') {
+            section.items.unshift(newItem);
+          } else {
+            section.items.push(newItem);
+          }
+          InfoHandler('Item copied', InfoKeys.EDITOR);
+        }
+      });
+      config.sections = applyItemId(config.sections);
+      state.config = config;
     },
-    /* Set config to rootConfig, by calling initialize with no params */
-    async [USE_MAIN_CONFIG]() {
+    [USE_MAIN_CONFIG]() {
       this.dispatch(Keys.INITIALIZE_CONFIG);
     },
   },
@@ -357,21 +369,21 @@ const store = new Vuex.Store({
       try {
         // Attempt to fetch the YAML file
         const response = await axios.get(configFilePath, makeBasicAuthHeaders());
-        let data;
+        
         try {
-          data = yaml.load(response.data);
+          const data = yaml.load(response.data);
+          // Replace missing root properties with empty objects
+          if (!data.appConfig) data.appConfig = {};
+          if (!data.pageInfo) data.pageInfo = {};
+          if (!data.sections) data.sections = [];
+          // Set the state, and return data
+          commit(SET_ROOT_CONFIG, data);
+          commit(CRITICAL_ERROR_MSG, null);
+          return data;
         } catch (parseError) {
           commit(CRITICAL_ERROR_MSG, `Failed to parse YAML: ${parseError.message}`);
           return { ...emptyConfig };
         }
-        // Replace missing root properties with empty objects
-        if (!data.appConfig) data.appConfig = {};
-        if (!data.pageInfo) data.pageInfo = {};
-        if (!data.sections) data.sections = [];
-        // Set the state, and return data
-        commit(SET_ROOT_CONFIG, data);
-        commit(CRITICAL_ERROR_MSG, null);
-        return data;
       } catch (fetchError) {
         if (fetchError.response) {
           commit(
@@ -401,21 +413,18 @@ const store = new Vuex.Store({
         commit(SET_CONFIG, rootConfig);
         commit(SET_CURRENT_CONFIG_INFO, {});
 
-        let localSections = [];
-        const localSectionsRaw = localStorage[localStorageKeys.CONF_SECTIONS];
+        const localSectionsRaw = localStorage.getItem(localStorageKeys.CONF_SECTIONS);
         if (localSectionsRaw) {
           try {
             const json = JSON.parse(localSectionsRaw);
-            if (json.length >= 1) localSections = json;
+            if (Array.isArray(json) && json.length >= 1) {
+              commit(SET_SECTIONS, json);
+              commit(SET_IS_USING_LOCAL_CONFIG, true);
+            }
           } catch (e) {
-            commit(CRITICAL_ERROR_MSG, 'Malformed section data in local storage');
+            commit(CRITICAL_ERROR_MSG, 'Malformed section data in local storage', e);
           }
         }
-        if (localSections.length > 0) {
-          rootConfig.sections = localSections;
-          commit(SET_IS_USING_LOCAL_CONFIG, true);
-        }
-        return rootConfig;
       } else {
         // Find and format path to fetch sub-config from
         const subConfigPath = formatConfigPath(rootConfig?.pages?.find(
@@ -423,39 +432,51 @@ const store = new Vuex.Store({
         )?.path);
 
         if (!subConfigPath) {
-          commit(CRITICAL_ERROR_MSG, `Unable to find config for '${subConfigId}'`);
-          return { ...emptyConfig };
+          commit(CRITICAL_ERROR_MSG, `Unable to find config for '${subConfigId}'`, undefined);
+          return state.config;
         }
-        axios.get(subConfigPath, makeBasicAuthHeaders()).then((response) => {
+        
+        // Set up config info early
+        commit(SET_CURRENT_CONFIG_INFO, { confPath: subConfigPath, confId: subConfigId });
+        
+        try {
+          // Fetch and process the sub-config
+          const response = await axios.get(subConfigPath, makeBasicAuthHeaders());
+          
           // Parse the YAML
           const configContent = yaml.load(response.data) || {};
+          
           // Certain values must be inherited from root config
           const theme = configContent?.appConfig?.theme || rootConfig.appConfig?.theme || 'default';
-          configContent.appConfig = rootConfig.appConfig;
+          configContent.appConfig = { ...rootConfig.appConfig };
           configContent.pages = rootConfig.pages;
           configContent.appConfig.theme = theme;
 
+          // Set the config
+          commit(SET_CONFIG, configContent);
+          
           // Load local sections if they exist
-          const localSectionsRaw = localStorage[`${localStorageKeys.CONF_SECTIONS}-${subConfigId}`];
+          const localStorageKey = `${localStorageKeys.CONF_SECTIONS}-${subConfigId}`;
+          const localSectionsRaw = localStorage.getItem(localStorageKey);
           if (localSectionsRaw) {
             try {
               const json = JSON.parse(localSectionsRaw);
-              if (json.length >= 1) {
-                configContent.sections = json;
+              if (Array.isArray(json) && json.length >= 1) {
+                commit(SET_SECTIONS, json);
                 commit(SET_IS_USING_LOCAL_CONFIG, true);
               }
             } catch (e) {
-              commit(CRITICAL_ERROR_MSG, 'Malformed section data in local storage for sub-config');
+              commit(CRITICAL_ERROR_MSG, 'Malformed section data in local storage for sub-config', e);
             }
           }
-          // Set the config
-          commit(SET_CONFIG, configContent);
-          commit(SET_CURRENT_CONFIG_INFO, { confPath: subConfigPath, confId: subConfigId });
-        }).catch((err) => {
-          commit(CRITICAL_ERROR_MSG, `Unable to load config from '${subConfigPath}'`, err);
-        });
+          
+          return state.config;
+        } catch (err) {
+          commit(CRITICAL_ERROR_MSG, `Unable to load config: ${err.message}`, err);
+          return state.config;
+        }
       }
-      return { ...emptyConfig };
+      return state.config;
     },
   },
   modules: {},
