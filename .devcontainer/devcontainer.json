@@ -26,7 +26,7 @@
 	// "forwardPorts": [],
 
 	// Use 'postCreateCommand' to run commands after the container is created.
-	"postCreateCommand": "yarn install --ignore-engines --immutable --no-cache --network-timeout 300000 --network-concurrency 1"
+	"postCreateCommand": "npm install -g pnpm && pnpm install --frozen-lockfile --no-cache --network-timeout 300000 --network-concurrency 1"
 
 	// Configure tool-specific properties.
 	// "customizations": {},

@@ -2,7 +2,7 @@
  * This is the main entry point for the application, a simple server that
  * runs some checks, and then serves up the app from the ./dist directory
  * Also imports some routes for status checks/ ping and config saving
- * Note: The app must first be built (yarn build) before this script is run
+ * Note: The app must first be built (pnpm build) before this script is run
  * */
 
 /* Import built-in Node server modules */

@@ -5,7 +5,7 @@
 # Essential site config
 [build]
   base = "/"
-  command = "yarn build"
+  command = "pnpm build"
   publish = "dist"
   functions = "services/serverless-functions"
 
@@ -13,7 +13,8 @@
 [build.environment]
   NODE_VERSION = "20.11.1"
   NODE_OPTIONS = "--openssl-legacy-provider"
-  YARN_FLAGS = "--ignore-engines"
+  NPM_FLAGS = "--version"
+  ENABLE_PNPM = "true"
 
 # Redirect the Node endpoints to serverless functions
 [[redirects]]

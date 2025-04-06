@@ -165,8 +165,9 @@ Checklist:
 
 ## Updating Dependencies
 
-Running `yarn upgrade` will updated all dependencies based on the ranges specified in the `package.json`. The `yarn.lock` file will be updated, as will the contents of `./node_modules`, for more info, see the [yarn upgrade documentation](https://classic.yarnpkg.com/en/docs/cli/upgrade/). [`npm-check-updates`](https://github.com/raineorshine/npm-check-updates) is a useful tool to help with this.
-It is important to thoroughly test after any big dependency updates.
+Running `pnpm update` will update all dependencies based on the ranges specified in the `package.json`. The `pnpm-lock.yaml` file will be updated, as will the contents of `./node_modules`. For more info, see the [PNPM update documentation](https://pnpm.io/cli/update).
+
+To get started, fork the project, cd into it, install dependencies (`pnpm install`) and then start the development server (`pnpm dev`).
 
 ---
 
@@ -260,7 +261,7 @@ If add any new variables, ensure that there is always a fallback (define it in [
 
 ### Step 0 - Prerequisites
 
-If this is your first time working on Shipyard, then the [Developing Docs](https://github.com/khulnaSoft/shipyard/blob/master/docs/developing.md) instructions for project setup and running. In short, you just need to clone the project, cd into it, install dependencies (`yarn`) and then start the development server (`yarn dev`).
+If this is your first time working on Shipyard, then the [Developing Docs](https://github.com/khulnaSoft/shipyard/blob/master/docs/developing.md) instructions for project setup and running. In short, you just need to clone the project, cd into it, install dependencies (`pnpm`) and then start the development server (`pnpm dev`).
 
 To build a widget, you'll also need some basic knowledge of Vue.js. The [official Vue docs](https://vuejs.org/v2/guide/) provides a good starting point, as does [this guide](https://www.taniarascia.com/getting-started-with-vue/) by Tania Rascia
 

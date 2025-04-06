@@ -1,5 +1,3 @@
-# Adds a comment to new PRs, showing the compressed size and size difference of new code
-# And also labels the PR based on the number of lines changes
 name: 🌈 Check PR Size
 on: [pull_request]
 jobs:
@@ -8,6 +6,24 @@ jobs:
     steps:
     - name: Checkout
       uses: actions/checkout@v2
+
+    # Set SHELL environment variable
+    - name: Set SHELL environment variable
+      run: echo "SHELL=/bin/bash" >> $GITHUB_ENV
+
+    # Install pnpm
+    - name: Setup pnpm
+      uses: pnpm/action-setup@v2
+      with:
+        version: latest
+
+    # Setup Node.js
+    - name: Setup Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: 18
+        cache: 'pnpm'
+
     # Find and comment with compressed size
     - name: Get Compressed Size
       uses: preactjs/compressed-size-action@v2
@@ -17,6 +33,7 @@ jobs:
         strip-hash: '\\b\\w{8}\\.'
         exclude: '{./dist/manifest.json,**/*.map,**/node_modules/**}'
         minimum-change-threshold: 100
+
     # Check number of lines of code added
     - name: Label based on Lines of Code
       uses: codelytv/pr-size-labeler@v1
@@ -36,3 +53,7 @@ jobs:
           Try to avoid addressing multiple issues in a single PR, and
           in the future consider breaking large tasks down into smaller steps.
           This it to make reviewing, testing, reverting and general quality management easier.
+
+    # Fix: Installing using pnpm install --frozen-lockfile
+    - name: Install dependencies
+      run: pnpm install --frozen-lockfile

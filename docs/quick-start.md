@@ -100,7 +100,7 @@ Notes:
 - You can use a Docker volume to pass a config file from your host system to the container
   - E.g. `-v ./host-system/my-local-conf.yml:/app/user-data/conf.yml`
 - It's also possible to edit your config directly through the UI, and changes will be saved in this file
-- Check your config against Shipyard's schema, with `docker exec -it [container-id] yarn validate-config`
+- Check your config against Shipyard's schema, with `docker exec -it [container-id] pnpm validate-config`
 - You might find it helpful to look at some examples, a collection of which can be [found here](https://gist.github.com/KhulnaSoft-bot/000f712a5ce98f212817d20bc16bab10)
 - It's also possible to load a remote config, e.g. from a GitHub Gist
 
@@ -135,13 +135,14 @@ Enjoy your dashboard :)
 
 ## Alternative Deployment Method 1 - From Source
 
-You can also easily run the app on your system without Docker. For this [Git](https://git-scm.com/downloads), [Node.js](https://nodejs.org/), and [Yarn](https://yarnpkg.com/) are required.
+You can also easily run the app on your system without Docker. For this [Git](https://git-scm.com/), [Node.js](https://nodejs.org/), and [PNPM](https://pnpm.io/) are required.
 
 ```bash
-git clone https://github.com/khulnaSoft/shipyard.git && cd shipyard
-yarn # Install dependencies
-yarn build # Build the app
-yarn start # Start the app
+git clone https://github.com/khulnaSoft/shipyard.git
+cd shipyard
+pnpm install # Install dependencies
+pnpm build # Build the app
+pnpm start # Start the app
 ```
 
 Then edit `./user-data/conf.yml`

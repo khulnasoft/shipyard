@@ -31,7 +31,7 @@ comment:
 
     - id: dependency-changes
       files:
-      - yarn.lock
+      - pnpm-lock.yaml
       body: >
         When updating dependencies, take a moment to verify that there are not security
         issues associated with any added or modified packages. If adding a new dependency,
@@ -90,7 +90,7 @@ comment:
       - node_modules/**/*
       body: >
         Please do not commit dependencies to git. Node modules will be pulled down
-        when yarn is run, prior to building the app
+        when pnpm is run, prior to building the app
     
     - id: user-themes
       files:

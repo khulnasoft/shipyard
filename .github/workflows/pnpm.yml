@@ -1,0 +1,28 @@
+name: Install Dependencies Without pnpm-lock.yaml
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '0 0 * * 0'  # Run every Sunday at midnight
+
+jobs:
+  pnpm-install:
+    runs-on: ubuntu-latest
+    steps:
+    # Step 1: Checkout the repository
+    - uses: actions/checkout@v2
+
+    # Step 2: Remove the pnpm-lock.yaml file (if it exists)
+    - name: Remove pnpm-lock.yaml
+      run: |
+        if [ -f pnpm-lock.yaml ]; then
+          rm pnpm-lock.yaml
+        fi
+
+    # Step 3: Install dependencies without pnpm-lock.yaml
+    - name: Install Dependencies
+      run: pnpm install --no-lockfile --ignore-engines
+
+    # Step 4: Restore the pnpm-lock.yaml file (if it exists in the repo)
+    - name: Restore pnpm-lock.yaml
+      run: git checkout pnpm-lock.yaml || echo "No pnpm-lock.yaml to restore"

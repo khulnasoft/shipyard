@@ -45,9 +45,24 @@ In Shipyard, commonly configured resources include:
 
 ## Running Commands
 
-If you're running an app in Docker, then commands will need to be passed to the container to be executed. This can be done by preceding each command with `docker exec -it [container-id]`, where container ID can be found by running `docker ps`. For example `docker exec -it 26c156c467b4 yarn build`. You can also enter the container, with `docker exec -it [container-id] /bin/ash`, and navigate around it with normal Linux commands.
+If you're running an app in Docker, then commands will need to be passed to the container to be executed. This can be done by preceding each command with `docker exec -it [container-id]`, where container ID can be found by running `docker ps`. For example `docker exec -it 26c156c467b4 pnpm build`. You can also enter the container, with `docker exec -it [container-id] /bin/ash`, and navigate around it with normal Linux commands.
 
-Shipyard has several commands that can be used for various tasks, you can find a list of these either in the [Developing Docs](/docs/developing.md#project-commands), or by looking at the [`package.json`](https://github.com/khulnaSoft/shipyard/blob/master/package.json#L5). These can be used by running `yarn [command-name]`.
+All available commands are listed in the [`package.json`](https://github.com/khulnaSoft/shipyard/blob/master/package.json#L5). These can be used by running `pnpm [command-name]`.
+
+You can trigger a rebuild through the UI, under Config --> Rebuild, or by running `pnpm build` in the root directory.
+
+Running `docker exec -it [container-id] pnpm health-check`. You can disable healthchecks altogether by adding the `--no-healthcheck` flag to your Docker run command.
+
+To restart unhealthy containers automatically, check out [Autoheal](https://hub.docker.com/r/willfarrell/autoheal/). This image watches for unhealthy containers, and automatically triggers a restart. (This is a stand in for Docker's `--exit-on-unhealthy` that was proposed, but [not merged](https://github.com/moby/moby/pull/22719)). There's also [Deunhealth](https://github.com/qdm12/deunhealth), which is super light-weight, and doesn't require network access.
+
+```bash
+docker run -d \
+    --name autoheal \
+    --restart=always \
+    -e AUTOHEAL_CONTAINER_LABEL=all \
+    -v /var/run/docker.sock:/var/run/docker.sock \
+    willfarrell/autoheal
+```
 
 **[⬆️ Back to Top](#management)**
 
@@ -55,7 +70,7 @@ Shipyard has several commands that can be used for various tasks, you can find a
 
 ## Healthchecks
 
-Healthchecks are configured to periodically check that Shipyard is up and running correctly on the specified port. By default, the health script is called every 5 minutes, but this can be modified with the `--health-interval` option. You can check the current container health with: `docker inspect --format "{{json .State.Health }}" [container-id]`, and a summary of health status will show up under `docker ps`. You can also manually request the current application status by running `docker exec -it [container-id] yarn health-check`. You can disable healthchecks altogether by adding the `--no-healthcheck` flag to your Docker run command.
+Healthchecks are configured to periodically check that Shipyard is up and running correctly on the specified port. By default, the health script is called every 5 minutes, but this can be modified with the `--health-interval` option. You can check the current container health with: `docker inspect --format "{{json .State.Health }}" [container-id]`, and a summary of health status will show up under `docker ps`. You can also manually request the current application status by running `docker exec -it [container-id] pnpm health-check`. You can disable healthchecks altogether by adding the `--no-healthcheck` flag to your Docker run command.
 
 To restart unhealthy containers automatically, check out [Autoheal](https://hub.docker.com/r/willfarrell/autoheal/). This image watches for unhealthy containers, and automatically triggers a restart. (This is a stand in for Docker's `--exit-on-unhealthy` that was proposed, but [not merged](https://github.com/moby/moby/pull/22719)). There's also [Deunhealth](https://github.com/qdm12/deunhealth), which is super light-weight, and doesn't require network access.
 
@@ -137,7 +152,7 @@ For more information, see the [Watchtower Docs](https://containrrr.dev/watchtowe
 
 ### Updating Shipyard from Source
 
-Stop your current instance of Shipyard, then navigate into the source directory. Pull down the latest code, with `git pull origin master`, then update dependencies with `yarn`, rebuild with `yarn build`, and start the server again with `yarn start`.
+Stop your current instance of Shipyard, then navigate into the source directory. Pull down the latest code, with `git pull origin master`, then update dependencies with `pnpm`, rebuild with `pnpm build`, and start the server again with `pnpm start`.
 
 **[⬆️ Back to Top](#management)**
 
@@ -754,7 +769,7 @@ Docker supports several modules that let you write your own security profiles.
 
 > _The following section only applies if you are not using Docker, and would like to use your own web server_
 
-Shipyard ships with a pre-configured Node.js server, in [`server.js`](https://github.com/khulnaSoft/shipyard/blob/master/server.js) which serves up the contents of the `./dist` directory on a given port. You can start the server by running `node server`. Note that the app must have been build (run `yarn build`), and you need [Node.js](https://nodejs.org) installed.
+Shipyard ships with a pre-configured Node.js server, in [`server.js`](https://github.com/khulnaSoft/shipyard/blob/master/server.js) which serves up the contents of the `./dist` directory on a given port. You can start the server by running `node server`. Note that the app must have been build (run `pnpm build`), and you need [Node.js](https://nodejs.org) installed.
 
 If you wish to run Shipyard from a sub page (e.g. `example.com/shipyard`), then just set the `BASE_URL` environmental variable to that page name (in this example, `/shipyard`), before building the app, and the path to all assets will then resolve to the new path, instead of `./`.
 
@@ -888,7 +903,7 @@ Create a file names `firebase.json`, and populate it with something similar to:
 
 If you'd like to make any code changes to the app, and deploy your modified version, this section briefly explains how.
 
-The first step is to fork the project on GitHub, and clone it to your local system. Next, install the dependencies (`yarn`), and start the development server (`yarn dev`) and visit `localhost:8080` in your browser. You can then make changes to the codebase, and see the live app update in real-time. Once you've finished, running `yarn build` will build the app for production, and output the assets into `./dist` which can then be deployed using a web server, CDN or the built-in Node server with `yarn start`. For more info on all of this, take a look at the [Developing Docs](/docs/developing.md). To build your own Docker container from the modified app, see [Building your Own Container](#building-your-own-container)
+The first step is to fork the project on GitHub, and clone it to your local system. Next, install the dependencies (`pnpm`), and start the development server (`pnpm dev`) and visit `localhost:8080` in your browser. You can then make changes to the codebase, and see the live app update in real-time. Once you've finished, running `pnpm build` will build the app for production, and output the assets into `./dist` which can then be deployed using a web server, CDN or the built-in Node server with `pnpm start`. For more info on all of this, take a look at the [Developing Docs](/docs/developing.md). To build your own Docker container from the modified app, see [Building your Own Container](#building-your-own-container)
 
 **[⬆️ Back to Top](#management)**
 
@@ -905,7 +920,7 @@ To build and deploy locally, first build the app with: `docker build -t shipyard
 Your container should now be running, and will appear in the list when you run `docker container ls –a`. If you'd like to enter the container, run `docker exec -it [container-id] /bin/ash`.
 
 You may wish to upload your image to a container registry for easier access. Note that if you choose to do this on a public registry, please name your container something other than just 'shipyard', to avoid confusion with the official image.
-You can push your build image, by running: `docker push ghcr.io/OWNER/IMAGE_NAME:latest`. You will first need to authenticate, this can be done by running `echo $CR_PAT | docker login ghcr.io -u USERNAME --password-stdin`, where `CR_PAT` is an environmental variable containing a token generated from your GitHub account. For more info, see the [Container Registry Docs](https://docs.github.com/en/packages/working-with-a-github-packages-registry/working-with-the-container-registry).
+You can push your build image, by running: `docker push ghcr.io/OWNER/IMAGE_NAME:latest`. You will first need to authenticate, this can be done by running `echo $CR_PAT | docker login ghcr.io -u USERNAME --password-stdin`, where `CR_PAT` is an environmental variable containing a token generated from your GitHub account. For more info, see the [Container Registry Docs](https://docs.github.com/en/packages/working-with-a-github-packages-registry).
 
 **[⬆️ Back to Top](#management)**
 

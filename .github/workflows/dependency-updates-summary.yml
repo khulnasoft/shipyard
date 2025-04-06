@@ -1,17 +1,35 @@
-# Shows changes to any yarn.lock in PR comment
-# Useful for easily understanding dependency changes and consequences
-name: 💡 Show Dependency Changes
-on: [pull_request]
+name: Dependency Updates Summary
+
+on:
+  pull_request:
+    paths:
+      - 'pnpm-lock.yaml'
+
 jobs:
-  check:
+  pnpm-lock-changes:
+    name: Create pnpm Lock Changes Comment
     runs-on: ubuntu-latest
+
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
-      - name: Yarn Lock Changes
-        uses: Simek/yarn-lock-changes@main
+        uses: actions/checkout@v3
         with:
-          token: ${{ secrets.ORG_REPO_TOKEN || secrets.GITHUB_TOKEN }}
-          collapsibleThreshold: '25'
-          failOnDowngrade: 'false'
-          path: 'yarn.lock'
+          fetch-depth: 0
+
+      - name: Setup Node
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+
+      - name: Install pnpm-lock-export CLI
+        run: npm install -g pnpm-lock-export
+
+      - name: Generate Lock Changes
+        run: pnpm-lock-export --path=pnpm-lock.yaml --format=markdown --output=lock-changes.md
+
+      - name: Comment PR
+        uses: machine-learning-apps/pr-comment@master
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          path: lock-changes.md
