@@ -221,30 +221,30 @@ export default {
   }
   &.orientation-vertical {
     max-width: 100%;
-    @include tablet-up {
+    @include media.tablet-up {
       display: flex;
       flex-direction: row;
     }
   }
   &.orientation-horizontal, &.orientation-vertical, &.single-section-view {
-    @include phone { --content-max-width: 100%; }
-    @include tablet { --content-max-width: 98%; }
-    @include laptop { --content-max-width: 90%; }
-    @include monitor { --content-max-width: 85%; }
-    @include big-screen { --content-max-width: 80%; }
-    @include big-screen-up { --content-max-width: 60%; }
+    @include media.phone { --content-max-width: 100%; }
+    @include media.tablet { --content-max-width: 98%; }
+    @include media.laptop { --content-max-width: 90%; }
+    @include media.monitor { --content-max-width: 85%; }
+    @include media.big-screen { --content-max-width: 80%; }
+    @include media.big-screen-up { --content-max-width: 60%; }
     max-width: var(--content-max-width, 90%);
   }
 
   /* Specify number of columns, based on screen size or user preference */
-  @include phone { --col-count: 1; }
-  @include tablet { --col-count: 2; }
-  @include laptop { --col-count: 2; }
-  @include monitor { --col-count: 3; }
-  @include big-screen { --col-count: 4; }
-  @include big-screen-up { --col-count: 5; }
+  @include media.phone { --col-count: 1; }
+  @include media.tablet { --col-count: 2; }
+  @include media.laptop { --col-count: 2; }
+  @include media.monitor { --col-count: 3; }
+  @include media.big-screen { --col-count: 4; }
+  @include media.big-screen-up { --col-count: 5; }
 
-  @include tablet-up {
+  @include media.tablet-up {
     &.col-count-1 { --col-count: 1; }
     &.col-count-2 { --col-count: 2; }
     &.col-count-3 { --col-count: 3; }
@@ -297,7 +297,7 @@ export default {
 /* Settings section, includes search, config and user settings */
 section.settings-outer {
   border-bottom: 1px solid var(--outline-color);
-  @include phone {
+  @include media.phone {
     flex-direction: column;
   }
 }

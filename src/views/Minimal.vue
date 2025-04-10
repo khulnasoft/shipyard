@@ -164,9 +164,8 @@ export default {
     }
   }
 }
-
+.item-group-container {
  @include phone {
-   .item-group-container {
     display: flex;
     flex-direction: column;
    }

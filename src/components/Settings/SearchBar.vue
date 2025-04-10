@@ -210,21 +210,18 @@ export default {
       }
     }
   }
-
-  @include tablet {
-    form.normal {
-      display: block;
-      text-align: center;
-    }
-  }
-  @include phone {
-    form.nomral {
-      flex: 1;
-      border-radius: 0;
-      text-align: center;
-      padding: 0.25rem 0;
-      display: block;
-    }
+  form.normal {
+    @include tablet {
+        display: block;
+        text-align: center;
+      }
+    @include phone {
+        flex: 1;
+        border-radius: 0;
+        text-align: center;
+        padding: 0.25rem 0;
+        display: block;
+      }
   }
 
   form.minimal {
