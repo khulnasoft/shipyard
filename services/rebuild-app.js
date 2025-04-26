@@ -17,11 +17,11 @@ module.exports = () => new Promise((resolve, reject) => {
 
   // Handle errors, by sending the reject
   buildProcess.on('error', (error) => {
-    reject(Error({
+    reject({
       success: false,
       error,
       output,
-    }));
+    });
   });
 
   // When finished, check success, make message and resolve response
