@@ -2,7 +2,7 @@ import axios from 'axios';
 import sha256 from 'crypto-js/sha256';
 import ConfigAccumulator from '@/utils/ConfigAccumalator';
 import { cookieKeys, localStorageKeys, serviceEndpoints } from '@/utils/defaults';
-import { InfoHandler, ErrorHandler, InfoKeys } from '@/utils/ErrorHandler';
+import { InfoHandler, ErrorHandler, InfoKeys, WarningInfoHandler } from '@/utils/ErrorHandler';
 import { logout as authLogout } from '@/utils/Auth';
 
 const getAppConfig = () => {
@@ -43,7 +43,7 @@ class HeaderAuth {
               }
             });
           } catch (e) {
-            ErrorHandler('Error while trying to login using header authentication', e);
+            WarningInfoHandler('Error while trying to login using header authentication', e);
             reject(e);
           }
         }
