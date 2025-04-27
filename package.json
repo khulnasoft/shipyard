@@ -18,7 +18,7 @@
     "dependency-audit": "npx improved-yarn-audit --ignore-dev-deps"
   },
   "dependencies": {
-    "@babel/core": "^7.0.0",
+    "@babel/core": "^7.26.10",
     "@formschema/native": "^2.0.0-beta.6",
     "@sentry/tracing": "^7.102.1",
     "@sentry/vue": "^7.102.1",
@@ -43,12 +43,12 @@
     "simple-icons": "^12.2.0",
     "v-jsoneditor": "^1.4.5",
     "v-tooltip": "^2.1.3",
-    "vue": "^2.7.0",
+    "vue": "^3.0.0",
     "vue-i18n": "^8.27.2",
     "vue-js-modal": "^2.0.1",
     "vue-json-tree-view": "^2.1.6",
     "vue-material-tabs": "0.1.5",
-    "vue-router": "^3.5.3",
+    "vue-router": "^4.5.0",
     "vue-select": "^3.20.2",
     "vue-swatches": "^2.1.1",
     "vue-toasted": "^1.1.28",
