@@ -3,7 +3,7 @@
 
 # Commands to start on workspace startup
 tasks:
-  - init: yarn install --ignore-engines
+  - init: yarn install --ignore-engines --immutable --no-cache --network-timeout 300000 --network-concurrency 1
     command: yarn dev
 # Ports to expose on workspace startup
 ports:

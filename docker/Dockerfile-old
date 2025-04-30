@@ -13,7 +13,7 @@ COPY package*.json ./
 COPY yarn.lock ./
 
 # Install project dependencies
-RUN yarn
+RUN yarn install --ignore-engines --immutable --no-cache --network-timeout 300000 --network-concurrency 1
 
 # Copy over all project files and folders to the working directory
 COPY . .
