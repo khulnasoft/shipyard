@@ -15,19 +15,29 @@ export default class ArrowKeyNavigation {
   /* Figures out which element is next, based on the key pressed *
    * current index and total number of items. Then calls focus function */
   arrowNavigation(key) {
-    if (this.index === undefined) this.index = 0; // Start at beginning
-    else if (key === 37) { // Left --> Previous
-      this.index -= 1;
-    } else if (key === 38) { // Up --> Previous
-      this.index = ArrowKeyNavigation.goToPrevious(this.index);
-    } else if (key === 39) { // Right --> Next
-      this.index += 1;
-    } else if (key === 40) { // Down --> Next
-      this.index = ArrowKeyNavigation.goToNext(this.index);
+    try {
+      if (this.index === undefined) this.index = 0; // Start at beginning
+      else if (key === 37) { // Left --> Previous
+        this.index -= 1;
+      } else if (key === 38) { // Up --> Previous
+        this.index = ArrowKeyNavigation.goToPrevious(this.index);
+      } else if (key === 39) { // Right --> Next
+        this.index += 1;
+      } else if (key === 40) { // Down --> Next
+        this.index = ArrowKeyNavigation.goToNext(this.index);
+      }
+
+      // Ensure the index is within bounds, then focus element
+      this.index = ArrowKeyNavigation.getSafeElementIndex(this.index);
+      const element = ArrowKeyNavigation.selectItemByIndex(this.index);
+      if (element) {
+        element.focus();
+      } else {
+        throw new Error('Element not found');
+      }
+    } catch (error) {
+      console.error('Error navigating with arrow keys:', error);
     }
-    /* Ensure the index is within bounds, then focus element */
-    this.index = ArrowKeyNavigation.getSafeElementIndex(this.index);
-    ArrowKeyNavigation.selectItemByIndex(this.index).focus();
   }
 
   /* Returns the number of visible items / results */
