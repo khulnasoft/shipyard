@@ -1,14 +1,14 @@
 <template>
-  <div class="work-space">
+  <div class="workspace">
     <SideBar
       :sections="sections"
       @launch-app="launchApp"
       @launch-widget="launchWidget"
-      :initUrl="getInitialUrl()"
+      :initUrl="initialUrl"
     />
-    <WebContent :url="url" v-if="!isMultiTaskingEnabled" />
-    <MultiTaskingWebComtent :url="url" v-else />
-    <WidgetView :widgets="widgets" v-if="widgets" />
+    <WebContent v-if="!isMultiTaskingEnabled" :url="url" />
+    <MultiTaskingWebContent v-else :url="url" />
+    <WidgetView v-if="widgets" :widgets="widgets" />
   </div>
 </template>
 
@@ -17,16 +17,24 @@ import HomeMixin from '@/mixins/HomeMixin';
 import SideBar from '@/components/Workspace/SideBar';
 import WebContent from '@/components/Workspace/WebContent';
 import WidgetView from '@/components/Workspace/WidgetView';
-import MultiTaskingWebComtent from '@/components/Workspace/MultiTaskingWebComtent';
+import MultiTaskingWebContent from '@/components/Workspace/MultiTaskingWebContent';
 import Defaults from '@/utils/defaults';
 
 export default {
   name: 'Workspace',
   mixins: [HomeMixin],
-  data: () => ({
-    url: '',
-    widgets: null,
-  }),
+  components: {
+    SideBar,
+    WebContent,
+    WidgetView,
+    MultiTaskingWebContent,
+  },
+  data() {
+    return {
+      url: '',
+      widgets: null,
+    };
+  },
   computed: {
     sections() {
       return this.$store.getters.sections;
@@ -35,57 +43,53 @@ export default {
       return this.$store.getters.appConfig;
     },
     isMultiTaskingEnabled() {
-      return this.appConfig.enableMultiTasking || false;
+      return Boolean(this.appConfig.enableMultiTasking);
+    },
+    initialUrl() {
+      const route = this.$route;
+      if (route.query?.url) return decodeURI(route.query.url);
+      if (this.appConfig.workspaceLandingUrl) return this.appConfig.workspaceLandingUrl;
+      return '';
     },
   },
-  components: {
-    SideBar,
-    WebContent,
-    WidgetView,
-    MultiTaskingWebComtent,
-  },
   methods: {
-    launchApp(options) {
-      if (options.target === 'newtab') {
-        window.open(options.url, '_blank');
+    launchApp({ target, url }) {
+      if (target === 'newtab') {
+        window.open(url, '_blank');
       } else {
-        this.url = options.url;
+        this.url = url;
+        this.widgets = null;
       }
-      this.widgets = null;
     },
     launchWidget(widgets) {
       this.url = '';
       this.widgets = widgets;
     },
     initiateFontAwesome() {
-      const fontAwesomeScript = document.createElement('script');
+      if (document.querySelector('script[data-fontawesome]')) return;
       const faKey = this.appConfig.fontAwesomeKey || Defaults.fontAwesomeKey;
+      if (!faKey) return;
+      const fontAwesomeScript = document.createElement('script');
       fontAwesomeScript.setAttribute('src', `https://kit.fontawesome.com/${faKey}.js`);
+      fontAwesomeScript.setAttribute('crossorigin', 'anonymous');
+      fontAwesomeScript.setAttribute('data-fontawesome', 'true');
       document.head.appendChild(fontAwesomeScript);
-    },
-    /* Returns a service URL, if set as a URL param, or if user has specified landing URL */
-    getInitialUrl() {
-      const route = this.$route;
-      if (route.query && route.query.url) {
-        return decodeURI(route.query.url);
-      } else if (this.appConfig.workspaceLandingUrl) {
-        return this.appConfig.workspaceLandingUrl;
-      }
-      return undefined;
     },
   },
   mounted() {
     this.setTheme();
     this.initiateFontAwesome();
-    this.url = this.getInitialUrl();
+    this.url = this.initialUrl;
   },
 };
-
 </script>
 
 <style scoped lang="scss">
-.work-space {
+.workspace {
   min-height: fit-content;
+  display: flex;
+  flex-direction: row;
+  width: 100%;
 }
 :global(footer) {
   display: none;
