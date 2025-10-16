@@ -196,7 +196,7 @@
       "required": ["title", "path"],
       "properties": {
         "title": { "type": "string" },
-        "path": { "type": "string" },
+        "path": { "type": "string", "pattern": "^(https?:\\/\\/|\\/)\\S+" },
         "target": { "type": "string", "enum": ["newtab", "sametab", "parent", "top"], "default": "newtab" }
       }
     },
