@@ -320,8 +320,8 @@ module.exports = {
   searchBangs: SEARCH_BANGS,
 
   // Sentry Error Reporting
-  sentryDsn: 'https://aaa4ed4a149337116b76e5207454f839@o4509829959778304.ingest.de.sentry.io/4509839295643728',
-
+  // Intentionally empty; set via environment/config to opt-in
+  sentryDsn: '',
   // User Auth State Enum
   userStateEnum: USER_STATE_ENUM,
 
