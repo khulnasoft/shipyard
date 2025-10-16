@@ -67,7 +67,8 @@ export default {
     },
     initiateFontAwesome() {
       if (document.querySelector('script[data-fontawesome]')) return;
-      const faKey = this.appConfig.fontAwesomeKey || Defaults.fontAwesomeKey;
+      if (!this.appConfig?.enableFontAwesome) return;
+      const faKey = this.appConfig.fontAwesomeKey;
       if (!faKey) return;
       const fontAwesomeScript = document.createElement('script');
       fontAwesomeScript.setAttribute('src', `https://kit.fontawesome.com/${faKey}.js`);
