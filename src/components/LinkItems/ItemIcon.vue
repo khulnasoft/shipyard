@@ -87,14 +87,12 @@ function customAuthorizer(username, password) {
   const sha256 = input => crypto.createHash('sha256').update(input).digest('hex').toUpperCase();
   const generateUserToken = user => {
     if (!user.user || (!user.hash && !user.password)) return '';
-    const passwordHash = user.hash || sha256(process.env[user.password]);
+    const envVal = user.password ? process.env[user.password] : undefined;
+    const passwordHash = user.hash || (envVal ? sha256(envVal) : '');
     return sha256(user.user.toUpperCase() + passwordHash.toUpperCase());
   };
   const users = loadUserConfig();
-  if (password.startsWith('Bearer ')) {
-    const token = password.slice('Bearer '.length);
-    return users.some(user => generateUserToken(user) === token);
-  } else {
+  {
     const userHash = sha256(password);
     return users.some(user =>
       user.user.toLowerCase() === username.toLowerCase() &&
