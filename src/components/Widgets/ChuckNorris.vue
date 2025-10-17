@@ -49,7 +49,7 @@ export default {
     },
     /* Assign data variables to the returned data */
     processData(data) {
-        this.chuckNorrisLine = data.value;
+        this.chuckNorrisLine = data?.value || 'No joke available';
     },
   },
 };
