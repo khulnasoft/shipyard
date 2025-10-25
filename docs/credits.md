@@ -11,13 +11,6 @@
 <table>
 <tr>
     <td align="center">
-        <a href="https://github.com/NxPKG">
-            <img src="https://avatars.githubusercontent.com/u/116948796?v=4" width="80;" alt="NxPKG"/>
-            <br />
-            <sub><b>Null</b></sub>
-        </a>
-    </td>
-    <td align="center">
         <a href="https://github.com/khulnasoft-bot">
             <img src="https://avatars.githubusercontent.com/u/43526132?v=4" width="80;" alt="khulnasoft-bot"/>
             <br />
@@ -29,13 +22,6 @@
             <img src="https://avatars.githubusercontent.com/u/161459699?v=4" width="80;" alt="FortiShield"/>
             <br />
             <sub><b>FortiShield</b></sub>
-        </a>
-    </td>
-    <td align="center">
-        <a href="https://github.com/gitworkflows">
-            <img src="https://avatars.githubusercontent.com/u/118260833?v=4" width="80;" alt="gitworkflows"/>
-            <br />
-            <sub><b>Null</b></sub>
         </a>
     </td></tr>
 </table>
@@ -127,6 +113,13 @@
             <img src="https://avatars.githubusercontent.com/u/42072939?v=4" width="80;" alt="muse-dev"/>
             <br />
             <sub><b>MuseDev</b></sub>
+        </a>
+    </td>
+    <td align="center">
+        <a href="https://github.com/dependabot[bot]">
+            <img src="https://avatars.githubusercontent.com/in/29110?v=4" width="80;" alt="dependabot[bot]"/>
+            <br />
+            <sub><b>dependabot[bot]</b></sub>
         </a>
     </td></tr>
 </table>
