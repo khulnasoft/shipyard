@@ -2,14 +2,14 @@
 <div class="mvg-wrapper" v-if="departures">
   <template
     v-for="departure in departures"
-    :key="departure.key"
   >
-    <div class="departure" v-tooltip="mvgTooltipDeparture(departure)">
+    <div class="departure" v-bind:key="departure.key" v-tooltip="mvgTooltipDeparture(departure)">
       <span :class="{live: departure.live}">
         {{ departure.realtimeDepartureTime | formatDepartureTime }}
       </span>
     </div>
     <div class='line'
+      v-bind:key="departure.key + 'line'"
       >
       <div
         class="transport"
