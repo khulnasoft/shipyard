@@ -2,14 +2,14 @@
 <div class="health-checks-wrapper" v-if="crons">
   <template
     v-for="cron in crons"
-    :key="cron.id"
   >
-    <div class="status">
+    <div class="status" v-bind:key="cron.id + 'status'">
       <p :class="cron.status">{{ cron.status | formatStatus }}</p>
     </div>
     <div
       class="info"
       v-tooltip="pingTimeTooltip(cron)"
+      v-bind:key="cron.id + 'info'"
     >
       <p class="cron-name">{{ cron.name }}</p>
       <p class="cron-desc">{{ cron.desc }}</p>
