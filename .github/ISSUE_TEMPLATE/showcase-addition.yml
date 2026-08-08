@@ -3,7 +3,7 @@ description: Share a screenshot of your dashboard to the Readme showcase!
 title: '[SHOWCASE] <title>'
 labels: ['💯 Showcase']
 assignees:
-  - khulnasoft
+  - khulnasoft-bot
   - NxPkg
 
 body:

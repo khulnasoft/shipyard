@@ -3,7 +3,7 @@ description: Got a question about Shipyard, deployment, development or usage?
 title: '[QUESTION] <title>'
 labels: ['🤷‍♂️ Question']
 assignees:
-  - NxPkg
+  - khulnasoft-bot
 
 body:
   # Filed 1 - Intro Text

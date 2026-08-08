@@ -1,161 +1,185 @@
 <template>
-<div class="pi-hole-stats-wrapper">
-  <!-- Current Status -->
-  <div v-if="status" class="status">
-    <span class="status-lbl">{{ $t('widgets.pi-hole.status-heading') }}:</span>
-    <span :class="`status-val ${getStatusColor(status)}`">{{ status | capitalize }}</span>
+<div class="flight-wrapper">
+  <!-- Info -->
+  <p class="flight-intro">
+    Live {{ direction !== 'both' ? direction: 'flight' }} data from {{ airport }}
+  </p>
+  <!-- Departures -->
+  <div v-if="direction !== 'arrival' && departures.length > 0" class="flight-group">
+    <h3 class="flight-type-subtitle" v-if="direction === 'both'">
+      {{ $t('widgets.flight-data.departures') }}
+    </h3>
+    <div v-for="flight in departures" :key="flight.number" class="flight" v-tooltip="tip(flight)">
+      <p class="info flight-time">{{ flight.time | formatDate }}</p>
+      <p class="info flight-number">{{ flight.number }}</p>
+      <p class="info flight-airport">{{ flight.airport }}</p>
+    </div>
   </div>
-  <!-- Block Pie Chart -->
-  <p :id="chartId" class="block-pie"></p>
-  <!-- More Data -->
-  <div v-if="dataTable" class="data-table">
-    <div class="data-table-row" v-for="(row, inx) in dataTable" :key="inx" >
-      <p class="row-label">{{ row.lbl }}</p>
-      <p class="row-value">{{ row.val }}</p>
+  <!-- Arrivals -->
+  <div v-if="direction !== 'departure' && arrivals.length > 0" class="flight-group">
+    <h3 class="flight-type-subtitle" v-if="direction === 'both'">
+      {{ $t('widgets.flight-data.arrivals') }}
+    </h3>
+    <div v-for="flight in arrivals" :key="flight.number" class="flight" v-tooltip="tip(flight)">
+      <p class="info flight-time">{{ flight.time | formatDate }}</p>
+      <p class="info flight-number">{{ flight.number }}</p>
+      <p class="info flight-airport">{{ flight.airport }}</p>
     </div>
   </div>
 </div>
 </template>
 
 <script>
-// import axios from 'axios';
+import axios from 'axios';
 import WidgetMixin from '@/mixins/WidgetMixin';
-import ChartingMixin from '@/mixins/ChartingMixin';
-import { capitalize } from '@/utils/MiscHelpers';
+import { widgetApiEndpoints } from '@/utils/defaults';
 
 export default {
-  mixins: [WidgetMixin, ChartingMixin],
+  mixins: [WidgetMixin],
   components: {},
   data() {
     return {
-      status: null,
-      dataTable: null,
-      blockPercentChart: null,
+      departures: [],
+      arrivals: [],
     };
   },
+  filters: {
+    formatDate(date) {
+      const d = new Date(date);
+      if (Number.isNaN(d.getHours())) return '[UNKNOWN]';
+      return `${d.getHours()}:${d.getMinutes()}:${d.getSeconds()}`;
+    },
+  },
   computed: {
-    /* Let user select which comic to display: random, latest or a specific number */
-    hostname() {
-      const usersChoice = this.parseAsEnvVar(this.options.hostname);
-      if (!usersChoice) this.error('You must specify the hostname for your Pi-Hole server');
-      return usersChoice || 'http://pi.hole';
+    /* The users desired airport, specified as a 4-digit ICAO-code */
+    airport() {
+      const usersChoice = this.options.airport;
+      if (!usersChoice) {
+        this.error('A valid airport must be specified');
+        return '';
+      }
+      const formattedAirport = usersChoice.toUpperCase().trim();
+      if (!(/[A-Z]{4}/).test(formattedAirport)) {
+        this.error('Incorrect airport format, must be a valid 4-digit ICAO-code');
+        return '';
+      }
+      return formattedAirport;
     },
     apiKey() {
-      const usersChoice = this.parseAsEnvVar(this.options.apiKey);
-      if (!usersChoice) this.error('API Key is required, please see the docs');
-      return usersChoice;
+      const usersChoice = this.options.apiKey;
+      if (!usersChoice) {
+        this.error('An API key must be supplied');
+        return '';
+      }
+      return this.parseAsEnvVar(usersChoice);
+    },
+    /* The direction of flights: Arrival, Departure or Both */
+    direction() {
+      const usersChoice = this.options.direction;
+      if (!usersChoice || typeof usersChoice !== 'string') return 'both';
+      const options = ['arrival', 'departure', 'both'];
+      if (options.includes(usersChoice.toLowerCase())) return usersChoice;
+      return 'both';
+    },
+    limit() {
+      const usersChoice = this.options.limit;
+      if (usersChoice) return usersChoice;
+      return 8;
+    },
+    /* The starting date, right now, in ISO String format */
+    fromDate() {
+      const now = new Date();
+      return new Date(`${now.toString().split('GMT')[0]} UTC`).toISOString().split('.')[0];
+    },
+    /* The ending date, 12 hours from now, in ISO string format */
+    toDate() {
+      const now = new Date(new Date().setSeconds(0));
+      const tomorrow = new Date(new Date(now).setHours(now.getHours() + 12));
+      return new Date(`${tomorrow.toString().split('GMT')[0]} UTC`).toISOString().split('.')[0];
     },
     endpoint() {
-      return `${this.hostname}/admin/api.php?summary&auth=${this.apiKey}`;
-    },
-    hideStatus() { return this.options.hideStatus; },
-    hideChart() { return this.options.hideChart; },
-    hideInfo() { return this.options.hideInfo; },
-  },
-  filters: {
-    capitalize(str) {
-      return capitalize(str);
+      return `${widgetApiEndpoints.flights}${this.airport}/${this.fromDate}/${this.toDate}`;
     },
   },
   methods: {
-    /* Make GET request to local pi-hole instance */
+    /* Make GET request to CoinGecko API endpoint */
     fetchData() {
-      this.makeRequest(this.endpoint)
+      const requestConfig = {
+        method: 'GET',
+        url: this.endpoint,
+        params: {
+          withCargo: 'true',
+          withPrivate: 'true',
+          withLocation: 'false',
+        },
+        headers: {
+          'x-rapidapi-host': 'aerodatabox.p.rapidapi.com',
+          'x-rapidapi-key': this.apiKey,
+        },
+      };
+      axios.request(requestConfig)
         .then((response) => {
-          if (Array.isArray(response)) {
-            this.error('Got success, but found no results, possible authorization error');
-          } else {
-            this.processData(response);
-          }
+          this.processData(response.data);
+        }).catch((error) => {
+          this.error('Unable to fetch flight data', error);
+        }).finally(() => {
+          this.finishLoading();
         });
     },
     /* Assign data variables to the returned data */
     processData(data) {
-      if (!this.hideStatus) {
-        this.status = data.status;
-      }
-      if (!this.hideInfo) {
-        this.dataTable = [
-          { lbl: 'Active Clients', val: `${data.unique_clients}/${data.clients_ever_seen}` },
-          { lbl: 'Ads Blocked Today', val: data.ads_blocked_today },
-          { lbl: 'DNS Queries Today', val: data.dns_queries_today },
-          { lbl: 'Total DNS Queries', val: data.dns_queries_all_types },
-          { lbl: 'Domains on Block List', val: data.domains_being_blocked },
-        ];
-      }
-      if (!this.hideChart) {
-        const blockedToday = Math.round(data.ads_percentage_today);
-        this.generateBlockPie(blockedToday);
-      }
+      this.arrivals = this.makeFlightList(data.arrivals).slice(0, this.limit);
+      this.departures = this.makeFlightList(data.departures).slice(0, this.limit);
     },
-    getStatusColor(status) {
-      if (status === 'enabled') return 'green';
-      if (status === 'disabled') return 'red';
-      else return 'blue';
-    },
-    /* Generate pie chart showing the proportion of queries blocked */
-    generateBlockPie(blockedToday) {
-      const chartData = {
-        labels: ['Blocked', 'Allowed'],
-        datasets: [{
-          values: [blockedToday, 100 - blockedToday],
-        }],
-      };
-      return new this.Chart(`#${this.chartId}`, {
-        title: 'Block Percent',
-        data: chartData,
-        type: 'donut',
-        height: 250,
-        strokeWidth: 18,
-        colors: ['#f80363', '#20e253'],
-        tooltipOptions: {
-          formatTooltipY: d => `${Math.round(d)}%`,
-        },
+    /* Gets the useful flight info out of departures or arrivals */
+    makeFlightList(flights) {
+      const results = [];
+      flights.forEach((flight) => {
+        results.push({
+          number: flight.number,
+          airline: flight.airline?.name ?? 'unknown airline',
+          aircraft: flight.aircraft?.model ?? 'unknown aircraft',
+          airport: flight.movement?.airport?.name ?? 'unknown airport',
+          time: flight.movement
+            ? (flight.movement?.revisedTime?.local ?? flight.movement?.scheduledTime?.local ?? 'unknown time')
+            : 'unknown time',
+        });
       });
+      return results;
+    },
+    tip(flight) {
+      const content = `${flight.aircraft} | ${flight.airline}`;
+      return {
+        content, trigger: 'hover focus', delay: 250, classes: 'in-modal-tt',
+      };
     },
   },
 };
 </script>
 
 <style scoped lang="scss">
-.pi-hole-stats-wrapper {
-  display: flex;
-  flex-direction: column;
-  .status {
-    margin: 0.5rem 0;
-    .status-lbl {
-      color: var(--widget-text-color);
-      font-weight: bold;
-    }
-    .status-val {
-      margin-left: 0.5rem;
-      font-family: var(--font-monospace);
-      &.green { color: var(--success); }
-      &.red { color: var(--danger); }
-      &.blue { color: var(--info); }
-    }
+.flight-wrapper {
+  p.flight-intro {
+    margin: 0 0 0.5rem 0;
+    font-size: 1rem;
+    color: var(--widget-text-color);
+    opacity: var(--dimming-factor);
   }
-  img.block-percent-chart {
-    margin: 0.5rem auto;
-    max-width: 8rem;
-    width: 100%;
+  h3.flight-type-subtitle {
+    margin: 0.25rem 0;
+    font-size: 1.2rem;
+    color: var(--widget-text-color);
   }
-  .block-pie {
-    margin: 0;
-  }
-  .data-table {
-    display: flex;
-    flex-direction: column;
-    .data-table-row {
+ .flight-group {
+    .flight {
       display: flex;
+      flex-direction: row;
       justify-content: space-between;
-      p {
-        margin: 0.2rem 0;
+      padding: 0.25rem 0;
+      p.info {
+        margin: 0;
+        min-width: 33%;
         color: var(--widget-text-color);
-        font-size: 0.9rem;
-        &.row-value {
-          font-family: var(--font-monospace);
-        }
       }
       &:not(:last-child) {
         border-bottom: 1px dashed var(--widget-text-color);

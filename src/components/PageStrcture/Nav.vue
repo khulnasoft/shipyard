@@ -8,13 +8,13 @@
         <!-- Render either router-link or anchor, depending if internal / external link -->
         <template v-for="(link, index) in allLinks">
           <router-link v-if="!isUrl(link.path)"
-            :key="index"
+            :key="`router-link-${index}`"
             :to="link.path"
             class="nav-item"
           >{{link.title}}
           </router-link>
           <a v-else
-            :key="index"
+            :key="`a-${index}`"
             :href="link.path"
             :target="determineTarget(link)"
             class="nav-item"
