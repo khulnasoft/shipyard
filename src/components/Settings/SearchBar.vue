@@ -175,8 +175,9 @@ export default {
     display: flex;
     align-items: center;
     border-radius: 0 0 var(--curve-factor-navbar) 0;
-    padding: 0 0.2rem 0.2rem 0;
+    padding: .5rem var(--space-page) .5rem 0;
     background: var(--search-container-background);
+    border-bottom: 1px solid var(--border-subtle, var(--outline-color));
     .search-wrap {
       display: flex;
       flex-direction: column;
