@@ -80,9 +80,17 @@ const makeRequest = (url, options, render) => {
     });
 };
 
+/* Decodes a URI param safely, returning a fallback value if decoding fails */
+const safeDecode = (value, fallback) => {
+  if (!value) return fallback;
+  try {
+    return decodeURIComponent(value);
+  } catch (e) { /* Malformed percent-encoding, use fallback */ return fallback; }
+};
+
 const decodeHeaders = (maybeHeaders) => {
   if (!maybeHeaders) return {};
-  const decodedHeaders = decodeURIComponent(maybeHeaders);
+  const decodedHeaders = safeDecode(maybeHeaders, '');
   let parsedHeaders = {};
   try {
     parsedHeaders = JSON.parse(decodedHeaders);
@@ -105,12 +113,14 @@ module.exports = (paramStr, render) => {
   } else {
     // Prepare the parameters, which are got from the URL
     const params = new URLSearchParams(paramStr);
-    const url = decodeURIComponent(params.get('url'));
-    const acceptCodes = decodeURIComponent(params.get('acceptCodes'));
-    const maxRedirects = decodeURIComponent(params.get('maxRedirects')) || 0;
+    const url = safeDecode(params.get('url'), undefined);
+    const acceptCodes = safeDecode(params.get('acceptCodes'), null);
+    const maxRedirectsParam = params.get('maxRedirects');
+    const maxRedirects = maxRedirectsParam
+      ? parseInt(safeDecode(maxRedirectsParam, ''), 10) || 0 : 0;
     const headers = decodeHeaders(params.get('headers'));
     const enableInsecure = !!params.get('enableInsecure');
-    if (!url || url === 'undefined') immediateError(render);
+    if (!url || url === 'undefined') return immediateError(render);
     const options = {
       headers, enableInsecure, acceptCodes, maxRedirects,
     };
