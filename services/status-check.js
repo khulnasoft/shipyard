@@ -107,10 +107,11 @@ module.exports = (paramStr, render) => {
     const params = new URLSearchParams(paramStr);
     const url = decodeURIComponent(params.get('url'));
     const acceptCodes = decodeURIComponent(params.get('acceptCodes'));
-    const maxRedirects = decodeURIComponent(params.get('maxRedirects')) || 0;
+    const maxRedirectsParam = params.get('maxRedirects');
+    const maxRedirects = maxRedirectsParam ? parseInt(decodeURIComponent(maxRedirectsParam), 10) || 0 : 0;
     const headers = decodeHeaders(params.get('headers'));
     const enableInsecure = !!params.get('enableInsecure');
-    if (!url || url === 'undefined') immediateError(render);
+    if (!url || url === 'undefined') return immediateError(render);
     const options = {
       headers, enableInsecure, acceptCodes, maxRedirects,
     };

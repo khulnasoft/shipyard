@@ -16,13 +16,13 @@ exports.handler = (event, context, callback) => {
   };
   // If URL missing, return error
   if (!requestUrl) {
-    returnError('Missing Target-URL header', null);
+    return returnError('Missing Target-URL header', null);
   }
 
   let custom = {};
   try {
     custom = JSON.parse(headers.CustomHeaders || headers.customheaders || '{}');
-  } catch (e) { returnError('Unable to parse custom headers'); }
+  } catch (e) { return returnError('Unable to parse custom headers'); }
 
   // Response headers
   const requestHeaders = {
