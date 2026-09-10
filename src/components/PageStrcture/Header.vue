@@ -47,14 +47,22 @@ export default {
 
   header {
     margin: 0;
-    padding: 0.5rem;
+    min-height: var(--topbar-height);
+    padding: .75rem var(--space-page);
     display: flex;
     justify-content: space-between;
+    gap: 1rem;
     background: var(--background-darker);
+    border-bottom: 1px solid var(--border-subtle, var(--outline-color));
     align-items: center;
     align-content: flex-start;
+    position: relative;
+    z-index: 5;
     @include phone {
+      min-height: auto;
+      padding: .75rem 1rem;
       flex-direction: column-reverse;
+      align-items: stretch;
     }
   }
 </style>

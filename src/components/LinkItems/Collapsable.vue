@@ -167,9 +167,10 @@ export default {
   width: 100%;
   width: stretch;
   height: fit-content;
-  margin: 10px;
+  margin: 0;
   padding: var(--item-group-padding);
-  border-radius: var(--curve-factor);
+  border-radius: var(--radius-panel, var(--curve-factor));
+  border: 1px solid var(--border-subtle, var(--outline-color));
   box-shadow: var(--item-group-shadow);
   background: var(--item-group-outer-background);
 
