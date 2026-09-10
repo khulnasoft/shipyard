@@ -59,6 +59,44 @@ html {
 [v-cloak] > * { display:none }
 [v-cloak]::before { content: "loading…" }
 
+/* Shipyard command-center visual layer. Legacy selectors remain intact above. */
+body {
+  background:
+    radial-gradient(circle at 58% -12%, rgba(34, 111, 190, .24), transparent 38rem),
+    linear-gradient(135deg, var(--background) 0%, #040b17 72%);
+  font-family: "Inter", "Segoe UI", sans-serif;
+}
+
+#shipyard {
+  min-height: 100vh;
+  background: transparent;
+}
+
+.page-titles h1,
+header h1 {
+  letter-spacing: -.025em;
+}
+
+button, input, select, textarea {
+  font: inherit;
+}
+
+button:disabled,
+[aria-disabled='true'] {
+  cursor: not-allowed;
+  opacity: .58;
+}
+
+.scroll-bar::-webkit-scrollbar { width: 7px; height: 7px; }
+.scroll-bar::-webkit-scrollbar-track { background: rgba(3, 9, 20, .6); }
+.scroll-bar::-webkit-scrollbar-thumb {
+  background: rgba(86, 168, 255, .34);
+  border: 2px solid transparent;
+  border-radius: 999px;
+  background-clip: padding-box;
+}
+
+
 /* Overriding styles for the modal component */
 .vm--modal, .shipyard-modal {
   box-shadow: 0 40px 70px -2px hsl(0deg 0% 0% / 60%), 1px 1px 6px var(--primary) !important;

@@ -241,9 +241,9 @@ export default {
   color: var(--item-text-color);
   vertical-align: middle;
   margin: 0;
-  background: var(--item-background);
-  text-align: center;
-  padding: .75rem;
+  background: linear-gradient(135deg, rgba(14, 48, 78, .92), rgba(7, 25, 45, .94));
+  text-align: left;
+  padding: .65rem .75rem;
   outline: 2px solid transparent;
   border: 1px solid var(--outline-color);
   border-radius: var(--radius-panel, var(--curve-factor));
