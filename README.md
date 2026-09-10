@@ -117,14 +117,20 @@ Or
 ```docker
 docker run -d \
   -p 4000:8080 \
-  -v /root/my-local-conf.yml:/app/user-data/conf.yml \
+  -v /path/to/your/user-data:/app/user-data \
   --name my-dashboard \
   --restart=always \
   khulnasoft/shipyard:latest
 ```
 [![Shipyard on Docker Hub](https://dockeri.co/image/khulnasoft/shipyard)](https://hub.docker.com/r/khulnasoft/shipyard)
 
-See also: [examples with Docker Compose](./docs/deployment.md#using-docker-compose). Shipyard is also available via GHCR, and tags for other architectures (`arm32v7`, `arm64v8`, etc.) and set versions are supported
+The mounted `/app/user-data` directory **must** contain at least a `conf.yml`.
+It can also hold sub-config files, item icons, fonts, custom CSS, or anything else you want served from the web root.
+
+Shipyard is also available via GHCR (`ghcr.io/khulnasoft/shipyard`).
+To use with compose, see our sample [`docker-compose.yml`](https://github.com/khulnasoft/shipyard/blob/master/docker-compose.yml).
+You can either use `:latest` or pin to specific versions (like `4.0.0`).
+All images are multi-arch (works on amd64, arm64, and arm/v7).
 
 > Once you've got Shipyard running, see [App Management Docs](./docs/management.md) for info on using health checks, updating, backups, web-server configs, logs, performance, security, and more.
 
