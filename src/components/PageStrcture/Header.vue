@@ -48,12 +48,13 @@ export default {
   header {
     margin: 0;
     min-height: var(--topbar-height);
-    padding: .75rem var(--space-page);
+    padding: .65rem var(--space-page);
     display: flex;
     justify-content: space-between;
     gap: 1rem;
-    background: var(--background-darker);
+    background: rgba(3, 9, 20, .88);
     border-bottom: 1px solid var(--border-subtle, var(--outline-color));
+    box-shadow: 0 10px 30px rgba(0, 0, 0, .2);
     align-items: center;
     align-content: flex-start;
     position: relative;
