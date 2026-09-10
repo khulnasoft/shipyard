@@ -85,12 +85,14 @@ export default {
 
 .nav-outer {
   nav {
-    display: flex;
+      display: flex;
     align-items: center;
+    gap: .5rem;
     .nav-item {
       display: inline-block;
-      padding: 0.75rem 0.5rem;
-      margin: 0.5rem;
+      padding: 0.625rem 0.75rem;
+      margin: 0;
+
       min-width: 5rem;
       text-align: center;
       outline: none;

@@ -126,9 +126,8 @@ export default {
 .minimal-home {
   display: flex;
   flex-direction: column;
-  margin: 1rem auto;
-  padding-bottom: 1px;
-  padding-top: 10vh;
+  margin: 0 auto;
+  padding: 10vh 1rem 2rem;
   min-height: calc(99vh - var(--footer-height));
   width: 90%;
   max-width: 1000px;

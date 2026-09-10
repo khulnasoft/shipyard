@@ -204,9 +204,14 @@ export default {
 @import '@/styles/style-helpers.scss';
 
 .home {
-  padding-bottom: 1px;
+  padding: 0 var(--space-page) 3rem;
   background: var(--background);
   min-height: calc(99.9vh - var(--footer-height));
+}
+
+.home :deep(.settings-outer) {
+  max-width: var(--content-max-width);
+  margin: 0 auto 1.25rem;
 }
 
 .back-to-all-link {
@@ -222,9 +227,9 @@ export default {
 /* Outside container wrapping the item groups*/
 .item-group-container {
   display: grid;
-  gap: 0.5rem;
+  gap: 1rem;
   margin: 0 auto;
-  max-width: 90%;
+  max-width: var(--content-max-width);
   overflow: auto;
   @extend .scroll-bar;
   @include monitor-up {

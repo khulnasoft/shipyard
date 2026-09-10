@@ -139,7 +139,8 @@ export default {
     display: flex;
     align-items: center;
     align-items: stretch;
-    background: linear-gradient(0deg, var(--background) 0%, var(--background-darker) 100%);
+    background: var(--background-darker);
+    border-bottom: 1px solid var(--border-subtle, var(--outline-color));
     box-shadow: var(--settings-container-shadow);
   }
   .options-outer {

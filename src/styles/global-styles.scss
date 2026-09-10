@@ -6,7 +6,10 @@
 html {
   padding: 0;
   margin: -3px 0 0 0;
-  transition: all 1s;
+  color: var(--text-primary, var(--primary));
+  background: var(--background);
+  transition: background-color .2s ease, color .2s ease;
+
   @extend .scroll-bar;
   @extend .highlight;
   box-sizing: border-box;
@@ -25,7 +28,32 @@ html {
 #shipyard {
   position: relative;
   min-height: 100vh;
+  color: var(--text-primary, var(--primary));
 }
+
+:focus-visible {
+  outline: 2px solid var(--focus-ring, var(--primary));
+  outline-offset: 3px;
+}
+
+::selection {
+  color: var(--highlight-color, var(--background));
+  background: var(--highlight-background, var(--primary));
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    scroll-behavior: auto !important;
+    transition-duration: .01ms !important;
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+  }
+}
+
+@media (max-width: 640px) {
+  html { font-size: .9375rem; }
+}
+
 
 /* Hide text, and show 'Loading...' while Vue is initializing tags */
 [v-cloak] > * { display:none }

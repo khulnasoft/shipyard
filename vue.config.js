@@ -1,23 +1,23 @@
-const path = require('path')
-const CopyWebpackPlugin = require('copy-webpack-plugin')
+const path = require('path');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 
-const mode = process.env.NODE_ENV || 'production'
+const mode = process.env.NODE_ENV || 'production';
 
-process.env.VUE_APP_VERSION = require('./package.json').version
+process.env.VUE_APP_VERSION = require('./package.json').version;
 
-const { pwa } = require('./src/utils/defaults')
+const { pwa } = require('./src/utils/defaults');
 
-const publicPath = process.env.BASE_URL || '/'
-const integrity = process.env.INTEGRITY === 'true'
-const isServer = process.env.IS_DOCKER || process.env.IS_SERVER || false
+const publicPath = process.env.BASE_URL || '/';
+const integrity = process.env.INTEGRITY === 'true';
+const isServer = process.env.IS_DOCKER || process.env.IS_SERVER || false;
 
 const plugins = !isServer
   ? [
-      new CopyWebpackPlugin({
-        patterns: [{ from: './user-data', to: './' }],
-      }),
-    ]
-  : []
+    new CopyWebpackPlugin({
+      patterns: [{ from: './user-data', to: './' }],
+    }),
+  ]
+  : [];
 
 const configureWebpack = {
   devtool: 'source-map',
@@ -47,12 +47,12 @@ const configureWebpack = {
     maxEntrypointSize: 10000000,
     maxAssetSize: 10000000,
   },
-}
+};
 
 const userDataDir = path.join(
   __dirname,
-  process.env.USER_DATA_DIR || 'user-data'
-)
+  process.env.USER_DATA_DIR || 'user-data',
+);
 
 const devServer = {
   static: {
@@ -61,14 +61,14 @@ const devServer = {
   watchFiles: {
     paths: [userDataDir],
   },
-}
+};
 
 const pages = {
   index: {
     entry: 'src/main.js',
     filename: 'index.html',
   },
-}
+};
 
 module.exports = {
   publicPath,
@@ -80,14 +80,17 @@ module.exports = {
 
   chainWebpack: config => {
     config.plugin('eslint').tap(options => {
-      if (options[0] && typeof options[0] === 'object' && options[0].extensions) {
-        delete options[0].extensions
+      const eslintOptions = options[0] && typeof options[0] === 'object'
+        ? { ...options[0] }
+        : options[0];
+      if (eslintOptions && eslintOptions.extensions) {
+        delete eslintOptions.extensions;
       }
-      return options
-    })
+      return [eslintOptions, ...options.slice(1)];
+    });
 
     config.cache({
       type: 'filesystem',
-    })
+    });
   },
-}
+};
