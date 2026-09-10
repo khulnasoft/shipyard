@@ -3,11 +3,11 @@ import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
 
-const __dirname = path.dirname(__filename);
+const currentDirectory = path.dirname(__filename);
 
 describe('Healthcheck Service', () => {
   const healthcheckPath = path.resolve(
-    __dirname,
+    currentDirectory,
     '../../services/healthcheck.js',
   );
 

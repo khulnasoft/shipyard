@@ -80,10 +80,13 @@ module.exports = {
 
   chainWebpack: config => {
     config.plugin('eslint').tap(options => {
-      if (options[0] && typeof options[0] === 'object' && options[0].extensions) {
-        delete options[0].extensions;
+      const eslintOptions = options[0] && typeof options[0] === 'object'
+        ? { ...options[0] }
+        : options[0];
+      if (eslintOptions && eslintOptions.extensions) {
+        delete eslintOptions.extensions;
       }
-      return options;
+      return [eslintOptions, ...options.slice(1)];
     });
 
     config.cache({
