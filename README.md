@@ -84,7 +84,7 @@
 
 ## Demo ⚡
 
-**Live Instances**: [Demo 1](https://demo.ship.khulnasoft.com) (Live Demo) ┆ [Demo 2](https://live.ship.khulnasoft.com) (Shipyard Links) ┆ [Demo 3](https://dev.ship.khulnasoft.com) (Dev Preview)
+**Live Instances**: [Demo 1](https://demo.ship.khulnasoft.com) (Live Demo) ┆ [Demo 2](https://live-ship.vercel.app) (Shipyard Links) ┆ [Demo 3](https://dev.ship.khulnasoft.com) (Dev Preview)
 
 **Screenshots**: Checkout the [Showcase](./docs/showcase.md), to see example dashboards from the community
 

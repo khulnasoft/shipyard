@@ -124,7 +124,7 @@
 
 > By [@KhulnaSoft-bot](https://github.com/khulnasoft)
 
-> A dashboard I made to manage all project development links from one place. View demo at [live.ship.khulnasoft.com](https://live.ship.khulnasoft.com/).
+> A dashboard I made to manage all project development links from one place. View demo at [live-ship.vercel.app](https://live-ship.vercel.app/).
 
 ![screenshot-shipyard-live](https://raw.githubusercontent.com/khulnaSoft/shipyard/master/docs/showcase/10-shipyard-live.png)
 
