@@ -1,41 +1,54 @@
 
-:root {
+  :root {
   /* General Variables */
   --outline-color: none;
-  --curve-factor: 5px; // Border radius for most components
-  --curve-factor-navbar: 16px; // Border radius for header
-  --curve-factor-small: 2px; // Subtle border radius for util components
-  --radius-panel: 12px;
-  --radius-control: 7px;
-  --space-page: clamp(1rem, 2vw, 2rem);
+  --curve-factor: 6px; // Border radius for most components
+  --curve-factor-navbar: 12px; // Border radius for header
+  --curve-factor-small: 3px; // Subtle border radius for util components
+  --curve-factor-panel: 8px;
+  --radius-panel: 8px;
+  --radius-control: 6px;
+  --space-page: clamp(0.75rem, 1.5vw, 1.5rem);
   --content-max-width: 1440px;
-  --sidebar-width: 15rem;
-  --topbar-height: 4.25rem;
+  --sidebar-width: 14rem;
+  --topbar-height: 3.5rem;
 
-  --dimming-factor: 0.7; // Opacity for semi-transparent components
+  --dimming-factor: 0.65; // Opacity for semi-transparent components
 
   /* Basic Page Components */
-  --scroll-bar-width: 8px;
-  --header-height: 6.3rem;
-  --footer-height: 128px;
+  --scroll-bar-width: 6px;
+  --header-height: 3.5rem;
+  --footer-height: 2.5rem;
 
   /* Section & Item dimensions */
-  --item-group-padding: 5px; // Determines width of item-group outline
-  --item-shadow: 1px 1px 2px #130f23;
-  --item-hover-shadow: 1px 2px 4px #373737;
-  --item-icon-transform: drop-shadow(2px 4px 6px var(--transparent-50)) saturate(0.95);
-  --item-icon-transform-hover: drop-shadow(4px 8px 3px var(--transparent-50)) saturate(2);
+  --item-group-padding: 4px; // Determines width of item-group outline
+  --item-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+  --item-hover-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+  --item-icon-transform: drop-shadow(1px 2px 4px rgba(0, 0, 0, 0.3)) saturate(0.9);
+  --item-icon-transform-hover: drop-shadow(2px 4px 6px rgba(59, 130, 246, 0.3)) saturate(1.1);
   --item-group-shadow: var(--item-shadow);
   --context-menu-shadow: var(--item-shadow);
   --section-max-height: 3000px;
 
   /* Settings and config menu */
-  --settings-container-shadow: none;
+  --settings-container-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
 
   /* Workspace View */
-  --side-bar-width: 3.5rem; // The width of the sidebar
+  --side-bar-width: 3rem;
 
-  --tooltip-arrow-size: 6px;
-  --tooltip-width: 250px;
-  --tooltip-padding: 0.2rem;
+  --tooltip-arrow-size: 5px;
+  --tooltip-width: 220px;
+  --tooltip-padding: 0.15rem;
+
+  /* Card dimensions */
+  --card-height: auto;
+  --card-padding: 0.5rem 0.75rem;
+  --card-gap: 0.5rem;
+  --card-border-radius: 8px;
+  --card-border-width: 1px;
+  --card-accent-width: 2px;
+
+  /* Design Mode */
+  --design-mode-inspector-width: 300px;
+  --design-mode-toolbar-height: 3rem;
 }
