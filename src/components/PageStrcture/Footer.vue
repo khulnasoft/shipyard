@@ -31,7 +31,7 @@ export default {
         date: `${new Date().getFullYear()}`,
         repoUrl: 'https://github.com/khulnasoft/shipyard',
         repoName: 'KhulnaSoft-bot/Shipyard',
-        projectUrl: 'https://ship.khulnasoft.com',
+        projectUrl: 'https://live-ship.vercel.app',
       },
     };
   },

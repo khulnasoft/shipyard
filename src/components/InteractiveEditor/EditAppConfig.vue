@@ -16,7 +16,7 @@
     </p>
     {{ $t('interactive-editor.edit-app-config.warning-msg-l1') }}
     {{ $t('interactive-editor.edit-app-config.warning-msg-l2') }}
-    <a href="https://ship.khulnasoft.com/docs/configuring#appconfig-optional">
+    <a href="https://live-ship.vercel.app/docs/configuring#appconfig-optional">
       {{ $t('interactive-editor.edit-app-config.warning-msg-docs') }}
     </a>
     {{ $t('interactive-editor.edit-app-config.warning-msg-l3') }}

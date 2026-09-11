@@ -2,7 +2,7 @@
 
 To report a potential vulnerability, follow the steps in **[Security](https://github.com/khulnaSoft/shipyard/blob/master/.github/SECURITY.md#reporting-a-security-issue)**.
 
-For setup and usage guides, see **[ship.khulnasoft.com/docs](https://ship.khulnasoft.com/)** or the **[GitHub](https://github.com/khulnaSoft/shipyard)** repo.
+For setup and usage guides, see **[live-ship.vercel.app/docs](https://live-ship.vercel.app/)** or the **[GitHub](https://github.com/khulnaSoft/shipyard)** repo.
 
 To raise a bug, for something that's not working, **[Open a new Issue](https://github.com/khulnaSoft/shipyard/issues/new/choose)**.
 

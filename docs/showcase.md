@@ -164,7 +164,7 @@
 
 ## Shipyard Example
 
-> An example dashboard, by [@KhulnaSoft-bot](https://github.com/khulnasoft). View live at [demo.ship.khulnasoft.com](https://demo.ship.khulnasoft.com/).
+> An example dashboard, by [@KhulnaSoft-bot](https://github.com/khulnasoft). View live at [demo.live-ship.vercel.app](https://demo.live-ship.vercel.app/).
 
 ![screenshot-shipyard-example](https://i.ibb.co/YbzqPK7/demo-shipyard.png)
 
