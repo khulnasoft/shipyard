@@ -18,7 +18,6 @@ import SideBar from '@/components/Workspace/SideBar';
 import WebContent from '@/components/Workspace/WebContent';
 import WidgetView from '@/components/Workspace/WidgetView';
 import MultiTaskingWebContent from '@/components/Workspace/MultiTaskingWebContent';
-import Defaults from '@/utils/defaults';
 
 export default {
   name: 'Workspace',
@@ -87,10 +86,11 @@ export default {
 
 <style scoped lang="scss">
 .workspace {
-  min-height: fit-content;
+  min-height: calc(100vh - var(--topbar-height, 3.5rem));
   display: flex;
   flex-direction: row;
   width: 100%;
+  background: var(--background);
 }
 :global(footer) {
   display: none;

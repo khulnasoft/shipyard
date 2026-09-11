@@ -1,131 +1,175 @@
 @import '@/styles/media-queries.scss';
 
 :root {
-  /* Basic*/
-  --primary: #5cabca; // Main accent color
-  --background: #0b1021; // Page background
-  --background-darker: #05070e; // Used for navigation bar, footer and fills
+  /* Core Palette - Dark Premium Developer Dashboard */
+  --primary: #3b82f6; // Electric blue
+  --background: #060b1a; // Deep navy/graphite
+  --background-darker: #030710; // Near-black navy
+  --surface-1: #0a1628; // Dark blue-black
+  --surface-2: #0f1f3a; // Slightly brighter navy
+  --surface-3: #152d52; // Blue surface
+  --surface-elevated: #1a2f55; // Elevated surface
+  --text-primary: #e8f0fe; // Near-white
+  --text-secondary: #8ba3c7; // Cool blue-gray
+  --text-muted: #5a7a9e; // Muted blue-gray
+  --border-subtle: #1e3a5f; // Subtle blue border
+  --border-active: #3b82f6; // Active blue border
+  --focus-ring: #60a5fa; // Focus ring
+  --accent-glow: rgba(59, 130, 246, 0.15); // Subtle blue ambient glow
 
   /* Action Colors */
-  --info: #04e4f4;
-  --success: #20e253;
-  --warning: #f6f000;
-  --error: #fca016;
-  --danger: #f80363;
-  --neutral: #272f4d;
+  --info: #06d6e0;
+  --success: #22c55e;
+  --warning: #eab308;
+  --error: #f97316;
+  --danger: #ef4444;
+  --neutral: #2a3a56;
   --white: #fff;
   --black: #000;
 
   /* Modified Colors */
-  --item-group-background: #0b1021cc;
-  --medium-grey: #5e6474;
-  --item-background: #607d8b33;
-  --item-background-hover: #607d8b4d;
+  --item-group-background: #0a1628dd;
+  --medium-grey: #5a6a82;
+  --item-background: #1e3a5f33;
+  --item-background-hover: #1e3a5f55;
 
-  /* Semi-Transparent Black*/
+  /* Semi-Transparent Black */
   --transparent-70: #000000b3;
   --transparent-50: #00000080;
   --transparent-30: #0000004d;
 
-  /* Semi-Transparent White*/
+  /* Semi-Transparent White */
   --transparent-white-70: #ffffffb3;
   --transparent-white-50: #ffffff80;
   --transparent-white-30: #ffffff4d;
   --transparent-white-10: #ffffff0f;
 
-  /* Color variables for specific components
-  * all variables are optional, since they inherit initial values from above*
-  * Using specific variables makes overriding for custom themes really easy */
-  --heading-text-color: var(--primary);
-  // Nav-bar links 
-  --nav-link-text-color: var(--primary);
-  --nav-link-background-color: #607d8b33;
+  /* Color variables for specific components */
+  --heading-text-color: var(--text-primary);
+  --nav-link-text-color: var(--text-secondary);
+  --nav-link-background-color: #0a162899;
   --nav-link-text-color-hover: var(--primary);
-  --nav-link-background-color-hover: #607d8b33;
+  --nav-link-background-color-hover: #1e3a5f88;
   --nav-link-border-color: transparent;
   --nav-link-border-color-hover: var(--primary);
-  --nav-link-shadow: 1px 1px 2px #232323;
-  --nav-link-shadow-hover: 1px 1px 2px #232323;
+  --nav-link-shadow: 1px 1px 2px #00000040;
+  --nav-link-shadow-hover: 1px 1px 2px #00000060;
+
   // Link items and sections
-  --item-text-color: var(--primary);
-  --item-text-color-hover: var(--item-text-color);
-  --item-group-outer-background: var(--primary);
-  --item-group-heading-text-color: var(--item-group-background);
-  --item-group-heading-text-color-hover: var(--background);
+  --item-text-color: var(--text-primary);
+  --item-text-color-hover: var(--primary);
+  --item-group-outer-background: var(--surface-1);
+  --item-group-heading-text-color: var(--text-secondary);
+  --item-group-heading-text-color-hover: var(--primary);
+
   // Homepage settings
-  --settings-text-color: var(--primary);
-  --settings-background: var(--background);
+  --settings-text-color: var(--text-secondary);
+  --settings-background: var(--surface-1);
+
   // Config menu
-  --config-settings-color: var(--primary);
+  --config-settings-color: var(--text-secondary);
   --config-settings-background: var(--background-darker);
-  --config-code-color: var(--background);
-  --config-code-background: var(--white);
-  --code-editor-color: var(--black);
-  --code-editor-background: var(--white);
+  --config-code-color: var(--text-primary);
+  --config-code-background: var(--surface-1);
+  --code-editor-color: var(--text-primary);
+  --code-editor-background: var(--surface-1);
+
   // Widgets
-  --widget-text-color: var(--primary);
-  --widget-background-color: var(--background-darker);
-  --widget-accent-color: var(--background);
+  --widget-text-color: var(--text-secondary);
+  --widget-background-color: var(--surface-1);
+  --widget-accent-color: var(--primary);
   --widget-base-background: transparent;
+
   // Interactive editor
   --interactive-editor-color: var(--primary);
-  --interactive-editor-background: var(--background);
+  --interactive-editor-background: var(--surface-1);
   --interactive-editor-background-darker: var(--background-darker);
-  // Cloud backup/ restore menu
+
+  // Cloud backup/restore menu
   --cloud-backup-color: var(--config-settings-color);
   --cloud-backup-background: var(--config-settings-background);
-  // Search bar (on homepage)
+
+  // Search bar
   --search-container-background: var(--background-darker);
-  --search-field-background: var(--background);
-  --search-label-color: var(--settings-text-color);
+  --search-field-background: var(--surface-1);
+  --search-label-color: var(--text-muted);
+  --search-border-color: var(--border-subtle);
+  --search-focus-border-color: var(--primary);
+
   // Page footer
-  --footer-text-color: var(--medium-grey);
-  --footer-text-color-link:  var(--primary);
+  --footer-text-color: var(--text-muted);
+  --footer-text-color-link: var(--primary);
   --footer-background: var(--background-darker);
+
   // Right-click context menu
-  --context-menu-background: var(--background);
-  --context-menu-color: var(--primary);
-  --context-menu-secondary-color: var(--background-darker);
+  --context-menu-background: var(--surface-2);
+  --context-menu-color: var(--text-primary);
+  --context-menu-secondary-color: var(--surface-1);
+  --context-menu-border: var(--border-subtle);
+
   // Workspace view
   --side-bar-background: var(--background-darker);
-  --side-bar-background-lighter: var(--background);
-  --side-bar-color: var(--primary);
+  --side-bar-background-lighter: var(--surface-1);
+  --side-bar-color: var(--text-secondary);
   --side-bar-item-background: var(--side-bar-background);
   --side-bar-item-color: var(--side-bar-color);
   --workspace-web-content-background: var(--background);
+
   // Minimal view
   --minimal-view-background-color: var(--background);
-  --minimal-view-title-color: var(--primary);
+  --minimal-view-title-color: var(--text-primary);
   --minimal-view-settings-color: var(--primary);
-  --minimal-view-section-heading-color: var(--primary);
-  --minimal-view-section-heading-background: var(--background-darker);
-  --minimal-view-search-background: var(--background-darker);
-  --minimal-view-search-color: var(--primary);
-  --minimal-view-group-color: var(--primary);
-  --minimal-view-group-background: var(--background-darker);
+  --minimal-view-section-heading-color: var(--text-secondary);
+  --minimal-view-section-heading-background: var(--surface-1);
+  --minimal-view-search-background: var(--surface-1);
+  --minimal-view-search-color: var(--text-primary);
+  --minimal-view-group-color: var(--text-secondary);
+  --minimal-view-group-background: var(--surface-1);
+
   // Login page
-  --login-form-color: var(--primary);
+  --login-form-color: var(--text-primary);
   --login-form-background: var(--background);
-  --login-form-background-secondary: var(--background-darker);
+  --login-form-background-secondary: var(--surface-1);
+
   // About page
-  --about-page-color: var(--white);
+  --about-page-color: var(--text-primary);
   --about-page-background: var(--background);
   --about-page-accent: var(--primary);
-  // Webpage colors, highlight, scrollbar
-  --scroll-bar-color: var(--primary);
+
+  // Scrollbar
+  --scroll-bar-color: rgba(59, 130, 246, 0.35);
   --scroll-bar-background: var(--background-darker);
-  --highlight-color: var(--background);
+  --scroll-bar-track: rgba(59, 130, 246, 0.1);
+
+  // Highlight
+  --highlight-color: var(--text-primary);
   --highlight-background: var(--primary);
   --progress-bar: var(--primary);
+
   // Misc components
   --loading-screen-color: var(--primary);
   --loading-screen-background: var(--background);
-  --status-check-tooltip-background: var(--background-darker);
-  --status-check-tooltip-color: var(--primary);
-  --welcome-popup-background: var(--background-darker);
-  --welcome-popup-text-color: var(--primary);
+  --status-check-tooltip-background: var(--surface-2);
+  --status-check-tooltip-color: var(--text-primary);
+  --welcome-popup-background: var(--surface-2);
+  --welcome-popup-text-color: var(--text-primary);
   --toast-background: var(--primary);
   --toast-color: var(--background);
-  --description-tooltip-background: var(--background-darker);
-  --description-tooltip-color: var(--primary);
+  --description-tooltip-background: var(--surface-2);
+  --description-tooltip-color: var(--text-primary);
+
+  // Card accent colors (deterministic per section)
+  --card-accent-blue: #3b82f6;
+  --card-accent-cyan: #06d6e0;
+  --card-accent-green: #22c55e;
+  --card-accent-purple: #a855f7;
+  --card-accent-orange: #f97316;
+  --card-accent-pink: #ec4899;
+  --card-accent-red: #ef4444;
+
+  // Design Mode
+  --design-mode-border: var(--primary);
+  --design-mode-glow: rgba(59, 130, 246, 0.4);
+  --design-mode-toolbar-bg: var(--surface-2);
+  --design-mode-inspector-bg: var(--surface-1);
 }

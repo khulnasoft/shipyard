@@ -7,7 +7,7 @@ pageInfo:
   - title: GitHub
     path: https://github.com/khulnaSoft/shipyard
   - title: Documentation
-    path: https://ship.khulnasoft.com/docs
+    path: https://live-ship.vercel.app/docs
 
 # Optional app settings and configuration
 appConfig:
@@ -21,7 +21,7 @@ sections:
   - title: Shipyard Live
     description: Development a project management links for Shipyard
     icon: https://i.ibb.co/qWWpD0v/astro-dab-128.png
-    url: https://live.ship.khulnasoft.com/
+    url: https://live-ship.vercel.app/
     target: newtab
   - title: GitHub
     description: Source Code, Issues and Pull Requests
@@ -31,7 +31,7 @@ sections:
     description: Configuring & Usage Documentation
     provider: Shipyard.to
     icon: far fa-book
-    url: https://ship.khulnasoft.com/docs
+    url: https://live-ship.vercel.app/docs
   - title: Showcase
     description: See how others are using Shipyard
     url: https://github.com/khulnaSoft/shipyard/blob/master/docs/showcase.md

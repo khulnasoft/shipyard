@@ -21,8 +21,8 @@ labels:
         body: >
           This issue has been marked as a good first issue for first-time contributors to implement!
           This is a great way to support the project, while also improving your skills, you'll also be credited as a contributor once your PR is merged.
-          If you're new to web development, [here are a collection of resources](https://ship.khulnasoft.com/docs/developing#resources-for-beginners)
-          to help you get started. You can also find step-by-step tutorials for common tasks within Shipyard, on the [Dev Guides](https://ship.khulnasoft.com/docs/development-guides) page.
+          If you're new to web development, [here are a collection of resources](https://live-ship.vercel.app/docs/developing#resources-for-beginners)
+          to help you get started. You can also find step-by-step tutorials for common tasks within Shipyard, on the [Dev Guides](https://live-ship.vercel.app/docs/development-guides) page.
           If you need any support at all, feel free to reach out via [GitHub Discussions](https://github.com/khulnaSoft/shipyard/discussions).
 
   - name: ❌ wontfix
@@ -31,14 +31,14 @@ labels:
         action: close
         body: >
           This ticked has been marked as 'wontfix', which usually means it is out-of-scope, or not feasible at this time.
-          You can still fork the project and make the changes yourself, for support in doing so, please reference the [Developing Docs](https://ship.khulnasoft.com/docs/developing).
+          You can still fork the project and make the changes yourself, for support in doing so, please reference the [Developing Docs](https://live-ship.vercel.app/docs/developing).
 
   - name: ✅ Fixed
     labeled:
       issue:
         body: >
           Hello @{{ issue.user.login }}! It looks like all or part of this issue has now been implemented :)
-          If you're enjoying Shipyard, please consider supporting the project- for ways to get involved, see [Contributing](https://ship.khulnasoft.com/docs/contributing) 💖
+          If you're enjoying Shipyard, please consider supporting the project- for ways to get involved, see [Contributing](https://live-ship.vercel.app/docs/contributing) 💖
   
   - name: ‼️ High Priority
     labeled:

@@ -132,102 +132,59 @@ export default {
 </script>
 
 <style scoped lang="scss">
-
 @import '@/styles/media-queries.scss';
 
-  section {
-    display: flex;
-    align-items: center;
-    align-items: stretch;
-    background: linear-gradient(0deg, var(--background) 0%, var(--background-darker) 100%);
-    box-shadow: var(--settings-container-shadow);
-  }
+section {
+  display: flex; align-items: center; align-items: stretch;
+  background: var(--background-darker);
+  border-bottom: 1px solid var(--border-subtle);
+  box-shadow: var(--settings-container-shadow);
+  height: var(--topbar-height);
+  min-height: var(--topbar-height);
   .options-outer {
-    display: flex;
-    position: relative;
-    flex: 1;
+    display: flex; position: relative; flex: 1;
     background: var(--settings-background);
     border-radius: var(--curve-factor-navbar);
-  }
-  .options-container {
-    display: flex;
-    flex-direction: row;
-    align-items: flex-end;
-    justify-content: flex-end;
-    flex: 1;
-    padding: 0.5rem 1.5rem 0.5rem 1rem;
-    border-radius: var(--curve-factor-navbar) 0 0;
-    background: var(--settings-background);
-    div {
-      margin-left: 0.5rem;
-      opacity: var(--dimming-factor);
-      opacity: 1;
-      &:hover { opacity: 1; }
-    }
-    &.hide {
-      display: none;
-    }
-    @include very-tiny-phone {
-      flex-direction: column;
-      align-items: baseline;
+    .options-container {
+      display: flex; flex-direction: row; align-items: center;
+      justify-content: flex-end; flex: 1;
+      padding: 0 0.75rem; gap: 0.25rem;
+      border-radius: var(--curve-factor-navbar) 0 0;
+      background: var(--settings-background);
       div {
-        width: 100%;
-        text-align: center;
-        .theme-selector-section { justify-content: center; }
+        margin-left: 0; opacity: 0.65; transition: opacity 0.15s;
+        &:hover { opacity: 1; }
+      }
+      &.hide { display: none; }
+    }
+    .show-hide-container {
+      display: flex; background: var(--settings-background);
+      color: var(--settings-text-color); width: 1.5rem;
+      position: absolute; top: 2px; right: 2px;
+      button {
+        width: 100%; padding: 2px; margin: 0;
+        border-radius: var(--curve-factor); height: fit-content;
+        background: none; border: none;
+        color: var(--settings-text-color); cursor: pointer;
+        opacity: var(--dimming-factor); transition: all 0.15s;
+        &:hover {
+          background: var(--settings-text-color);
+          color: var(--settings-background);
+          opacity: 1;
+        }
       }
     }
   }
+}
 
-  .show-hide-container {
-    display: flex;
-    // align-items: center;
-    background: var(--settings-background);
-    color: var(--settings-text-color);
-    width: 1.5rem;
-    position: absolute;
-    top: 4px;
-    right: 4px;
-    &.show-btn {
-      width: 2rem;
-      top: 0.5rem;
-      right: 0.5rem;
-      @include phone {
-        top: -3rem !important;
-      }
-    }
-    button {
-      width: 100%;
-      padding: 2px 2px 0 2px;
-      margin: 2px;
-      border-radius: var(--curve-factor);
-      height: fit-content;
-      background: none;
-      border: none;
-      color: var(--settings-text-color);
-      cursor: pointer;
-      opacity: var(--dimming-factor);
-    }
-    &:hover button {
-      background: var(--settings-text-color);
-      color: var(--settings-background);
-    }
+@include tablet {
+  section {
+    display: block; margin: 0 auto; background: none;
+    .options-container { justify-content: center; }
   }
+}
 
-  @include tablet {
-    section {
-      display: block;
-      margin: 0 auto;
-      background: none;
-      .options-container {
-          justify-content: center;
-      }
-    }
-  }
-
-  @include phone {
-    .options-container, .show-hide-button {
-      // display: none;
-    }
-  }
-
+@include phone {
+  section { height: auto; min-height: auto; padding: 0.25rem; }
+}
 </style>
