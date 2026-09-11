@@ -1,22 +1,30 @@
 <template>
-  <form @submit.prevent="searchSubmitted" :class="minimalSearch ? 'minimal' : 'normal'">
-    <label for="filter-tiles">{{ $t('search.search-label') }}</label>
+  <form @submit.prevent="searchSubmitted"
+    :class="minimalSearch ? 'minimal' : 'normal'">
+    <label v-if="!minimalSearch" for="filter-tiles">{{ $t('search.search-label') }}</label>
     <div class="search-wrap">
+      <span class="search-icon">
+        <svg width="14" height="14" viewBox="0 0 24 24"
+          fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="11" cy="11" r="8" />
+          <path d="m21 21-4.35-4.35" />
+        </svg>
+      </span>
       <input
         id="filter-tiles"
         v-model="input"
         ref="filter"
-        :placeholder="$t('search.search-placeholder')"
+        :placeholder="minimalSearch ? '' : $t('search.search-placeholder')"
         v-on:input="userIsTypingSomething"
         @keydown.esc="clearFilterInput" />
-        <p v-if="searchNote && input.length > 0" class="web-search-note">
-          {{ searchNote }}
-        </p>
-      </div>
-      <i v-if="input.length > 0"
-        class="clear-search"
+      <span v-if="input.length > 0" class="search-badge">⌘K</span>
+      <i v-if="input.length > 0" class="clear-search"
         :title="$t('search.clear-search-tooltip')"
         @click="clearFilterInput">x</i>
+      <p v-if="searchNote && input.length > 0" class="web-search-note">
+        {{ searchNote }}
+      </p>
+    </div>
   </form>
 </template>
 
@@ -27,31 +35,21 @@ import ErrorHandler from '@/utils/ErrorHandler';
 import { getCustomKeyShortcuts } from '@/utils/ConfigHelpers';
 import { getSearchEngineFromBang, findUrlForSearchEngine, stripBangs } from '@/utils/Search';
 import {
-  searchEngineUrls,
-  defaultSearchEngine,
-  defaultSearchOpeningMethod,
-  searchBangs as defaultSearchBangs,
+  searchEngineUrls, defaultSearchEngine,
+  defaultSearchOpeningMethod, searchBangs as defaultSearchBangs,
 } from '@/utils/defaults';
 
 export default {
   name: 'FilterTile',
-  props: {
-    minimalSearch: Boolean, // If true, then keep it simple
-  },
-  data() {
-    return {
-      input: '', // Users current search term
-      akn: new ArrowKeyNavigation(), // Class that manages arrow key naviagtion
-      getCustomKeyShortcuts,
-    };
-  },
+  props: { minimalSearch: Boolean },
+  data: () => ({
+    input: '',
+    akn: new ArrowKeyNavigation(),
+    getCustomKeyShortcuts,
+  }),
   computed: {
-    active() {
-      return !this.$store.state.modalOpen;
-    },
-    searchPrefs() {
-      return this.$store.getters.webSearch || {};
-    },
+    active() { return !this.$store.state.modalOpen; },
+    searchPrefs() { return this.$store.getters.webSearch || {}; },
     urlDetected() {
       return this.searchPrefs.openUrlsDirectly && this.isUrlLike(this.input.trim());
     },
@@ -68,40 +66,31 @@ export default {
     window.removeEventListener('keydown', this.handleKeyPress);
   },
   methods: {
-    /* Call correct function dependending on which key is pressed */
     handleKeyPress(event) {
       const currentElem = document.activeElement.id;
       const { key, keyCode } = event;
       const notAlreadySearching = currentElem !== 'filter-tiles';
-      // If a modal is open, then do nothing
       if (!this.active) return;
       if (/^[/:!a-zA-Z]$/.test(key) && notAlreadySearching) {
-        // Letter or bang key pressed - start searching
         if (this.$refs.filter) this.$refs.filter.focus();
         this.userIsTypingSomething();
       } else if (/^[0-9]$/.test(key)) {
-        // Number key pressed, check if user has a custom binding
         this.handleHotKey(key);
       } else if (keyCode >= 37 && keyCode <= 40) {
-      // Arrow key pressed - start navigation
         this.akn.arrowNavigation(keyCode);
       } else if (keyCode === 27) {
-      // Esc key pressed - reset form
         this.clearFilterInput();
       }
     },
-    /* Emmits users's search term up to parent */
     userIsTypingSomething() {
       this.$emit('user-is-searchin', this.input);
     },
-    /* Resets everything to initial state, when user is finished */
     clearFilterInput() {
-      this.input = ''; // Clear input model
-      this.userIsTypingSomething(); // Emmit new empty value
-      document.activeElement.blur(); // Remove focus
-      this.akn.resetIndex(); // Reset current element index
+      this.input = '';
+      this.userIsTypingSomething();
+      document.activeElement.blur();
+      this.akn.resetIndex();
     },
-    /* If configured, launch specific app when hotkey pressed */
     handleHotKey(key) {
       const sections = this.$store.getters.sections || [];
       const usersHotKeys = this.getCustomKeyShortcuts(sections);
@@ -111,55 +100,44 @@ export default {
         }
       });
     },
-    /* Launch search results, with users desired opening method */
     launchWebSearch(url, method) {
       switch (method) {
-        case 'newtab':
-          window.open(url, '_blank');
-          break;
-        case 'sametab':
-          window.open(url, '_self');
-          break;
-        case 'workspace':
-          router.push({ name: 'workspace', query: { url } });
-          break;
-        default:
-          ErrorHandler(`Unknown opening method: ${method}`);
-          window.open(url, '_blank');
+        case 'newtab': window.open(url, '_blank'); break;
+        case 'sametab': window.open(url, '_self'); break;
+        case 'workspace': router.push({ name: 'workspace', query: { url } }); break;
+        default: ErrorHandler(`Unknown opening method: ${method}`); window.open(url, '_blank');
       }
     },
-
-    /* Launch web search, to correct search engine, passing in users query */
     searchSubmitted() {
-      // Get search preferences from appConfig
       const { searchPrefs } = this;
-      if (!searchPrefs.disableWebSearch) { // Only proceed if user hasn't disabled web search
+      if (!searchPrefs.disableWebSearch) {
         const input = this.input.trim();
         const openingMethod = searchPrefs.openingMethod || defaultSearchOpeningMethod;
-        // If openUrlsDirectly enabled and input looks like a URL, navigate directly
         if (searchPrefs.openUrlsDirectly && input && this.isUrlLike(input)) {
           const url = /^https?:\/\//.test(input) ? input : `https://${input}`;
           this.launchWebSearch(url, openingMethod);
           this.clearFilterInput();
           return;
         }
-        const bangList = { ...defaultSearchBangs, ...(searchPrefs.searchBangs || {}) };
+        const bangList = {
+          ...defaultSearchBangs,
+          ...(searchPrefs.searchBangs || {}),
+        };
         const searchBang = getSearchEngineFromBang(this.input, bangList);
         const searchEngine = searchPrefs.searchEngine || defaultSearchEngine;
-        // Use either search bang, or preffered search engine
         const desiredSearchEngine = searchBang || searchEngine;
-        const isCustomSearch = (searchPrefs.searchEngine === 'custom' && searchPrefs.customSearchEngine);
+        const isCustomSearch = (searchPrefs.searchEngine === 'custom'
+        && searchPrefs.customSearchEngine);
         let searchUrl = isCustomSearch
           ? searchPrefs.customSearchEngine
           : findUrlForSearchEngine(desiredSearchEngine, searchEngineUrls);
-        if (searchUrl) { // Append search query to URL, and launch
+        if (searchUrl) {
           searchUrl += encodeURIComponent(stripBangs(this.input, bangList));
           this.launchWebSearch(searchUrl, openingMethod);
           this.clearFilterInput();
         }
       }
     },
-    /* Detect if input looks like a URL (has TLD, no spaces) */
     isUrlLike(input) {
       return /^(https?:\/\/)?([\w-]+\.)+[a-zA-Z]{2,}(\/\S*)?$/.test(input.trim());
     },
@@ -168,135 +146,108 @@ export default {
 </script>
 
 <style scoped lang="scss">
-
 @import '@/styles/media-queries.scss';
 
-  form.normal {
+form.normal {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  background: var(--search-field-background);
+  border: 1px solid var(--search-border-color);
+  border-radius: 999px;
+  padding: 0.3rem 0.75rem;
+  transition: border-color 0.2s, box-shadow 0.2s;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2), inset 0 1px 2px rgba(0, 0, 0, 0.1);
+
+  &:focus-within {
+    border-color: var(--search-focus-border-color);
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15), 0 1px 3px rgba(0, 0, 0, 0.2);
+  }
+
+  .search-wrap {
     display: flex;
     align-items: center;
-    border-radius: 0 0 var(--curve-factor-navbar) 0;
-    padding: .5rem var(--space-page) .5rem 0;
-    background: var(--search-container-background);
-    border-bottom: 1px solid var(--border-subtle, var(--outline-color));
-    .search-wrap {
+    width: 100%;
+    position: relative;
+
+    .search-icon {
       display: flex;
-      flex-direction: column;
-      width: 100%;
-      p.web-search-note {
-        margin: 0 0.5rem;
-        font-size: 0.8rem;
-        color: var(--minimal-view-search-color);
-        opacity: var(--dimming-factor);
-      }
+      align-items: center;
+      color: var(--text-muted);
+      margin-right: 0.5rem;
+      flex-shrink: 0;
+      svg { opacity: 0.7; }
     }
-    label {
-        display: inline;
-        color: var(--search-label-color);
-        margin: 0.5rem;
-        display: inline;
-        word-break: keep-all;
-    }
+
     input {
       display: inline-block;
-      width: 200px;
-      height: 1rem;
-      padding: 0.5rem;
-      margin: 0.5rem;
+      width: 100%;
+      height: 1.4rem;
+      padding: 0 0.25rem;
       outline: none;
       border: none;
-      border-radius: var(--curve-factor);
-      background: var(--search-field-background);
-      color: var(--settings-text-color);
-      border: 1px solid var(--outline-color);
-      &:focus {
-        border-color: var(--settings-text-color);
-        opacity: var(--dimming-factor);
+      background: transparent;
+      color: var(--text-primary);
+      font-size: 0.8rem;
+      font-family: var(--font-body);
+
+      &::placeholder {
+        color: var(--text-muted);
       }
     }
+
+    .search-badge {
+      font-size: 0.65rem;
+      color: var(--text-muted);
+      background: rgba(59, 130, 246, 0.1);
+      border: 1px solid rgba(59, 130, 246, 0.2);
+      padding: 0.1rem 0.35rem;
+      border-radius: 3px;
+      margin-left: 0.5rem;
+      flex-shrink: 0;
+      font-family: var(--font-monospace);
+    }
+
     .clear-search {
-      color: var(--settings-text-color);
-      padding: 0 0.3rem 0.1rem 0.3rem;
+      color: var(--text-muted);
+      padding: 0 0.2rem;
       font-style: normal;
-      font-size: 1rem;
+      font-size: 0.9rem;
       opacity: var(--dimming-factor);
-      border-radius: 50px;
+      border-radius: 50%;
       cursor: pointer;
-      right: 0.5rem;
-      top: 1rem;
-      border: 1px solid var(--settings-text-color);
-      margin: 0.25rem;
-      &:hover {
-        opacity: 1;
-        background: var(--background-darker);
-      }
+      transition: opacity 0.15s;
+      &:hover { opacity: 1; color: var(--text-primary); }
     }
-  }
 
-  @include tablet {
-    form.normal {
-      display: block;
-      text-align: center;
+    .web-search-note {
+      margin: 0 0.5rem;
+      font-size: 0.7rem;
+      color: var(--text-muted);
+      opacity: var(--dimming-factor);
+      white-space: nowrap;
     }
   }
-  @include phone {
-    form.nomral {
-      flex: 1;
-      border-radius: 0;
-      text-align: center;
-      padding: 0.25rem 0;
-      display: block;
-    }
-  }
+}
 
-  form.minimal {
+form.minimal {
+  display: flex;
+  align-items: center;
+  label { display: none; }
+  .search-wrap {
     display: flex;
     align-items: center;
-    label { display: none; }
-    .search-wrap {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      width: 100%;
-      p.web-search-note {
-        margin: 0;
-        color: var(--minimal-view-search-color);
-        opacity: var(--dimming-factor);
-      }
-    }
+    width: 100%;
     input {
-      display: inline-block;
-      width: 80%;
-      max-width: 400px;
-      font-size: 1.2rem;
-      padding: 0.5rem 1rem;
-      margin: 1rem auto;
-      outline: none;
-      border: 1px solid var(--outline-color);
-      border-radius: var(--curve-factor);
-      background: var(--minimal-view-search-background);
-      color: var(--minimal-view-search-color);
-      &:focus {
-        border-color: var(--minimal-view-search-color);
-        opacity: var(--dimming-factor);
-      }
-    }
-    .clear-search {
-      color: var(--minimal-view-search-color);
-      padding: 0.15rem 0.5rem 0.2rem 0.5rem;
-      font-style: normal;
-      font-size: 1rem;
-      opacity: var(--dimming-factor);
-      border-radius: 50px;
-      cursor: pointer;
-      right: 0.5rem;
-      top: 1rem;
-      border: 1px solid var(--minimal-view-search-color);
-      margin: 0.5rem;
-      &:hover {
-        opacity: 1;
-        color: var(--minimal-view-search-background);
-        background: var(--minimal-view-search-color);
-      }
+      font-size: 0.9rem;
     }
   }
+}
+
+@include phone {
+  form.normal {
+    border-radius: var(--curve-factor);
+    .search-wrap .web-search-note { display: none; }
+  }
+}
 </style>
