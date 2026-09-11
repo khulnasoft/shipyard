@@ -29,7 +29,7 @@ When a PR is opened:
 
 After the PR is merged:
 
-- The app is build, and deployed to: <https://dev.ship.khulnasoft.com>
+- The app is build, and deployed to: <https://dev.live-ship.vercel.app>
 - A new tag in GitHub is created, using the apps version number (from the package.json)
 - The Docker container is built, and published under the `:latest` tag on DockerHub and GHCR
 

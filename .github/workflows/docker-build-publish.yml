@@ -43,7 +43,7 @@ jobs:
           maintainer=khulnasoft
           org.opencontainers.image.title=Shipyard
           org.opencontainers.image.description=A self-hosted startpage for your server
-          org.opencontainers.image.documentation=https://ship.khulnasoft.com/docs
+          org.opencontainers.image.documentation=https://live-ship.vercel.app/docs
           org.opencontainers.image.authors=Md Sulaiman
           org.opencontainers.image.licenses=MIT
 

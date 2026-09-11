@@ -1,6 +1,6 @@
 {
   "name": "Shipyard",
-  "website": "https://ship.khulnasoft.com/",
+  "website": "https://live-ship.vercel.app/",
   "description": "A Dashboard for your Homelab 🚀",
   "repository": "https://github.com/khulnasoft/shipyard",
   "logo": "https://raw.githubusercontent.com/khulnaSoft/shipyard/master/docs/assets/logo.png",

@@ -5,7 +5,7 @@
    <br/>
   <img width="120" src="https://i.ibb.co/yhbt6CY/shipyard.png" />
   <br/>
-  <b><a href="./docs/showcase.md">User Showcase</a></b> | <b><a href="https://demo.ship.khulnasoft.com">Live Demo</a></b> | <b><a href="./docs/quick-start.md">Getting Started</a></b> | <b><a href="https://ship.khulnasoft.com/docs">Documentation</a></b> | <b><a href="https://github.com/khulnaSoft/shipyard">GitHub</a></b>
+  <b><a href="./docs/showcase.md">User Showcase</a></b> | <b><a href="https://demo.live-ship.vercel.app">Live Demo</a></b> | <b><a href="./docs/quick-start.md">Getting Started</a></b> | <b><a href="https://live-ship.vercel.app/docs">Documentation</a></b> | <b><a href="https://github.com/khulnaSoft/shipyard">GitHub</a></b>
 </p>
 
 <p align="center">
@@ -84,7 +84,7 @@
 
 ## Demo ⚡
 
-**Live Instances**: [Demo 1](https://demo.ship.khulnasoft.com) (Live Demo) ┆ [Demo 2](https://live.ship.khulnasoft.com) (Shipyard Links) ┆ [Demo 3](https://dev.ship.khulnasoft.com) (Dev Preview)
+**Live Instances**: [Demo 1](https://demo.live-ship.vercel.app) (Live Demo) ┆ [Demo 2](https://live-ship.vercel.app) (Shipyard Links) ┆ [Demo 3](https://dev.live-ship.vercel.app) (Dev Preview)
 
 **Screenshots**: Checkout the [Showcase](./docs/showcase.md), to see example dashboards from the community
 

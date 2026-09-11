@@ -19,7 +19,7 @@
       <!-- Source and Docs Links -->
       <h3>{{ $t('app-info.more-info') }}</h3>
       {{ $t('app-info.source') }}: <a href="https://github.com/khulnasoft/shipyard">github.com/khulnasoft/shipyard</a><br>
-      {{ $t('app-info.documentation') }}: <a href="https://ship.khulnasoft.com/docs">ship.khulnasoft.com/docs</a>
+      {{ $t('app-info.documentation') }}: <a href="https://live-ship.vercel.app/docs">live-ship.vercel.app/docs</a>
       <!-- Privacy & Security -->
       <h3>{{ $t('app-info.privacy-and-security') }}</h3>
       {{ $t('app-info.privacy-and-security-l1') }} <a href="https://github.com/khulnaSoft/shipyard/blob/master/docs/privacy.md">{{ $t('app-info.privacy-and-security-privacy-policy') }}</a>.<br>

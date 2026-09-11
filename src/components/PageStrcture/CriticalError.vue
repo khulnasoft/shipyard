@@ -18,7 +18,7 @@
       </li>
       <li>View the
         <a href="https://github.com/khulnaSoft/shipyard/blob/master/docs/troubleshooting.md">Troubleshooting Guide</a>
-        and <a href="https://ship.khulnasoft.com/docs/">Docs</a>
+        and <a href="https://live-ship.vercel.app/docs/">Docs</a>
       </li>
       <li>
         If you've verified the config is present, accessible and valid, and cannot find the solution

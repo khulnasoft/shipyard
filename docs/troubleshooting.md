@@ -52,7 +52,7 @@
 ### Possible Issue 1: Unable to call save endpoint from CDN/static server
 If you're running Shipyard using a static hosting provider (like Vercel), then there is no Node server, and so the save config action will not work via the UI.
 You'll instead need to copy the YAML after making your changes, and paste that into your `conf.yml` directly. If you've connected Vercel to git, then these changes will take effect automatically, once you commit your changes. 
-Look here for more information: [https://ship.khulnasoft.com/docs/deployment#deploy-to-cloud-service](https://ship.khulnasoft.com/docs/deployment#deploy-to-cloud-service)
+Look here for more information: [https://live-ship.vercel.app/docs/deployment#deploy-to-cloud-service](https://live-ship.vercel.app/docs/deployment#deploy-to-cloud-service)
 
 If you're running on Netlify, there are some cloud functions which take care of all the server endpoints (like status checking), so these will work as expected.
 
